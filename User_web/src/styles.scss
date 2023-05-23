@@ -1,0 +1,115 @@
+/*
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+*/
+/* You can add global styles to this file, and also import other style files */
+.navbar {
+  // background-color: #FC8019 !important;
+  background: white;
+  height: 80px;
+}
+
+// body{
+//   // background: #eceff1 ;
+//   background: white;
+// }
+
+::ng-deep.swal2-container {
+  z-index: 1000000 !important;
+}
+
+.swal2-container {
+  z-index: 1000000 !important;
+}
+
+.carousel-control-prev-icon {
+  background: black;
+  border-radius: 50px;
+}
+
+.carousel-control-next-icon {
+  background: black;
+  border-radius: 50px;
+}
+
+.carousel-control-next {
+  right: -55px;
+}
+
+.carousel-control-prev {
+  left: -55px;
+}
+
+@font-face {
+  font-family: "regular";
+  src: url(assets/fonts/poppins.ttf);
+}
+
+@font-face {
+  font-family: "bold";
+  src: url(assets/fonts/bold.ttf);
+}
+
+* {
+  font-family: "regular";
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+.page_header_dynamics {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
+}
+
+.bg_image {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+input,
+select {
+  border-radius: 0px !important;
+  height: 50px !important;
+}
+
+textarea {
+  border-radius: 0px !important;
+}
+
+button {
+  border-radius: 0px !important;
+}
+
+p {
+  strong {
+    font-weight: 600 !important;
+    font-size: 20px;
+    display: block;
+    margin-top: 30px;
+  }
+}
+
+// .carousel-cell {
+//     width: 300px !important;
+// }
+
+// #ff384c
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {}
+
+@media only screen and (device-width: 1366px) {}

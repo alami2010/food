@@ -1,0 +1,103 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+-->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('All Orders')}}
+
+        </div>
+        <div class="card-body">
+
+
+          <div *ngIf="!list?.length && dummy.length == 0" style="text-align: center;">
+            <p>{{util.translate('No Data Found..')}}</p>
+          </div>
+
+          <table class="table table-striped">
+            <thead *ngIf="list?.length">
+              <tr>
+                <th>{{util.translate('Id')}}</th>
+                <th>{{util.translate('Username')}}</th>
+                <th>{{util.translate('Items')}}</th>
+                <th>{{util.translate('Date')}}</th>
+                <th>{{util.translate('Total')}}</th>
+                <th>{{util.translate('Order To')}}</th>
+                <th>{{util.translate('Status')}}</th>
+                <th>{{util.translate('Action')}}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let item of dummy">
+                <td *ngFor="let item of [1,2,3,4,5]">
+                  <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                </td>
+              </tr>
+              <tr *ngFor="let item of list | paginate: {id:'pagin1', itemsPerPage: 20, currentPage: page }">
+                <td> {{item.id}} </td>
+                <td>{{item.first_name}} {{item.last_name}}</td>
+                <td>
+
+                  <div *ngFor="let sub of item.items">
+
+                    <span style="font-size: 12px;font-weight: bold;">{{sub.name}}</span>
+                    <span *ngIf="sub.size == 0" style="font-size: 12px;font-weight: bold;">
+                      <span *ngIf="util.currencySide == 'left'">{{util.currencySymbol}}
+                        {{sub.price}}</span>
+                      <span *ngIf="util.currencySide == 'right'">
+                        {{sub.price}}
+                        {{util.currencySymbol}}</span>
+                      <span>X {{sub.quantity}}</span>
+                    </span>
+                    <div *ngIf="sub.size == 1 && sub.savedVariationsList.length > 0">
+                      <div *ngFor="let variations of sub.savedVariationsList">
+                        <span class="text-uppercase" style="font-size: 10px;">
+                          {{variations.title}} -
+                          <span *ngIf="util.currencySide == 'left'">{{util.currencySymbol}}
+                            {{variations.price}}</span>
+                          <span *ngIf="util.currencySide == 'right'">
+                            {{variations.price}}
+                            {{util.currencySymbol}}</span>
+                        </span>
+                        <span>X {{variations.quantity}} </span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>{{getDate(item.created_at)}}</td>
+                <td>
+                  <span *ngIf="util.cside =='left'">{{util.currecny}}
+                    {{item.grand_total}} </span>
+                  <span *ngIf="util.cside =='right'">{{item.grand_total}}
+                    {{util.currecny}}</span>
+
+                </td>
+                <td> {{item.order_to ==0 ?'Home':'Self Pickup'}} </td>
+                <td> {{getStatus(item.status)}}</td>
+                <td>
+                  <c-badge color="info" class="me-1 badge bg-info" (click)="viewsInfo(item.id)">
+                    {{util.translate('View')}}</c-badge>
+                  <!-- <span class="badge badge-info" (click)="viewsInfo(item.id)">{{util.translate('View')}}</span> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div *ngIf="list?.length > 0">
+            <pagination-controls id="pagin1" (pageChange)="page = $event"></pagination-controls>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

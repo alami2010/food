@@ -1,0 +1,182 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+ -->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div mdbModal #productRating="mdbModal" class="modal fade center" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 99999;">
+  <div class="modal-dialog modal-notify modal-danger" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal_header">
+          <label class="titles"> {{util.translate('Rate')}} {{product_name}} </label>
+          <mdb-icon style="cursor: pointer;" (click)="productRating.hide()" fas icon="times-circle" color="primary">
+          </mdb-icon>
+        </div>
+
+        <div class="info_div">
+          <div class="RatingBtns">
+            <i class="fa-star" [ngClass]="product_rate >=1 ? 'fas' : 'far'" (click)="product_rate = 1"></i>
+            <i class="fa-star" [ngClass]="product_rate >=2 ? 'fas' : 'far'" (click)="product_rate = 2"></i>
+            <i class="fa-star" [ngClass]="product_rate >=3 ? 'fas' : 'far'" (click)="product_rate = 3"></i>
+            <i class="fa-star" [ngClass]="product_rate >=4 ? 'fas' : 'far'" (click)="product_rate = 4"></i>
+            <i class="fa-star" [ngClass]="product_rate >=5 ? 'fas' : 'far'" (click)="product_rate = 5"></i>
+          </div>
+          <div class="name">
+            <div class="content_div">
+              <textarea rows="6" [placeholder]="util.translate('Comment')" [(ngModel)]="product_comment"></textarea>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="danger" (click)="submitProductRating()" class="waves-light"
+          mdbWavesEffect>{{util.translate('Add Rating')}}
+        </a>
+        <a type="button" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal"
+          (click)="productRating.hide()"> {{util.translate('Cancel')}} </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #storeRating="mdbModal" class="modal fade center" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 99999;">
+  <div class="modal-dialog modal-notify modal-danger" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal_header">
+          <label class="titles"> {{util.translate('Rate')}} {{store_name}} </label>
+          <mdb-icon style="cursor: pointer;" (click)="storeRating.hide()" fas icon="times-circle" color="primary">
+          </mdb-icon>
+        </div>
+
+        <div class="info_div">
+          <div class="RatingBtns">
+            <i class="fa-star" [ngClass]="store_rate >=1 ? 'fas' : 'far'" (click)="store_rate = 1"></i>
+            <i class="fa-star" [ngClass]="store_rate >=2 ? 'fas' : 'far'" (click)="store_rate = 2"></i>
+            <i class="fa-star" [ngClass]="store_rate >=3 ? 'fas' : 'far'" (click)="store_rate = 3"></i>
+            <i class="fa-star" [ngClass]="store_rate >=4 ? 'fas' : 'far'" (click)="store_rate = 4"></i>
+            <i class="fa-star" [ngClass]="store_rate >=5 ? 'fas' : 'far'" (click)="store_rate = 5"></i>
+          </div>
+          <div class="name">
+            <div class="content_div">
+              <textarea rows="6" [placeholder]="util.translate('Comment')" [(ngModel)]="store_comment"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="danger" (click)="addStoreRating()" class="waves-light"
+          mdbWavesEffect>{{util.translate('Add Rating')}}
+        </a>
+        <a type="button" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal"
+          (click)="storeRating.hide()"> {{util.translate('Cancel')}} </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #driverRating="mdbModal" class="modal fade center" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 99999;">
+  <div class="modal-dialog modal-notify modal-danger" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal_header">
+          <label class="titles"> {{util.translate('Rate')}} {{driver_name}} </label>
+          <mdb-icon style="cursor: pointer;" (click)="driverRating.hide()" fas icon="times-circle" color="primary">
+          </mdb-icon>
+        </div>
+
+        <div class="info_div">
+          <div class="RatingBtns">
+            <i class="fa-star" [ngClass]="driver_rate >=1 ? 'fas' : 'far'" (click)="driver_rate = 1"></i>
+            <i class="fa-star" [ngClass]="driver_rate >=2 ? 'fas' : 'far'" (click)="driver_rate = 2"></i>
+            <i class="fa-star" [ngClass]="driver_rate >=3 ? 'fas' : 'far'" (click)="driver_rate = 3"></i>
+            <i class="fa-star" [ngClass]="driver_rate >=4 ? 'fas' : 'far'" (click)="driver_rate = 4"></i>
+            <i class="fa-star" [ngClass]="driver_rate >=5 ? 'fas' : 'far'" (click)="driver_rate = 5"></i>
+          </div>
+          <div class="name">
+            <div class="content_div">
+              <textarea rows="6" [placeholder]="util.translate('Comment')" [(ngModel)]="driver_comment"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="danger" (click)="addDriverRating()" class="waves-light"
+          mdbWavesEffect>{{util.translate('Add Rating')}}
+        </a>
+        <a type="button" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal"
+          (click)="driverRating.hide()"> {{util.translate('Cancel')}} </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container main_content_div">
+
+  <label class="titles"> {{util.translate('Orders')}} </label>
+  <div *ngIf="apiCalled == false">
+    <div *ngFor="let item of [1,2,3,4,1,1,2,3,4]">
+      <ngx-skeleton-loader [theme]="{ 'border-radius': '5px', height: '25px',width:'100%'}">
+      </ngx-skeleton-loader>
+    </div>
+  </div>
+  <div class="desc_div" *ngIf="apiCalled == true">
+    <div class="border_bottom">
+      <div>
+        <p class="storeName">
+          <span class="name"> {{store_name}} </span>
+          <span class="status" (click)="openStore()">
+            <div class="ion-activatable ripple-parent" style="cursor: pointer;">
+              <mdb-icon fas icon="star" color="primary"></mdb-icon>
+            </div>
+          </span>
+        </p>
+        <p *ngFor="let order of products" class="items">
+          <span>{{order.name}}
+          </span>
+          <span (click)="openProduct(order)">
+            <div class="ion-activatable ripple-parent" style="cursor: pointer;">
+              <mdb-icon fas icon="star" color="primary"></mdb-icon>
+            </div>
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <label class="titles" *ngIf="deliverTo == 1 && driver_id"> {{util.translate('Rate Drivers')}}
+    </label>
+
+    <div class="card_div">
+      <div class="resto_detail" (click)="openDriver()">
+        <div class="back_image"
+          [ngStyle]="{'background-image':'url('+api.mediaURL+driver_cover+'),url(assets/user.png)'}">
+        </div>
+        <div style="margin-left: 10px;" (click)="openDriver()">
+          <label class="res_name" style="display: block;">{{driver_name}}
+          </label>
+          <label class="res_location" style="display: block;">
+            <mdb-icon fas icon="envelope" color="primary"></mdb-icon>
+            {{driver_email}}
+          </label>
+          <label class="res_location" style="display: block;">
+            <mdb-icon fas icon="phone-alt" color="primary"></mdb-icon>
+            {{driver_mobile}}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

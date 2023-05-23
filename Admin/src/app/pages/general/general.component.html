@@ -1,0 +1,176 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+-->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('App Info')}}
+        </div>
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Store Name')}} <span style="color: red;">*</span> </label>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="storeName"
+                  [placeholder]="util.translate('Store Name')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Contact No')}} <span style="color: red;">*</span> </label>
+                <input type="number" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="contact"
+                  [placeholder]="util.translate('Contact No')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Email ID')}} <span style="color: red;">*</span> </label>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="email"
+                  [placeholder]="util.translate('Email ID')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Address')}} <span style="color: red;">*</span> </label>
+                <input type="text" [(ngModel)]="address" class="form-control" [placeholder]="util.translate('Address')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('City')}} <span style="color: red;">*</span> </label>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="city"
+                  [placeholder]="util.translate('City')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('State')}} <span style="color: red;">*</span> </label>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="state"
+                  [placeholder]="util.translate('State')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('ZIP')}} <span style="color: red;">*</span> </label>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="zip"
+                  [placeholder]="util.translate('ZIP')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Country Name')}} <span style="color: red;">*</span> </label>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="country"
+                  [placeholder]="util.translate('Country Name')">
+              </div>
+            </div>
+          </div>
+
+          <h5 style="margin-bottom: 20px;">{{util.translate('Orders')}}</h5>
+
+          <div class="row">
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Free Shipping on order price')}} <span style="color: red;">*</span> </label>
+                <input type="number" class="form-control" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="freeShipOnPrice" [placeholder]="util.translate('Free Shipping on order price')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Order Tax')}} <span style="color: red;">*</span> </label>
+                <input type="number" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="tax"
+                  [placeholder]="util.translate('Order Tax')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Shipping Type')}} <span style="color: red;">*</span> </label>
+                <select [ngModelOptions]="{standalone: true}" class="form-control" [(ngModel)]="shippingType">
+                  <option [value]="-1">{{util.translate('Shipping Type')}}</option>
+                  <option [value]="0">{{util.translate('KM')}}</option>
+                  <option [value]="1">{{util.translate('Fixed')}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Shipping Price')}} <span style="color: red;">*</span> </label>
+                <input type="number" class="form-control" [(ngModel)]="shippingPrice"
+                  [placeholder]="util.translate('Shipping Price')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Delivery Area')}} <span style="color: red;">*</span> </label>
+                <input type="number" class="form-control" [(ngModel)]="deliveryArea"
+                  [placeholder]="util.translate('Delivery Area')">
+              </div>
+            </div>
+          </div>
+
+          <h5 style="margin-bottom: 20px;">{{util.translate('Social')}}</h5>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Facebook URL')}}</label>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="facebook_url"
+                  [placeholder]="util.translate('Facebook URL')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Twitter URL')}}</label>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="twitter"
+                  [placeholder]="util.translate('Twitter URL')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Instagram URL')}}</label>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="instagram"
+                  [placeholder]="util.translate('Instagram URL')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('PlayStore URL')}}</label>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="google_playstore" [placeholder]="util.translate('PlayStore URL')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Appstore URL')}}</label>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="apple_appstore" [placeholder]="util.translate('Appstore URL')">
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>{{util.translate('Website Footer')}}</label>
+                <textarea type="text" class="form-control" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="web_footer" [placeholder]="util.translate('Website Footer')"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-success" *ngIf="isCreate == true" (click)="createInfo()">
+            {{util.translate('Create Info')}}</button>
+          <button type="button" class="btn btn btn-primary" *ngIf="isCreate == false" (click)="updateInfo()">
+            {{util.translate('Update Info')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

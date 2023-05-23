@@ -1,0 +1,140 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+-->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="animated fadeIn">
+  <div class="row">
+
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('All Reviews')}}
+        </div>
+        <div class="card-body">
+
+          <tabset>
+            <tab heading="Your Reviews">
+
+
+              <div class="error_div" *ngIf="products?.length <= 0 && dummy?.length <= 0">
+                <label>{{util.translate('No Data Found..')}}</label>
+              </div>
+
+              <table class="table table-responsive-sm table-hover mb-0">
+                <thead *ngIf="products?.length > 0">
+                  <tr>
+                    <th>{{util.translate('Id')}} </th>
+                    <th>{{util.translate('From')}} </th>
+                    <th class="text-center"><i class="icon-people"></i></th>
+                    <th>{{util.translate('User')}} </th>
+                    <th>{{util.translate('Rating')}} </th>
+                    <th>{{util.translate('Comment')}} </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of dummy">
+                    <td *ngFor="let item of [1,2,3,4,5,6]">
+                      <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                    </td>
+                  </tr>
+                  <tr *ngFor="let item of stores | paginate: {id:'pagin1', itemsPerPage: 10, currentPage: page }">
+                    <td>{{item.id}}</td>
+                    <td>{{item.from ==1 ? 'Order':'Manually'}}</td>
+                    <td class="text-center">
+                      <div class="avatar">
+                        <img [src]="api.imageUrl+ item.cover" onError="this.src='assets/imgs/user.png'"
+                          class="img-avatar" style="height: 36px;width: 36px;">
+                      </div>
+
+                    </td>
+                    <td>
+                      <div> {{item.first_name}} {{item.last_name}} </div>
+                      <div class="small text-muted">
+                        <span>{{util.translate('New')}} </span> |
+                        {{util.translate('Saved on:')}} {{getDate(item.timestamp)}}
+                      </div>
+                    </td>
+                    <td> {{item.rate}} / 5 </td>
+                    <td> <span style="white-space: pre-line;width: 100px;"> {{item.msg}} </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div *ngIf="stores?.length > 0">
+                <pagination-controls id="pagin1" (pageChange)="page = $event"></pagination-controls>
+              </div>
+            </tab>
+            <tab heading="Products Reviews">
+
+              <div class="error_div" *ngIf="stores?.length <= 0 && dummy?.length <= 0">
+                <label>{{util.translate('No Data Found..')}}</label>
+              </div>
+
+              <table class="table table-responsive-sm table-hover mb-0">
+                <thead *ngIf="stores?.length > 0">
+                  <tr>
+                    <th>{{util.translate('Id')}} </th>
+                    <th>{{util.translate('Product')}} </th>
+                    <th> </th>
+                    <th class="text-center"><i class="icon-people"></i></th>
+                    <th>{{util.translate('User')}} </th>
+                    <th>{{util.translate('Rating')}} </th>
+                    <th>{{util.translate('Comment')}} </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of dummy">
+                    <td *ngFor="let item of [1,2,3,4,5,6]">
+                      <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                    </td>
+                  </tr>
+                  <tr *ngFor="let item of products | paginate: {id:'pagin1', itemsPerPage: 10, currentPage: page }">
+                    <td>{{item.id}}</td>
+                    <td class="text-center">
+                      <div class="avatar">
+                        <img [src]="api.imageUrl+ item.product_cover" onError="this.src='assets/imgs/user.png'"
+                          class="img-avatar" style="height: 36px;width: 36px;">
+                      </div>
+                    </td>
+                    <td>
+                      {{item.product_name}}
+                    </td>
+                    <td class="text-center">
+                      <div class="avatar">
+                        <img [src]="api.imageUrl+ item.cover" onError="this.src='assets/imgs/user.png'"
+                          class="img-avatar" style="height: 36px;width: 36px;">
+                      </div>
+                    </td>
+                    <td>
+                      <div> {{item.first_name}} {{item.last_name}} </div>
+                      <div class="small text-muted">
+                        <span>{{util.translate('New')}} </span> |
+                        {{util.translate('Saved on:')}} {{getDate(item.timestamp)}}
+                      </div>
+                    </td>
+                    <td> {{item.rate}} / 5 </td>
+                    <td> <span style="white-space: pre-line;width: 100px;"> {{item.msg}} </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div *ngIf="products?.length > 0">
+                <pagination-controls id="pagin1" (pageChange)="page = $event"></pagination-controls>
+              </div>
+            </tab>
+          </tabset>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

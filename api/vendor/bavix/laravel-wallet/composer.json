@@ -1,0 +1,84 @@
+{
+  "name": "bavix/laravel-wallet",
+  "description": "Easy work with virtual wallet.",
+  "keywords": [
+    "laravel",
+    "credits",
+    "bavix",
+    "currency",
+    "laravel-wallet",
+    "laravel-package",
+    "virtual",
+    "wallet",
+    "payments"
+  ],
+  "minimum-stability": "stable",
+  "homepage": "https://bavix.github.io/laravel-wallet/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Babichev Maxim",
+      "email": "info@babichev.net"
+    }
+  ],
+  "require": {
+    "ext-pdo": "*",
+    "php": "^7.4|^8.0",
+    "illuminate/database": "^6.0|^7.0|^8.0",
+    "doctrine/dbal": "^2.8|^3.0",
+    "ramsey/uuid": "^3.0|^4.0",
+    "brick/math": "~0.8"
+  },
+  "require-dev": {
+    "brianium/paratest": "^6.2",
+    "cknow/laravel-money": "^6.1",
+    "infection/infection": "~0.17",
+    "laravel/cashier": "^13.6",
+    "nunomaduro/collision": "^5.4",
+    "orchestra/testbench": "^6.4",
+    "phpmetrics/phpmetrics": "^v2.7",
+    "phpstan/phpstan": "^1.0",
+    "phpunit/phpunit": "^9.4",
+    "psalm/plugin-laravel": "^1.4",
+    "symplify/easy-coding-standard": "^9.4",
+    "vimeo/psalm": "^4.1"
+  },
+  "suggest": {
+    "bavix/laravel-wallet-swap": "Addition to the laravel-wallet library for quick setting of exchange rates"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bavix\\Wallet\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Bavix\\Wallet\\Test\\": "tests/"
+    }
+  },
+  "scripts": {
+    "docs": "@php -S localhost:3000 -t ./docs",
+    "unit":"@php vendor/bin/phpunit --coverage-xml=build/coverage-xml --log-junit=build/junit.xml",
+    "paraunit":"@php vendor/bin/paratest --coverage-xml=build/coverage-xml --log-junit=build/junit.xml",
+    "parabench":"@php ./vendor/bin/testbench package:test --parallel --coverage-xml=build/coverage-xml --log-junit=build/junit.xml",
+    "infect": "@php vendor/bin/infection --coverage=build --min-msi=50 -j$(nproc)",
+    "metrics": "@php vendor/bin/phpmetrics --config=phpmetrics.json",
+    "stan": "@php vendor/bin/phpstan analyse -vvv --debug --memory-limit 2G -l 7 src/",
+    "ecs": "@php vendor/bin/ecs check",
+    "ecs-fix": "@php vendor/bin/ecs check --fix",
+    "ecs-cc": "@php vendor/bin/ecs --clear-cache",
+    "psalm": "@php vendor/bin/psalm src/",
+    "psalm-dry": "@php vendor/bin/psalm --alter --issues=InvalidReturnType,MismatchingDocblockParamType,MismatchingDocblockReturnType --dry-run src/"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Bavix\\Wallet\\WalletServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "process-timeout":0,
+    "sort-packages": true
+  }
+}

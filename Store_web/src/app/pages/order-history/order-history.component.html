@@ -1,0 +1,273 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+-->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="animated fadeIn">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('Orders Details')}}
+          <div class="card-header-actions" *ngIf="loaded">
+            <button type="link" class="btn btn-primary" (click)="printOrder()">{{util.translate("Print")}}</button>
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div *ngIf="!loaded"
+            style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+            <div class="loader">{{util.translate('Loading...')}}</div>
+          </div>
+          <div class="main_content_div" *ngIf="loaded">
+            <div class="card_div" *ngIf="userInfo">
+              <div class="resto_detail">
+                <div class="back_image"
+                  [ngStyle]="{'background-image':'url('+api.imageUrl+userInfo.cover+'),url(assets/img/dummy.jpeg)'}">
+                </div>
+                <div style="margin-left: 10px;">
+                  <p class="res_name">{{userInfo.first_name}} {{userInfo.last_name}}
+                  </p>
+                  <p class="res_location">{{datetime}}</p>
+                </div>
+              </div>
+            </div>
+
+            <p class="titles"> {{util.translate('Orders')}} </p>
+            <div class="desc_div">
+              <div *ngIf="orders?.length" class="border_bottom">
+                <p *ngFor="let order of orders;let ol = index" class="items">
+                  <span *ngIf="order.size == 0 ">{{order.name}} -
+                    <span *ngIf="util.cside =='left'">
+                      {{util.currecny}} {{order.discount == 0 ? order.price :
+                      order.discount}}
+                    </span>
+                    <span *ngIf="util.cside =='right'">
+                      {{order.discount ==0 ? order.price : order.discount}}
+                      {{util.currecny}}
+                    </span>
+                  </span>
+                  <span *ngIf="order.size == 1">
+                    {{order.name}} <br>
+                    <span>
+                      <span *ngFor="let subOrder of order.savedVariationsList">
+                        <span style="font-size: 10px;"> {{subOrder.title}} - <span *ngIf="util.cside =='left'">
+                            {{util.currecny}} {{subOrder.price}}
+                          </span>
+                          <span *ngIf="util.cside =='right'">
+                            {{subOrder.price}}
+                            {{util.currecny}}
+                          </span> <br>
+                        </span>
+                      </span>
+                    </span>
+
+                  </span>
+                  <span>X
+                    <span *ngIf="order.size == 0">{{order.quantity}}</span>
+                    <span
+                      *ngIf="order.size == 1 && order.savedVariationsList && order.savedVariationsList.length>0">{{order.savedVariationsList[0].quantity}}</span>
+                  </span>
+                </p>
+                <p class="items-billing">
+                  <span> {{util.translate('Order Item Total')}} </span>
+                  <span *ngIf="util.cside =='left'">
+                    {{util.currecny}} {{orderTotal}}
+                  </span>
+                  <span *ngIf="util.cside =='right'">
+                    {{orderTotal}} {{util.currecny}}
+                  </span>
+                </p>
+                <p class="items-billing">
+                  <span> {{util.translate('Order Delivery Charge')}} </span>
+                  <span *ngIf="util.cside =='left'">
+                    {{util.currecny}} {{orderDeliveryCharge}}
+                  </span>
+                  <span *ngIf="util.cside =='right'">
+                    {{orderDeliveryCharge}} {{util.currecny}}
+                  </span>
+                </p>
+                <p class="items-billing">
+                  <span> {{util.translate('Order Tax')}} </span>
+                  <span *ngIf="util.cside =='left'">
+                    {{util.currecny}} {{orderTaxCharge}}
+                  </span>
+                  <span *ngIf="util.cside =='right'">
+                    {{orderTaxCharge}} {{util.currecny}}
+                  </span>
+                </p>
+                <p class="items-billing">
+                  <span> {{util.translate('Order Discount')}} </span>
+                  <span *ngIf="util.cside =='left'">
+                    - {{util.currecny}} {{orderDiscount}}
+                  </span>
+                  <span *ngIf="util.cside =='right'">
+                    - {{orderDiscount}} {{util.currecny}}
+                  </span>
+                </p>
+                <p class="items-billing">
+
+                  <span> {{util.translate('Order Wallet Discount')}}</span>
+                  <span *ngIf="util.cside =='left'">
+                    - {{util.currecny}} {{orderWalletDiscount}}
+                  </span>
+                  <span *ngIf="util.cside =='right'">
+                    - {{orderWalletDiscount}} {{util.currecny}}
+                  </span>
+                </p>
+                <p class="items-billing">
+                  <span style="text-transform: uppercase;color: red;">
+                    {{util.translate('Amount to Collect')}} </span>
+                  <span *ngIf="util.cside =='left'" style="text-transform: uppercase;color: red;">
+                    {{util.currecny}} {{grandTotal}}
+                  </span>
+                  <span *ngIf="util.cside =='right'" style="text-transform: uppercase;color: red;">
+                    {{grandTotal}} {{util.currecny}}
+                  </span>
+                </p>
+              </div>
+            </div>
+
+
+
+            <div class="flex_div">
+              <p> {{util.translate('Deliver to')}} </p>
+              <p class="values">{{orderAt ==0 ?'Home':'Self Pickup'}}</p>
+            </div>
+            <div class="flex_div" *ngIf="orderAt == 0">
+              <p class="values">
+                <i class="fa fa-location-arrow fa-lg"></i>
+                {{address}}
+              </p>
+
+            </div>
+
+            <p class="titles"> {{util.translate('Basic Details')}} </p>
+            <div class="flex_div">
+              <p> {{util.translate('Order ID')}} </p>
+              <p class="values">{{id}}</p>
+            </div>
+
+            <div class="flex_div">
+              <p> {{util.translate('Payment Method')}} </p>
+              <p class="values"> {{payMethod}} </p>
+            </div>
+
+            <div class="flex_div">
+              <p> {{util.translate('Delivery On')}} </p>
+              <p class="values"> {{datetime}} </p>
+            </div>
+
+            <div class="hr_line_div" *ngIf="userInfo && userInfo.mobile"></div>
+
+            <div class="card_div2" *ngIf="userInfo && userInfo.mobile">
+              <div class="personal_detail">
+                <div style="display: flex;">
+
+                  <i class="fa fa-phone fa-lg"></i> &nbsp;&nbsp;
+                  <p class="res_name">{{userInfo.mobile}}</p>
+                </div>
+                <div>
+                  <button type="link" (click)="call()" class="btn btn-primary">{{util.translate('Call')}} </button>
+
+                </div>
+              </div>
+            </div>
+            <div class="hr_line_div" *ngIf="userInfo && userInfo.email"></div>
+
+            <div class="card_div2" *ngIf="userInfo && userInfo.email">
+              <div class="personal_detail">
+                <div style="display: flex;">
+
+                  <i class="fa fa-envelope-open fa-lg"></i>&nbsp;&nbsp;
+                  <p class="res_name">{{userInfo.email}}</p>
+                </div>
+                <div>
+                  <button type="link" (click)="email()" class="btn btn-primary">{{util.translate('Email')}} </button>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="card-footer">
+
+          <div class="btn_div" *ngIf="status == 0">
+            <button type="button" class="btn btn-sm btn-block btn-danger active" (click)="changeStatus('rejected')"
+              style="margin:0px">{{util.translate('Reject Order')}}
+            </button>
+            <button type="button" class="btn btn-sm btn-block btn-success active" (click)="changeStatus('accepted')"
+              style="margin: 0px;">{{util.translate('Accept Order')}}
+            </button>
+          </div>
+          <p style="color: green;" *ngIf="status == 4">
+            {{util.translate('Order Status')}} :
+            {{util.translate('Order Delivered')}}
+          </p>
+          <p style="color: red;" *ngIf="status == 5">
+            {{util.translate('Order Cancelled by user')}}
+          </p>
+
+          <div class="status_div" *ngIf="status == 1 || status == 2 || status == 3 ">
+            <select id="ccyear" class="form-control" [(ngModel)]="changeStatusOrder">
+              <option [value]="2"> {{util.translate('Prepared')}} </option>
+              <option [value]="3"> {{util.translate('Ongoing')}}</option>
+              <option [value]="4"> {{util.translate('Delivered')}}</option>
+            </select>
+
+            <button type="button" class="btn btn-sm btn-block btn-success active" (click)="updateStatus()"
+              style="margin: 0px;">{{util.translate('Update Status')}}
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle>{{util.translate('Select Driver')}}</h5>
+
+  </c-modal-header>
+  <c-modal-body style="overflow: scroll;height: 300px;">
+    <table>
+      <tr *ngFor="let item of dummyDrivers" (click)="selectDriver(item)">
+        <td class="text-center">
+          <div class="avatar">
+            <img [src]="api.imageUrl+ item.cover" onError="this.src='assets/img/dummy.jpeg'"
+              style="width: 25px;height: 25px;" class="img-avatar">
+          </div>
+        </td>
+        <td>
+          <div>{{item.first_name}} {{item.last_name}}</div>
+          <div class="small text-muted">
+            <span>{{util.translate('Gender')}} :
+              <span *ngIf="item.gender == 1"> {{util.translate('Male')}} </span>
+              <span *ngIf="item.gender == 0"> {{util.translate('Female')}} </span>
+              <span *ngIf="item.gender == 2"> {{util.translate('Other')}} </span> </span> |
+            {{util.translate('Distance')}} : {{item.distanceFrom}}
+          </div>
+        </td>
+        <td>
+          <img src="assets/img/check-mark.png" alt="checked" style="width: 25px;height: 25px;"
+            *ngIf="selected_driver == item.id">
+        </td>
+      </tr>
+    </table>
+  </c-modal-body>
+  <c-modal-footer>
+    <button type="button" class="btn btn-secondary" (click)="toggleLiveDemo()">{{util.translate('Close')}}
+    </button>
+    <button type="button" class="btn btn-primary" (click)="saveDriver()">
+      {{util.translate('Save Changes')}} </button>
+
+  </c-modal-footer>
+</c-modal>

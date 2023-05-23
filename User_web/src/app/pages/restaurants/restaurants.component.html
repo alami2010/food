@@ -1,0 +1,211 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+ -->
+<div mdbModal #filterModal="mdbModal" class="modal fade right" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true" style="z-index: 99999;">
+  <div class="modal-dialog modal-side  modal-bottom-right" role="document">
+    <div class="modal-content">
+      <div class="modal-body location_body">
+        <div>
+          <img src="assets/imgs/cancel.png" style="width: 20px;" (click)="filterModal.hide()">
+          <div class="form_div">
+            <label (click)="filterModal.hide();addFilter(0)" [class.active]="activeFilter == 0">
+              {{util.translate('Rating 4.0+')}} </label>
+            <label (click)="filterModal.hide();addFilter(1)"
+              [class.active]="activeFilter == 1">{{util.translate('Fastest Delivery')}}
+            </label>
+            <label (click)="filterModal.hide();addFilter(2)"
+              [class.active]="activeFilter == 2">{{util.translate('Cost')}}</label>
+            <label (click)="filterModal.hide();addFilter(3)"
+              [class.active]="activeFilter == 3">{{util.translate('A-Z')}}</label>
+            <label (click)="filterModal.hide();addFilter(4)"
+              [class.active]="activeFilter == 4">{{util.translate('Z-A')}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container rest_container" [style.margin-top]="util.deviceType !== 'desktop' ? '60px' : null">
+
+  <div class="row">
+    <div class="home_header container" *ngIf="dummyRest?.length">
+      <div class="row">
+        <div class="col-xl-8 col-lg-7 col-md-7 d-none d-md-block" style="text-align: initial !important;">
+          <h1 class="headersLines">{{dummyRest.length}} {{util.translate('restaurants in')}} {{getAddressName()}} </h1>
+          <a class="subHeaders_address" (click)="showAddressChangePopup()">{{util.translate('Change address')}} </a>
+        </div>
+        <div class="col-xl-4 col-lg-5 col-md-5">
+          <input type="text" (ngModelChange)="onSearchChange($event)" [(ngModel)]="searchKeyword" class="searchbar_home"
+            [placeholder]="util.translate('Search Restaurants')">
+        </div>
+      </div>
+    </div>
+
+    <ngx-skeleton-loader appearance="line" *ngIf="apiCalled == false" [theme]="{  height: '20px',width:'150px'}">
+    </ngx-skeleton-loader>
+
+    <div class="flexed" *ngIf="apiCalled == false">
+      <div *ngFor="let item of  [1,2,3,4,5,6,7,8,9,10];">
+        <ngx-skeleton-loader appearance="circle" [theme]="{ 'border-radius': '5px', height: '120px',width:'180px'}">
+        </ngx-skeleton-loader>
+      </div>
+    </div>
+
+    <ngx-skeleton-loader appearance="line" *ngIf="apiCalled == false" [theme]="{  height: '20px',width:'150px'}">
+    </ngx-skeleton-loader>
+
+    <div class="flexed" *ngIf="apiCalled == false">
+      <div *ngFor="let item of  [1,2,3,4,5,6,7,8,9,10];">
+        <ngx-skeleton-loader appearance="circle" [theme]="{ 'border-radius': '50%', height: '120px',width:'120px'}">
+        </ngx-skeleton-loader>
+      </div>
+    </div>
+
+    <div class="slider_row" *ngIf="apiCalled == true">
+      <div class="container" style="width: 100%;" *ngIf="banners?.length">
+        <carousel [cellWidth]="270" [height]="150" [autoplay]="true" style="z-index: unset;">
+          <div class="carousel-cell" *ngFor="let item of banners">
+            <div class="slider_back bg_image " (click)="openOffers(item)"
+              [ngStyle]="{'background-image':'url('+api.mediaURL+item.cover+'),url(assets/placeholder.jpg)'}">
+              <div class="overlay_div">
+                <label> {{item.title}} </label>
+              </div>
+            </div>
+          </div>
+        </carousel>
+      </div>
+    </div>
+
+    <ngx-skeleton-loader appearance="line" *ngIf="apiCalled == false" [theme]="{  height: '20px',width:'150px'}">
+    </ngx-skeleton-loader>
+
+    <div class="home_header container" *ngIf="dummyRest?.length">
+      <div class="row">
+        <div class="col-xl-8 col-lg-7 col-md-7 d-none d-md-block" style="text-align: initial !important;">
+          <h1 class="headersLines"> {{util.translate('Top Categories')}} </h1>
+        </div>
+        <div class="col-xl-4 col-lg-5 col-md-5" style="text-align: end;" (click)="allCategories()">
+          <h1 class="headersLinesText"> {{util.translate('View All')}} </h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider_row" *ngIf="apiCalled == true">
+      <div class="container" style="width: 100%;" *ngIf="categories?.length">
+        <carousel [cellWidth]="90" [height]="120" [autoplay]="true" style="z-index: unset;">
+          <div class="carousel-cell" *ngFor="let item of categories" (click)="getRestaurantList(item.id,item.name)">
+            <div class="slider_back_cate bg_image "
+              [ngStyle]="{'background-image':'url('+api.mediaURL+item.cover+'),url(assets/placeholder.jpg)'}">
+            </div>
+            <label class="cate_name"> {{item.name}} </label>
+          </div>
+        </carousel>
+      </div>
+    </div>
+
+    <div class="col-12 normalClass" *ngIf="allRest?.length && apiCalled == true && util.deviceType =='desktop'">
+      <div class="filters">
+        <label (click)="addFilter(0)" [class.active]="activeFilter == 0">{{util.translate('Rating 4.0+')}} </label>
+        <label (click)="addFilter(1)" [class.active]="activeFilter == 1">{{util.translate('Fastest Delivery')}} </label>
+        <label (click)="addFilter(2)" [class.active]="activeFilter == 2">{{util.translate('Cost')}}</label>
+        <label (click)="addFilter(3)" [class.active]="activeFilter == 3">{{util.translate('A-Z')}}</label>
+        <label (click)="addFilter(4)" [class.active]="activeFilter == 4">{{util.translate('Z-A')}}</label>
+      </div>
+    </div>
+
+    <div class="col-12 normalClass" *ngIf="!allRest?.length && apiCalled == false">
+
+      <div class="filters">
+        <label>
+          <ngx-skeleton-loader appearance="line" [theme]="{  height: '20px',width:'70px'}"> </ngx-skeleton-loader>
+        </label>
+        <label>
+          <ngx-skeleton-loader appearance="line" [theme]="{  height: '20px',width:'70px'}"> </ngx-skeleton-loader>
+        </label>
+        <label>
+          <ngx-skeleton-loader appearance="line" [theme]="{  height: '20px',width:'70px'}"> </ngx-skeleton-loader>
+        </label>
+        <label>
+          <ngx-skeleton-loader appearance="line" [theme]="{  height: '20px',width:'70px'}"> </ngx-skeleton-loader>
+        </label>
+        <label>
+          <ngx-skeleton-loader appearance="line" [theme]="{  height: '20px',width:'70px'}"> </ngx-skeleton-loader>
+        </label>
+      </div>
+    </div>
+
+    <div class="col-lg-12" *ngIf="apiCalled == false;">
+      <div class="row product_div">
+        <div class="pro_col col-lg-4 col-sm-12 col-md-6 col-xs-12" *ngFor="let item of [1,2,3,5,6]">
+          <ngx-skeleton-loader appearance="circle" [theme]="{ 'border-radius': '5px', height: '150px',width:'100%'}">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-12" *ngIf="allRest?.length && apiCalled == true">
+      <div class="row product_div ">
+        <div class="pro_col col-lg-4 col-sm-12 col-md-6 col-xs-12" *ngFor="let item of allRest">
+          <div class="pro_div hoverable" (click)="goToRestDetail(item)">
+            <div class="rest_img bg_image"
+              [ngStyle]="{'background-image':'url('+api.mediaURL+item.cover+'),url(assets/placeholder.jpg)'}"></div>
+            <div class="content_div">
+              <label class="pro_name">{{ (item.name.length>30)? (item.name | slice:0:30)+'..':(item.name) }} </label>
+              <label class="addr" style="font-size: 14px;">{{ (item.cuisines.length>30)? (item.cuisines |
+                slice:0:30)+'..':(item.cuisines) }}</label>
+              <label class="addr">
+                {{ (item.address.length>30)? (item.address | slice:0:30)+'..':(item.address) }}
+              </label>
+              <div class="more_data">
+
+                <div class="row">
+                  <div class="col-4">
+                    <div class="information">
+                      <mdb-icon fas icon="star"></mdb-icon>
+                      <label class="lbl">
+                        {{item.ratings}}
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="information">
+                      <mdb-icon fas icon="clock"></mdb-icon>
+                      <label class="lbl">
+                        {{item.delivery_time}} {{util.translate('MINS')}}
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="information">
+                      <mdb-icon fas icon="money-bill-alt"></mdb-icon>
+                      <label class="lbl">
+                        {{item.cost_for_two}} {{util.translate('For Two')}}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fixedBottomBtn" *ngIf="util.deviceType !=='desktop'" (click)="filterModal.show()">
+      <div class="filterBtn hoverable">
+        <mdb-icon fas icon="filter"></mdb-icon>
+      </div>
+    </div>
+  </div>
+  <div class="no_data" *ngIf="haveData ==false">
+    <div class="empty" [ngStyle]="{'background-image':'url(assets/nodata.jpg)'}"></div>
+    <p> {{util.translate('Opps.. nothing found near')}} {{getAddressName()}}</p>
+  </div>
+</div>

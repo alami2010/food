@@ -1,0 +1,198 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+-->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('Banner Information')}}
+        </div>
+        <div class="card-body">
+
+          <form>
+            <div class="logoContainer">
+              <img [src]="api.imageUrl+ cover" onError="this.src='assets/img/dummy.jpeg'">
+            </div>
+            <div class="fileContainer sprite">
+              <span> {{util.translate('Add Cover')}} </span>
+              <input (change)="preview_banner($event.target.files)" type="file" value="Choose File">
+            </div>
+            <p class="text-heler">{{util.translate('Files types accepted: .jpg, .jpeg, .png, .bmp recommended size (1200
+              X 628) pixels')}} </p>
+
+            <div class="form-group">
+              <label class="modal_lbl">{{util.translate('City')}} <span style="color: red;">*</span></label>
+              <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="cityId"
+                (change)="onCityChanged($event)">
+                <option [value]="0">{{util.translate('Please Select City')}}</option>
+                <option [value]="item.id" *ngFor="let item of cities"> {{item.name}} </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="modal_lbl">{{util.translate('Banner Type')}} <span style="color: red;">*</span></label>
+              <select class="form-control" (change)="onChange($event)"
+                [disabled]="cityId =='' || cityId == 0 ? true:false" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="type">
+                <option [value]="0">{{util.translate('Please Select Type')}}</option>
+                <option [value]="1">{{util.translate('Category')}}</option>
+                <option [value]="2">{{util.translate('Single Restaurant')}}</option>
+                <option [value]="3">{{util.translate('Multiple Restaurant')}}</option>
+                <option [value]="4">{{util.translate('Send External Link')}}</option>
+              </select>
+            </div>
+
+            <div class="form-group" *ngIf="type == 1">
+              <label class="modal_lbl">{{util.translate('Value')}} <span style="color: red;">*</span></label>
+              <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="value">
+                <option [value]="0">{{util.translate('Choose Category')}}</option>
+                <option [value]="item.id" *ngFor="let item of categories">{{item.name}}</option>
+              </select>
+            </div>
+
+            <div class="form-group" *ngIf="type == 2">
+              <label>{{util.translate('Select Restaurants')}} : <span style="color: red;">*</span>
+              </label>
+              <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="value">
+                <option [value]="item.uid" *ngFor="let item of resturants">{{item.name}}</option>
+              </select>
+            </div>
+
+            <div class="form-group" *ngIf="type == 3">
+              <label>{{util.translate('Select Restaurants')}} : <span style="color: red;">*</span>
+              </label>
+              <ng-multiselect-dropdown [placeholder]="'Select Restaurants'" [settings]="dropdownMultiSettings"
+                [data]="resturants" [(ngModel)]="value" [ngModelOptions]="{standalone: true}">
+              </ng-multiselect-dropdown>
+            </div>
+
+            <div class="form-group" *ngIf="type == 4">
+              <label class="modal_lbl">{{util.translate('Value')}} <span style="color: red;">*</span></label>
+              <input class="form-control" [placeholder]="util.translate('Value')" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="value">
+            </div>
+
+            <div class="form-group">
+              <label class="modal_lbl">{{util.translate('Banner Status')}} <span style="color: red;">*</span></label>
+              <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="status">
+                <option [value]="1">{{util.translate('Active')}}</option>
+                <option [value]="0">{{util.translate('Deactive')}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="modal_lbl">{{util.translate('Start Time')}} <span style="color: red;">*</span></label>
+              <input class="form-control" type="date" [placeholder]="util.translate('Start Time')"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="startTime">
+            </div>
+
+            <div class="form-group">
+              <label class="modal_lbl">{{util.translate('End Time')}} <span style="color: red;">*</span></label>
+              <input class="form-control" type="date" [placeholder]="util.translate('End Time')"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="endTime">
+            </div>
+
+            <div class="form-group">
+              <label class="modal_lbl">{{util.translate('Banner Title')}}</label>
+              <input class="form-control" [placeholder]="util.translate('Banner Title')"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="bannerTitle">
+            </div>
+
+          </form>
+          <br>
+          <br>
+          <button type="button" class="btn btn-success" *ngIf="this.action == 'create'" (click)="createBanner()">
+            {{util.translate('Save')}}</button>
+          <button type="button" class="btn btn btn-primary" *ngIf="this.action == 'update'" (click)="updateBanner()">
+            {{util.translate('Update')}}</button>
+
+          <button type="button" class="btn btn btn-dark" (click)="clearData()">
+            {{util.translate('Cancel')}}</button>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('All Banner')}}
+        </div>
+        <div class="card-body">
+
+          <div class="row flex_row">
+            <div class="col-lg-12">
+              <input type="text" class="form-control form-control-lg" id="name"
+                [placeholder]="util.translate('Search Banner')" (input)="search($event.target.value)">
+            </div>
+          </div>
+
+          <div class="error_div" *ngIf="banners?.length <= 0 && dummy?.length <= 0">
+            <label>{{util.translate('No Data Found..')}}</label>
+          </div>
+
+
+          <table class="table table-responsive-sm table-hover mb-0">
+            <thead *ngIf="banners?.length > 0">
+              <tr>
+                <th>{{util.translate('Cover')}}</th>
+                <th>{{util.translate('City')}}</th>
+                <th>{{util.translate('Title')}}</th>
+                <th>{{util.translate('Type')}}</th>
+                <th>{{util.translate('Value')}}</th>
+                <th>{{util.translate('Status')}}</th>
+                <th>{{util.translate('Action')}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of dummy">
+                <td *ngFor="let item of [1,2,3,4,5,6,7]">
+                  <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                </td>
+              </tr>
+              <tr *ngFor="let item of banners | paginate: {id:'pagin1', itemsPerPage: 10, currentPage: page }">
+                <td>
+                  <img class="img-responsive" style="height: 80px;width: 80px; object-fit: cover;"
+                    [src]="api.imageUrl + item.cover" onError="this.src='assets/img/dummy.jpeg'">
+                </td>
+                <td>{{item.city_name}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.type}}</td>
+                <td>{{item.value}}</td>
+                <td>
+                  <c-badge [color]="item.status == 1?'success':'dark'"
+                    [class]="item.status == 1 ? 'me-1 badge bg-success':'me-1 badge bg-dark'"
+                    (click)="statusUpdate(item)">
+                    {{item.status == 1 ?util.translate('Active'):util.translate('Deactived')}}
+                  </c-badge>
+                </td>
+                <td>
+
+                  <c-badge color="info" class="me-1 badge bg-info" (click)="getBannerByID(item.id)">
+                    {{ util.translate('View')}}
+                  </c-badge>
+
+                  <c-badge color="danger" class="me-1 badge bg-danger" (click)="deleteItem(item)">
+                    {{ util.translate('Delete')}}
+                  </c-badge>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div *ngIf="banners?.length > 0">
+            <pagination-controls id="pagin1" (pageChange)="page = $event"></pagination-controls>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,334 @@
+/*
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+*/
+.slider_row {
+  padding-bottom: 30px;
+  width: 100%;
+
+  .slider_back {
+    height: 150px;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+
+    .overlay_div {
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      position: relative;
+      border-radius: 10px;
+
+      label {
+        font-weight: 600;
+        color: white;
+        position: absolute;
+        bottom: 0;
+        padding: 16px;
+        letter-spacing: 1px;
+        font-size: 12px;
+      }
+    }
+  }
+
+}
+
+.flexed {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+label {
+  display: block;
+  margin: 0;
+}
+
+.container {
+  .back_img {
+    width: 100%;
+    height: 400px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+.home_header {
+  margin-bottom: 15px;
+
+  .headersLines {
+    font-size: 1rem;
+    margin: 0px;
+  }
+
+  .headersLinesText {
+    color: #e54750 !important;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 0px;
+    cursor: pointer;
+  }
+
+  .subHeaders_address {
+    color: #e54750 !important;
+    text-decoration: none;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    display: block;
+    margin-top: 8px;
+  }
+
+  .searchbar_home {
+    position: relative;
+    border: 0;
+    height: 40px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    padding-left: 15px;
+    -webkit-box-shadow: 0 0 0 0.15rem rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 0 0 0.15rem rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 0 0.15rem rgba(0, 0, 0, 0.05);
+    width: 100%;
+  }
+}
+
+.rest_container {
+  padding-top: 40px;
+
+  .normalClass {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    .bold_lbl {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .filters {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      label {
+        margin: 0px 15px;
+        cursor: pointer;
+
+        &:hover {
+          color: #ff384c;
+        }
+      }
+
+      .active {
+        color: #ff384c;
+      }
+    }
+  }
+
+  .product_div {
+    padding-bottom: 20px;
+    cursor: pointer;
+
+    .pro_col {
+      padding: 0px 15px;
+      margin-top: 25px;
+
+      .pro_div {
+        background: #f3f3f3;
+        border: 2px solid lightgrey;
+
+        .rest_img {
+          width: 100%;
+          height: 200px;
+        }
+
+        .content_div {
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+
+          .pro_name {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+          }
+
+          .flex_rate {
+            display: flex;
+            color: orange;
+            margin-top: 10px;
+
+            mdb-icon {
+              font-size: 15px;
+            }
+          }
+
+          .addr {
+            margin-top: 10px;
+            font-size: 14px;
+            color: grey;
+            text-align: center;
+          }
+
+          .more_data {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 10px;
+            border-top: 1px solid lightgray;
+            padding-top: 10px;
+
+            .row {
+              width: 100%;
+              margin: 0;
+            }
+
+            .information {
+              display: flex;
+              width: 100%;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+
+              mdb-icon {
+                font-size: 15px;
+                color: grey;
+              }
+
+              .lbl {
+                margin-top: 3px;
+                font-size: 10px;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.back_image {
+  height: 150px;
+  margin-bottom: 10px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.no_data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .empty {
+    height: 150px;
+    margin-bottom: 10px;
+    width: 150px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  p {
+    font-weight: bold;
+  }
+}
+
+.topBanners {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .arrowBtnsL {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 30px;
+    position: absolute;
+    top: 35%;
+    left: 0px;
+    z-index: 999;
+  }
+
+  .arrowBtnsR {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 30px;
+    position: absolute;
+    top: 35%;
+    right: 0px;
+    z-index: 999;
+  }
+
+  .sliders {
+    display: flex;
+    overflow: scroll;
+    position: relative;
+
+    .card_div {
+      width: 350px;
+      margin-right: 10px;
+      cursor: pointer;
+
+      .back_image {
+        height: 150px;
+        margin-bottom: 10px;
+        width: 100%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}
+
+.fixedBottomBtn {
+  position: fixed;
+  bottom: 70px;
+  right: 70px;
+
+  .filterBtn {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 40px;
+    background-color: #f3f3f3;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+.location_body {
+  label {
+    padding: 10px;
+    margin: 0px;
+  }
+
+  .active {
+    color: #e54750;
+  }
+}
+
+.sliders::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}

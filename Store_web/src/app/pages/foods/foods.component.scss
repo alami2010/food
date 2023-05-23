@@ -1,0 +1,74 @@
+/*
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+*/
+.flex_row_align {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0px;
+}
+
+.addon_div {
+  position: relative;
+  margin: 20px 0px;
+
+  .add_btn {
+    background: #f86c6b;
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+
+    label {
+      font-size: 13px;
+      margin: 0px;
+    }
+  }
+
+  label {
+    font-size: 14px;
+    margin: 0px;
+  }
+
+  .chip {
+    label {
+      font-size: 10px;
+      margin: 0px;
+    }
+  }
+
+  .shadow_card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 16px;
+    padding: 0px 5px;
+
+    .main_header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      border-bottom: 1px solid lightgray;
+      padding: 10px;
+    }
+  }
+
+  .sub {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    border-bottom: 1px dashed lightgray;
+  }
+}
+
+.languagesInput {
+  margin: 10px 0px;
+  padding: 0px 10px;
+}

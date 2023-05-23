@@ -1,0 +1,359 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+-->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="animated fadeIn">
+  <div class="row mb-2">
+    <div class="col-sm-6 col-lg-3" (click)="openPage('orders')">
+      <div class="card text-white bg-info" style="cursor: pointer;">
+        <div class="card-body pb-2">
+
+          <div class="text-value">{{order}} </div>
+          <div> {{util.translate('Total Orders')}} </div>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+    <div class="col-sm-6 col-lg-3" (click)="openPage('users')">
+      <div class="card text-white bg-primary" style="cursor: pointer;">
+        <div class="card-body pb-2">
+
+          <div class="text-value">{{users}} </div>
+          <div>{{util.translate('Total Users')}} </div>
+        </div>
+
+      </div>
+    </div>
+    <!--/.col-->
+    <div class="col-sm-6 col-lg-3" (click)="openPage('stores')">
+      <div class="card text-white bg-warning" style="cursor: pointer;">
+        <div class="card-body pb-2">
+
+          <div class="text-value">{{stores}} </div>
+          <div>{{util.translate('Total Stores')}} </div>
+        </div>
+
+      </div>
+    </div>
+    <!--/.col-->
+    <div class="col-sm-6 col-lg-3" (click)="openPage('foods')">
+      <div class="card text-white bg-danger" style="cursor: pointer;">
+        <div class="card-body pb-2">
+
+          <div class="text-value">{{products}} </div>
+          <div> {{util.translate('Total Products')}} </div>
+        </div>
+
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+
+  <div class="row mb-2">
+    <!-- Today -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="card-title mb-0">{{util.translate('Today Orders Stats')}} </p>
+              <div class="small text-muted">{{labelToday}}</div>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <c-chart type="bar" [data]="chartBarData"></c-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Today -->
+
+    <!-- Weekly -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="card-title mb-0">{{util.translate('Weekly Orders Stats')}} </p>
+              <div class="small text-muted">{{labelWeekly}}</div>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <c-chart type="bar" [data]="chartBarData2"></c-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Weekly -->
+
+    <!-- Monthly -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="card-title mb-0">{{util.translate('Monthly Orders Stats')}} </p>
+              <div class="small text-muted">{{labelMonthly}}</div>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <c-chart type="bar" [data]="chartBarData3"></c-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Monthly  -->
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-md-12 mb-2">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('Recent Orders')}}
+        </div>
+        <div class="card-body">
+          <div *ngIf="!recentOrders?.length && dummy.length == 0" style="text-align: center;">
+            <p>{{util.translate('No Data Found..')}}</p>
+          </div>
+          <table class="table table-striped">
+            <thead *ngIf="recentOrders?.length">
+              <tr>
+                <th>{{util.translate('Id')}}</th>
+                <th>{{util.translate('Username')}}</th>
+                <th>{{util.translate('Store')}}</th>
+                <th>{{util.translate('Date')}}</th>
+                <th>{{util.translate('Total')}}</th>
+                <th>{{util.translate('Order To')}}</th>
+                <th>{{util.translate('Action')}}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let item of dummy">
+                <td *ngFor="let item of [1,2,3,4,5]">
+                  <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                </td>
+              </tr>
+              <tr *ngFor="let item of recentOrders">
+                <td> {{item.id}} </td>
+                <td>{{item.first_name}} {{item.last_name}}</td>
+                <td> <label> <span *ngFor="let store of item.storeInfo;let i = index"> {{store.name}}
+                      {{i == item.storeInfo.length -1 ? '' : ',&nbsp;' }} </span> </label>
+                </td>
+                <td>{{getDate(item.created_at)}}</td>
+                <td>{{item.grand_total}}</td>
+                <td> {{item.order_to == 0 ? 'Home' :'Self Pickup'}} </td>
+                <td>
+                  <c-badge color="info" class="me-1 badge bg-info" (click)="viewOrderInfo(item.id)">
+                    {{ util.translate('View')}}
+                  </c-badge>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 mb-2">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('Recent Users')}}
+        </div>
+        <div class="card-body">
+          <div *ngIf="!recentUsers?.length && dummy.length == 0" style="text-align: center;">
+            <p>{{util.translate('No Data Found..')}}</p>
+          </div>
+          <table class="table table-striped">
+            <thead *ngIf="users?.length">
+              <tr>
+                <th>{{util.translate('Cover')}}</th>
+                <th>{{util.translate('Name')}}</th>
+                <th>{{util.translate('Mobile')}}</th>
+                <th>{{util.translate('Email')}}</th>
+                <th>{{util.translate('Action')}}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let item of dummy">
+                <td *ngFor="let item of [1,2,3,4,5]">
+                  <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                </td>
+              </tr>
+              <tr *ngFor="let item of recentUsers">
+                <td>
+                  <img class="img-responsive" style="height: 80px;width: 80px; object-fit: cover;"
+                    [src]="api.imageUrl + item.cover" onError="this.src='assets/img/dummy.jpeg'">
+                </td>
+                <td>{{item.first_name}} {{item.last_name}}</td>
+                <td>{{item.country_code +' '+ item.mobile}}</td>
+                <td>{{item.email}}</td>
+                <td>
+                  <c-badge [color]="item.status == 1?'success':'dark'"
+                    [class]="item.status == 1 ? 'me-1 badge bg-success':'me-1 badge bg-dark'"
+                    (click)="statusUpdate(item)">
+                    {{item.status == 1 ?util.translate('Active'):util.translate('Deactived')}}
+                  </c-badge>
+
+                  <c-badge color="info" class="me-1 badge bg-info" (click)="viewsInfo(item.id)">
+                    {{ util.translate('View')}}
+                  </c-badge>
+
+                  <c-badge color="danger" class="me-1 badge bg-danger" (click)="deleteItem(item)">
+                    {{ util.translate('Delete')}}
+                  </c-badge>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 mb-2">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('This months complaints')}}
+        </div>
+        <div class="card-body">
+          <div *ngIf="!complaints?.length && dummy.length == 0" style="text-align: center;">
+            <p>{{util.translate('No Data Found..')}}</p>
+          </div>
+
+          <table class="table table-striped">
+            <thead *ngIf="complaints?.length">
+              <tr>
+                <th>{{util.translate('ID')}}</th>
+                <th>{{util.translate('Order Id')}} </th>
+                <th>{{util.translate('User')}} </th>
+                <th>{{util.translate('Issue With')}}</th>
+                <th>{{util.translate('Detail')}}</th>
+                <th>{{util.translate('Title')}}</th>
+                <th>{{util.translate('Status')}}</th>
+                <th>{{util.translate('Action')}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of dummy">
+                <td *ngFor="let item of [1,2,3,4,5,6,7,8]">
+                  <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                </td>
+              </tr>
+              <tr *ngFor="let item of complaints | paginate: {id:'pagin1', itemsPerPage: 10, currentPage: page }">
+                <td>{{item.id}}</td>
+                <td>{{item.order_id}}</td>
+                <td>
+                  <img class="img-responsive" style="height: 25px;width: 25px; object-fit: cover;"
+                    [src]="api.imageUrl + item.userInfo.cover" onError="this.src='assets/img/dummy.jpeg'">
+                  {{item.userInfo.first_name +' '+ item.userInfo.last_name}}
+                </td>
+                <td>{{issue_With[item.issue_with]}}</td>
+                <td>
+                  <div *ngIf="item.issue_with == 1">
+                    {{util.translate('On Order From')}} <br>
+                    <span style="font-weight: bold;">{{item.storeInfo.name}}</span>
+                  </div>
+                  <div *ngIf="item.issue_with == 2">
+                    {{util.translate('On Store')}} <br>
+                    <span style="font-weight: bold;">{{item.storeInfo.name}}</span>
+                  </div>
+                  <div *ngIf="item.issue_with == 3">
+                    {{util.translate('On Driver')}} <br>
+                    <span style="font-weight: bold;">{{item.driverInfo.first_name +' '+
+                      item.driverInfo.last_name}}</span>
+                  </div>
+                  <div *ngIf="item.issue_with == 4">
+                    {{util.translate('On Product')}} <span style="font-weight: bold;">{{item.productInfo.name}}</span>
+                    {{util.translate('From')}} <br>
+                    <span style="font-weight: bold;">
+                      {{item.storeInfo.name}}
+                    </span>
+                  </div>
+                </td>
+                <td>{{item.title}}</td>
+                <td>
+                  <c-badge [color]="item.status == 1 ? 'danger':'dark'"
+                    [class]="item.status == 1 ? 'me-1 badge bg-danger':'me-1 badge bg-dark'"
+                    (click)="statusUpdateComplaints(item)">
+                    {{item.status == 0 ?util.translate('Active'):util.translate('Resolved')}}
+                  </c-badge>
+                </td>
+                <td>
+                  <c-badge color="info" class="me-1 badge bg-info" (click)="openItem(item)">
+                    {{ util.translate('View / Reply')}}
+                  </c-badge>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div *ngIf="complaints?.length > 0">
+            <pagination-controls id="pagin1" (pageChange)="page = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--/.col-->
+  </div>
+
+</div>
+
+<div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{util.translate('Reply to')}} {{name}} </h5>
+        <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <div class="col-md-12">
+            <label class="col-form-label" for="disabled-input">{{util.translate('Name')}} : </label>
+            <label style="font-weight: bold;"> {{name}} </label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-12">
+            <label class="col-form-label" for="disabled-input">{{util.translate('Email')}} : </label>
+            <label style="font-weight: bold;"> {{email}} </label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-12">
+            <label class="col-form-label" for="disabled-input">{{util.translate('Message')}} : </label>
+            <label style="font-weight: bold;"> {{message}} </label>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-12">
+            <label class="col-form-label" for="text-input">{{util.translate('Reply')}} </label>
+            <textarea type="text" rows="10" id="text-input" name="text-input" class="form-control"
+              [placeholder]="util.translate('Reply')" [(ngModel)]="reply"></textarea>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="myModal.hide()">{{util.translate('Close')}}</button>
+        <button type="button" class="btn btn-primary" (click)="sendMail()">{{util.translate('Reply')}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

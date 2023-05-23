@@ -1,0 +1,27 @@
+/*
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+*/
+.image_div {
+  display: flex;
+  justify-content: flex-end;
+
+  .image_box {
+    max-width: 120px;
+    width: 120px;
+    height: 120px;
+    position: relative;
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      object-fit: contain !important;
+    }
+  }
+}

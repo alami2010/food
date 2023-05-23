@@ -1,0 +1,79 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+-->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('All Fooods')}}
+        </div>
+        <div class="card-body">
+
+          <div class="row flex_row">
+            <div class="col-lg-6">
+              <input type="text" class="form-control form-control-lg" id="name"
+                [placeholder]="util.translate('Search foods')" (input)="search($event.target.value)">
+            </div>
+          </div>
+
+          <div *ngIf="!list?.length && dummy.length == 0" style="text-align: center;">
+            <p>{{util.translate('No Data Found..')}}</p>
+          </div>
+
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>{{util.translate('ID')}}</th>
+                <th>{{util.translate('Cover')}}</th>
+                <th>{{util.translate('Name')}} <i class="ti-angle-down"></i>
+                </th>
+                <th> {{util.translate('Store Name')}} </th>
+                <th>{{util.translate('Price')}} </th>
+                <th>{{util.translate('Rating')}} <i class="ti-angle-down"></i>
+                </th>
+                <th>{{util.translate('Actions')}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of dummy;">
+                <td *ngFor="let item of [1,2,3,4,5,6,3]">
+                  <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                </td>
+              </tr>
+              <tr
+                *ngFor="let item of list | paginate: {id:'pagin1', itemsPerPage: 10, currentPage: page };let i = index;">
+                <td>{{item.id}}</td>
+                <td><a href="javascript:;"><img class="img-responsive" style="height: 40px;width: 40px;"
+                      [src]="api.imageUrl+ item.cover" onError="this.src='assets/img/dummy.jpeg'" alt="chat-user"></a>
+                </td>
+                <td> {{item.name}}</td>
+                <td> {{item.storeInfo.name}}</td>
+                <td>{{util.currecny}} {{item.price}}</td>
+                <td> {{item.rating}}</td>
+                <td>
+                  <c-badge [color]="item.status == 1?'success':'dark'"
+                    [class]="item.status == 1 ? 'me-1 badge bg-success':'me-1 badge bg-dark'"
+                    (click)="changeStatus(item)">
+                    {{item.status == 1 ?util.translate('Active'):util.translate('Deactived')}}
+                  </c-badge>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="list?.length > 0">
+            <pagination-controls id="pagin1" (pageChange)="page = $event"></pagination-controls>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
