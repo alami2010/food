@@ -1,0 +1,246 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+-->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card-body">
+                <div class="back_image" [style.backgroundImage]="'url('+ getImage() +'),url(assets/img/dummy.jpeg)'">
+                </div>
+                <p class="head"><b> {{util.translate('Basic Informations')}} </b> </p>
+
+                <div class="row">
+                  <div class="col-6">
+                    <p class="sub"><b>{{util.translate('Name')}} : </b></p>
+                  </div>
+                  <div class="col-6">
+                    <p class="values"> {{name}} </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <p class="sub"><b>{{util.translate('Email')}} : </b></p>
+                  </div>
+                  <div class="col-6">
+                    <p class="values"> {{email}} </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <p class="sub"><b>{{util.translate('Contact No')}} : </b></p>
+                  </div>
+                  <div class="col-6">
+                    <p class="values"> {{phone}} </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-4 b-r-default text-center">
+                    <p class="text-muted">{{util.translate('Orders')}} </p><span>{{orders.length}}</span>
+                  </div>
+                  <div class="col-4 b-r-default text-center">
+                    <p class="text-muted">{{util.translate('Address')}} </p><span>{{address.length}}</span>
+                  </div>
+                  <div class="col-4 b-r-default text-center">
+                    <p class="text-muted">{{util.translate('Reviews')}} </p><span>{{ratings.length}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8">
+
+              <div class="card-body">
+                <tabset>
+                  <tab>
+                    <ng-template tabHeading><i class="icon-basket"></i> {{util.translate('Orders')}} </ng-template>
+                    <div class="orders">
+                      <div style="height: 70vh;overflow: scroll;padding: 10px;">
+                        <p *ngIf="!orders?.length" class="ion-text-center">
+                          {{util.translate('No New Orders Found')}}
+                        </p>
+                        <div class="card_div" *ngFor="let item of orders" (click)="goToOrder(item)">
+
+                          <!-- <div class="image_div">
+                            <img [src]="api.imageUrl+ item.orders[0].cover" onError="this.src='assets/imgs/user.png'">
+                          </div> -->
+                          <div class="desc_div">
+                            <p style="font-weight: bold;color: gray;font-size: 12px;">
+                              {{util.translate('ORDER')}}
+                              #{{item.id}}
+                            </p>
+                            <div class="store_info">
+                              <div class="image_div">
+                                <img [src]="api.imageUrl+ item.store_cover" onError="this.src='assets/imgs/user.png'">
+                              </div>
+                              <div>
+                                <p class="name">{{item.store_name}} </p>
+                                <p class="address">{{item.store_address}} </p>
+                              </div>
+                            </div>
+                            <div *ngIf="item.items?.length" class="border_bottom">
+                              <p *ngFor="let order of item.items;let ol = index" class="items">
+                                <span *ngIf="order.size == 0">
+                                  {{order.name}} -
+                                  <span *ngIf="util.cside =='left'">
+                                    {{util.currecny}} {{order.discount == 0 ? order.price :
+                                    order.discount}}
+                                  </span>
+                                  <span *ngIf="util.cside =='right'">
+                                    {{order.discount ==0 ? order.price : order.discount}}
+                                    {{util.currecny}}
+                                  </span>
+                                  <span>X {{order.quantity}}</span>
+                                </span>
+                                <span
+                                  *ngIf="order.size == 1 && order.savedVariationsList && order.savedVariationsList.length >0">
+                                  {{order.name}} - <span>X {{order.savedVariationsList[0].quantity}}</span> <br>
+                                  <span *ngFor="let sub of order.savedVariationsList"
+                                    style="font-size: 12px;font-weight: 200;text-transform: uppercase;">
+                                    {{sub.title}} -
+                                    <span *ngIf="util.cside =='left'">
+                                      {{util.currecny}} {{sub.price}}
+                                    </span>
+                                    <span *ngIf="util.cside =='right'">
+                                      {{sub.price}}
+                                      {{util.currecny}}
+                                    </span>
+                                    <br>
+                                  </span>
+
+                                </span>
+
+                              </p>
+                            </div>
+                            <p class="datetime">{{ item.created_at}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </tab>
+
+                  <tab>
+                    <ng-template tabHeading><i class="icon-location-pin"></i> {{util.translate('Address')}}
+                    </ng-template>
+                    <div class="address">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th> {{util.translate('Id')}}</th>
+                            <th> {{util.translate('Title')}}</th>
+                            <th> {{util.translate('Address')}} </th>
+                            <th> {{util.translate('House')}} </th>
+                            <th> {{util.translate('Landmark')}} </th>
+                            <th> {{util.translate('Pincode')}} </th>
+                            <th> {{util.translate('Actions')}} </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr *ngFor="let item of address">
+                            <td> {{item.id}} </td>
+                            <td>
+                              {{item.title}}
+                            </td>
+
+                            <td>
+                              {{item.address}}
+                            </td>
+
+                            <td>
+                              {{item.house}}
+                            </td>
+
+                            <td>
+                              {{item.landmark}}
+                            </td>
+
+                            <td>
+                              {{item.pincode}}
+                            </td>
+                            <td>
+                              <c-badge color="danger" class="me-1 badge bg-danger" (click)="deleteAddress(item)">
+                                {{ util.translate('Delete')}}
+                              </c-badge>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </tab>
+
+                  <tab>
+                    <ng-template tabHeading><i class="icon-star"></i> {{util.translate('Reviews')}} </ng-template>
+                    <div class="reviews">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>{{util.translate('Id')}} </th>
+                            <th>{{util.translate('From')}} </th>
+                            <th>{{util.translate('On')}} </th>
+                            <th>{{util.translate('Rating')}} </th>
+                            <th>{{util.translate('Comment')}} </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr *ngFor="let item of ratings ">
+                            <td>{{item.id}}</td>
+                            <td>{{item.from == 1?'Order':'Manually'}}</td>
+
+                            <td>
+                              <div>
+                                <span *ngIf="item && item.sid && item.sid !=0 && item.storeInfo">
+                                  {{item.storeInfo.name}}
+                                </span>
+
+                                <span *ngIf="item && item.did && item.did !=0 && item.driverInfo">
+                                  {{item.driverInfo.first_name +' ' + item.driverInfo.last_name}}
+                                </span>
+
+                                <span *ngIf="item && item.pid && item.pid !=0 && item.productInfo">
+                                  {{item.productInfo.name}}
+                                </span>
+
+                              </div>
+                              <div class="small text-muted">
+                                <span
+                                  *ngIf="item && item.store_id && item.store_id !=0 && item.storeInfo">{{util.translate('Store')}}
+                                </span>
+                                <span
+                                  *ngIf="item && item.driver_id && item.driver_id !=0 && item.driverInfo">{{util.translate('Driver')}}
+                                </span>
+                                <span
+                                  *ngIf="item && item.product_id && item.product_id !=0 && item.productInfo">{{util.translate('Products')}}
+                                </span> |
+                                {{util.translate('Saved on:')}} {{getDate(item.timestamp)}}
+                              </div>
+                            </td>
+                            <td> {{item.rate}} / 5 </td>
+                            <td> <span style="white-space: pre-line;width: 100px;"> {{item.msg}} </span></td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </tab>
+                </tabset>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

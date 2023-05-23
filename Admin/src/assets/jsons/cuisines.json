@@ -1,0 +1,407 @@
+[
+  {
+    "name": "Afghan"
+  },
+  {
+    "name": "American"
+  },
+  {
+    "name": "Argentine"
+  },
+  {
+    "name": "Asian"
+  },
+  {
+    "name": "Austrian"
+  },
+  {
+    "name": "Bagels"
+  },
+  {
+    "name": "Bakery"
+  },
+  {
+    "name": "Barbecue"
+  },
+  {
+    "name": "Belgian"
+  },
+  {
+    "name": "Bistro"
+  },
+  {
+    "name": "Brazilian"
+  },
+  {
+    "name": "British"
+  },
+  {
+    "name": "Buffet"
+  },
+  {
+    "name": "Burgers"
+  },
+  {
+    "name": "Cafe"
+  },
+  {
+    "name": "Cajun"
+  },
+  {
+    "name": "Californian"
+  },
+  {
+    "name": "Calzones"
+  },
+  {
+    "name": "Cambodian"
+  },
+  {
+    "name": "Caribbean"
+  },
+  {
+    "name": "Catering"
+  },
+  {
+    "name": "Cheesesteaks"
+  },
+  {
+    "name": "Chicken"
+  },
+  {
+    "name": "Chinese"
+  },
+  {
+    "name": "Chowder"
+  },
+  {
+    "name": "Coffee"
+  },
+  {
+    "name": "Colombian"
+  },
+  {
+    "name": "Contemporary"
+  },
+  {
+    "name": "Continental"
+  },
+  {
+    "name": "Creole"
+  },
+  {
+    "name": "Crepes"
+  },
+  {
+    "name": "Cuban"
+  },
+  {
+    "name": "Cuban"
+  },
+  {
+    "name": "Czech"
+  },
+  {
+    "name": "Deli"
+  },
+  {
+    "name": "Dim Sum"
+  },
+  {
+    "name": "Diner"
+  },
+  {
+    "name": "Dominican"
+  },
+  {
+    "name": "Donuts"
+  },
+  {
+    "name": "Eastern European"
+  },
+  {
+    "name": "Eclectic"
+  },
+  {
+    "name": "English"
+  },
+  {
+    "name": "Ethiopian"
+  },
+  {
+    "name": "European"
+  },
+  {
+    "name": "Fast Food"
+  },
+  {
+    "name": "Filipino"
+  },
+  {
+    "name": "Fish and Chips"
+  },
+  {
+    "name": "Fondue"
+  },
+  {
+    "name": "French"
+  },
+  {
+    "name": "Frozen Yogurt"
+  },
+  {
+    "name": "Fusion"
+  },
+  {
+    "name": "Gastropub"
+  },
+  {
+    "name": "German"
+  },
+  {
+    "name": "Greek"
+  },
+  {
+    "name": "Grill"
+  },
+  {
+    "name": "Gyros"
+  },
+  {
+    "name": "Haitian"
+  },
+  {
+    "name": "Halal"
+  },
+  {
+    "name": "Hawaiian"
+  },
+  {
+    "name": "Healthy"
+  },
+  {
+    "name": "Hookah Bar"
+  },
+  {
+    "name": "Hot Dogs"
+  },
+  {
+    "name": "Ice Cream"
+  },
+  {
+    "name": "Indian"
+  },
+  {
+    "name": "Indonesian"
+  },
+  {
+    "name": "International"
+  },
+  {
+    "name": "Irish"
+  },
+  {
+    "name": "Israeli"
+  },
+  {
+    "name": "Italian"
+  },
+  {
+    "name": "Japanese"
+  },
+  {
+    "name": "Juices"
+  },
+  {
+    "name": "Korean"
+  },
+  {
+    "name": "Korean Barbeque"
+  },
+  {
+    "name": "Kosher"
+  },
+  {
+    "name": "Latin"
+  },
+  {
+    "name": "Latin American"
+  },
+  {
+    "name": "Lebanese"
+  },
+  {
+    "name": "Malaysian"
+  },
+  {
+    "name": "Mediterranean"
+  },
+  {
+    "name": "Mexican"
+  },
+  {
+    "name": "Middle Eastern"
+  },
+  {
+    "name": "Mongolian"
+  },
+  {
+    "name": "Moroccan"
+  },
+  {
+    "name": "Nepalese"
+  },
+  {
+    "name": "Noodle Bar"
+  },
+  {
+    "name": "Norwegian"
+  },
+  {
+    "name": "Organic"
+  },
+  {
+    "name": "Oysters"
+  },
+  {
+    "name": "Pacific Rim"
+  },
+  {
+    "name": "Pakistani"
+  },
+  {
+    "name": "Pan Asian"
+  },
+  {
+    "name": "Pasta"
+  },
+  {
+    "name": "Pasteries"
+  },
+  {
+    "name": "Persian"
+  },
+  {
+    "name": "Peruvian"
+  },
+  {
+    "name": "Pho"
+  },
+  {
+    "name": "Pizza"
+  },
+  {
+    "name": "Polish"
+  },
+  {
+    "name": "Polynesian"
+  },
+  {
+    "name": "Portuguese"
+  },
+  {
+    "name": "Pub Food"
+  },
+  {
+    "name": "Puerto Rican"
+  },
+  {
+    "name": "Ribs"
+  },
+  {
+    "name": "Salad"
+  },
+  {
+    "name": "Salvadoran"
+  },
+  {
+    "name": "Sandwiches"
+  },
+  {
+    "name": "Seafood"
+  },
+  {
+    "name": "Singaporean"
+  },
+  {
+    "name": "Smoothies"
+  },
+  {
+    "name": "Soul Food"
+  },
+  {
+    "name": "Soup"
+  },
+  {
+    "name": "South American"
+  },
+  {
+    "name": "South Pacific"
+  },
+  {
+    "name": "Southern"
+  },
+  {
+    "name": "Southwestern"
+  },
+  {
+    "name": "Spanish"
+  },
+  {
+    "name": "Steak"
+  },
+  {
+    "name": "Subs"
+  },
+  {
+    "name": "Sushi"
+  },
+  {
+    "name": "Taiwanese"
+  },
+  {
+    "name": "Tapas"
+  },
+  {
+    "name": "Tea"
+  },
+  {
+    "name": "Tex Mex"
+  },
+  {
+    "name": "Thai"
+  },
+  {
+    "name": "Tibetan"
+  },
+  {
+    "name": "Traditional"
+  },
+  {
+    "name": "Turkish"
+  },
+  {
+    "name": "Ukrainian"
+  },
+  {
+    "name": "Vegan"
+  },
+  {
+    "name": "Vegetarian"
+  },
+  {
+    "name": "Venezuelan"
+  },
+  {
+    "name": "Venusian"
+  },
+  {
+    "name": "Vietnamese"
+  },
+  {
+    "name": "Wings"
+  },
+  {
+    "name": "Wraps"
+  }
+]

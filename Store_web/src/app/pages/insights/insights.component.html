@@ -1,0 +1,327 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+-->
+<div class="animated fadeIn">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('Analytics')}}
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="main_content_div">
+                <div class="content_div">
+                  <div class="title_flex">
+                    <p class="title_lbl">{{util.translate('Delivered Orders')}} </p>
+                  </div>
+
+                  <div class="slide_div">
+                    <div style="border-bottom: 1px solid white;">
+                      <p class="simp_lbl">{{util.translate('Today')}} : {{todayStates.label}} </p>
+                      <p class="bold_lbl">
+                        <span *ngIf="util.cside =='left'">
+                          {{util.currecny}} {{todayStates.total}}
+                        </span>
+                        <span *ngIf="util.cside =='right'">
+                          {{todayStates.total}} {{util.currecny}}
+                        </span>
+                      </p>
+                      <p class="simp_lbl"> {{todayStates.totalSold}}
+                        {{util.translate('Items Sold')}}</p>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-6" style="padding: 0px;">
+                        <div style="border-right: 1px solid white;">
+                          <p class="simp_lbl">{{util.translate('This Week')}} :
+                            {{weeekStates.label}} </p>
+                          <p class="bold_lbl">
+                            <span *ngIf="util.cside =='left'">
+                              {{util.currecny}} {{weeekStates.total}}
+                            </span>
+                            <span *ngIf="util.cside =='right'">
+                              {{weeekStates.total}} {{util.currecny}}
+                            </span>
+                          </p>
+                          <p class="simp_lbl">{{weeekStates.totalSold}}
+                            {{util.translate('Orders')}} </p>
+                        </div>
+                      </div>
+                      <div class="col-6" style="padding: 0px;">
+                        <div>
+                          <p class="simp_lbl">{{util.translate('This Month')}}
+                            :{{monthStats.label}}</p>
+                          <p class="bold_lbl">
+                            <span *ngIf="util.cside =='left'">
+                              {{util.currecny}} {{monthStats.total}}
+                            </span>
+                            <span *ngIf="util.cside =='right'">
+                              {{monthStats.total}} {{util.currecny}}
+                            </span>
+                          </p>
+                          <p class="simp_lbl">{{monthStats.totalSold}}
+                            {{util.translate('Orders')}} </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="blue_div">
+                    <p class="bold_lbl">{{util.translate('Get more orders from')}} {{util.appName}}
+                    </p>
+                    <p class="small_lbl">
+                      {{util.translate(getContent1())}}
+                    </p>
+                  </div>
+
+                </div>
+
+                <div class="content_div">
+                  <div class="title_flex" style="margin-bottom: 0px;">
+                    <p class="title_lbl">{{util.translate('Rejected Orders')}} </p>
+
+                  </div>
+                  <p class="span_lbl">
+                    {{util.translate('Lost sales from orders rejected by you or cancelled')}} </p>
+
+
+                  <div class="border_slider_div">
+                    <div style="border-bottom: 1px solid lightgrey;">
+                      <p class="simp_lbl">{{util.translate('Today')}} : {{todayStates.label}} </p>
+                      <p class="bold_lbl">
+                        <span *ngIf="util.cside =='left'">
+                          {{util.currecny}} {{todayStatesRejected.total}}
+                        </span>
+                        <span *ngIf="util.cside =='right'">
+                          {{todayStatesRejected.total}} {{util.currecny}}
+                        </span>
+                      </p>
+                      <p class="simp_lbl">{{todayStatesRejected.totalSold}}
+                        {{util.translate('Orders')}} </p>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-6" style="padding: 0px;">
+                        <div style="border-right: 1px solid lightgrey;">
+                          <p class="simp_lbl">{{util.translate('This Week')}} :
+                            {{weeekStates.label}} </p>
+                          <p class="bold_lbl">
+                            <span *ngIf="util.cside =='left'">
+                              {{util.currecny}} {{weeekStatesRejected.total}}
+                            </span>
+                            <span *ngIf="util.cside =='right'">
+                              {{weeekStatesRejected.total}} {{util.currecny}}
+                            </span>
+                          </p>
+                          <p class="simp_lbl">{{weeekStatesRejected.totalSold}}
+                            {{util.translate('Orders')}} </p>
+                        </div>
+                      </div>
+                      <div class="col-6" style="padding: 0px;">
+                        <div>
+                          <p class="simp_lbl">{{util.translate('This Month')}} :
+                            {{monthStats.label}}</p>
+                          <p class="bold_lbl">
+                            <span *ngIf="util.cside =='left'">
+                              {{util.currecny}} {{monthStatsRejected.total}}
+                            </span>
+                            <span *ngIf="util.cside =='right'">
+                              {{monthStatsRejected.total}} {{util.currecny}}
+                            </span>
+                          </p>
+                          <p class="simp_lbl">{{monthStatsRejected.totalSold}}
+                            {{util.translate('Orders')}} </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="blue_div">
+                    <p class="bold_lbl">
+                      <span *ngIf="monthStatsRejected.totalSold <2 || monthStatsRejected.totalSold == 0">
+                        {{util.translate('Great Work!')}} </span>
+                      <span *ngIf="monthStatsRejected.totalSold >2">
+                        {{util.translate('Improve yourself')}}
+                      </span>
+                    </p>
+                    <p class="small_lbl">
+                      <span *ngIf="monthStatsRejected.totalSold <2 || monthStatsRejected.totalSold == 0">
+                        {{util.translate(getContent2())}}
+                      </span>
+                      <span *ngIf="monthStatsRejected.totalSold >2">
+                        {{util.translate(getContent3())}}
+                      </span>
+                    </p>
+                  </div>
+
+                </div>
+
+                <div class="content_div">
+                  <div class="title_flex" style="margin-bottom: 0px;">
+                    <p class="title_lbl">{{util.translate('Customer complaints')}} </p>
+                  </div>
+                  <p class="span_lbl">{{util.translate('Details from')}}
+                    <span> {{monthStats.label}} </span>&nbsp;
+
+                  </p>
+
+                  <div class="border_div">
+                    <div class="inner_content inner_flex" *ngFor="let item of complaints">
+                      <p class="small_lbl">{{util.translate(reasons[item.reason_id])}}
+                        <br>
+                        <span style="font-size: 10px;"> {{item.short_message}} </span>
+                      </p>
+                      <p class="small_lbl"> #{{item.order_id}}</p>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="content_div">
+                  <div class="title_flex" style="margin-bottom: 0px;">
+                    <p class="title_lbl">{{util.translate('Top Items in your store')}} </p>
+                  </div>
+                  <p class="span_lbl">{{util.translate('Details from')}}
+                    <span>{{monthStats.label}}</span>&nbsp;
+
+                  </p>
+
+                  <div class="row_flex">
+                    <div class="f_div" style="background: #f6f6f6;">
+                      <p>{{util.translate('Store Items')}} </p>
+                    </div>
+
+                    <div class="l_div" style="background: #f6f6f6;">
+                      <p>{{util.translate('Quantity Sold')}} </p>
+                    </div>
+                  </div>
+
+                  <div class="row_flex" *ngFor="let item of topProducts">
+                    <div class="f_div">
+                      <p>{{item.items.name}}</p>
+                    </div>
+
+                    <div class="l_div">
+                      <p>{{item.counts}}</p>
+                    </div>
+                  </div>
+
+                  <div class="blue_div" style="margin-top: 20px;">
+                    <p class="bold_lbl">{{util.translate('Run promotions to get more orders')}} </p>
+                    <p class="small_lbl">
+                      {{util.translate(getContent4())}}
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="chart_content_div">
+                <div class="content_div">
+                  <p class="title_lbl">{{util.translate('Orders Trends')}} </p>
+
+                  <div class="color_flex">
+                    <div class="color_div"></div>
+                    <p>{{util.translate('Total number of orders today')}} </p>
+                  </div>
+
+                  <div style="display: block;">
+                    <c-chart type="bar" [data]="chartBarDataToday"></c-chart>
+
+                  </div>
+
+                  <div class="color_flex">
+                    <div class="color_div"></div>
+                    <p>{{util.translate('Total number of orders this weeks')}} </p>
+                  </div>
+
+                  <div style="display: block;">
+                    <c-chart type="bar" [data]="chartBarDataWeek"></c-chart>
+                  </div>
+
+                  <div class="color_flex">
+                    <div class="color_div"></div>
+                    <p> {{util.translate('Total number of orders this months')}} </p>
+                  </div>
+
+                  <div style="display: block;">
+                    <c-chart type="bar" [data]="chartBarDataMonths"></c-chart>
+                  </div>
+
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="chart_content_div">
+                <div class="content_div">
+                  <div class="content_div">
+                    <p class="title_lbl" style="margin-bottom: 0px;">
+                      {{util.translate("Month's distribution of your orders")}}
+                    </p>
+                    <p class="span_lbl">{{util.translate('Details from')}}
+                      <span>{{monthLabel}}</span>&nbsp;
+
+                    </p>
+
+                    <p class="no_lbl">
+                      {{util.translate('Top Sells this months')}}
+                    </p>
+
+                    <div class="chart_flex">
+                      <div class="color_content" style="width: 50%;">
+
+                        <div class="color_flex" *ngFor="let item of topProducts;">
+                          <div class="color_div"></div>
+                          <p> {{item.items.name}} - ({{item.counts}}) </p>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="line_div"></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-6">
+              <div class="chart_content_div">
+                <div class="content_div">
+                  <div class="card-body">
+                    <div class="chart-wrapper">
+                      <c-chart type="doughnut" [data]="chartDoughnutData"></c-chart>
+                      <!-- <canvas baseChart [datasets]="doughnutChartData"
+                                              [chartType]="doughnutChartType" [labels]="doughnutChartLabels">
+                                              [options]="barChartOptions"
+                                          </canvas> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

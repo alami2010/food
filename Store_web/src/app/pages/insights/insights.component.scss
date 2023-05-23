@@ -1,0 +1,256 @@
+/*
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+*/
+.main_content_div {
+  .content_div {
+    padding: 16px;
+    background: white;
+    margin-bottom: 10px;
+
+    .title_flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+
+      .title_lbl {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+
+      }
+    }
+
+    .span_lbl {
+      font-size: 15px;
+
+      span {
+        color: green;
+      }
+    }
+
+    .slide_div {
+      border-radius: 10px;
+      background: #0594aa;
+      width: 100%;
+      margin-bottom: 40px;
+
+      div {
+        padding: 10px;
+
+        .simp_lbl {
+          color: white;
+          text-align: left;
+          font-size: 14px;
+        }
+
+        .bold_lbl {
+          color: white;
+          font-weight: bold;
+          font-size: 18px;
+          text-align: left;
+        }
+      }
+    }
+
+    .blue_div {
+      background: #394a84;
+      padding: 10px;
+      border-radius: 10px;
+
+      .bold_lbl {
+        color: white;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .small_lbl {
+        color: white;
+        font-size: 13px;
+      }
+
+
+    }
+
+    .border_slider_div {
+      border-radius: 10px;
+      border: 1px solid lightgrey;
+      margin-bottom: 40px;
+      width: 100%;
+
+      div {
+        padding: 10px;
+
+        .simp_lbl {
+          text-align: left;
+          font-size: 14px;
+        }
+
+        .bold_lbl {
+          font-weight: bold;
+          font-size: 18px;
+          text-align: left;
+        }
+      }
+    }
+
+    .border_div {
+      border: 1px solid lightgrey;
+      border-radius: 5px;
+      margin-bottom: 16px;
+
+      .inner_content {
+        padding: 10px;
+
+        .bold_lbl {
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+
+        .time_flex {
+          display: flex;
+          color: grey;
+
+
+          div {
+            display: flex;
+            align-items: center;
+          }
+        }
+
+        .grey_lbl {
+          font-size: 14px;
+          color: grey;
+
+          span {
+            font-weight: bold;
+          }
+        }
+      }
+
+      .inner_flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .small_lbl {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .row_flex {
+      display: flex;
+      margin-left: -16px;
+      margin-right: -16px;
+
+      div {
+        padding: 16px 10px;
+      }
+
+      .f_div {
+        width: 50%;
+      }
+
+      .l_div {
+        width: 50%;
+      }
+
+
+    }
+  }
+}
+
+.chart_content_div {
+  .content_div {
+    padding: 16px;
+    background: white;
+    margin-bottom: 12px;
+
+    .title_lbl {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+
+
+    .color_flex {
+      display: flex;
+      align-items: center;
+
+      .color_div {
+        width: 20px;
+        height: 6px;
+        border-radius: 10px;
+        background: green;
+      }
+
+    }
+
+    .blue_div {
+      background: #394a84;
+      padding: 10px;
+      border-radius: 10px;
+
+      .bold_lbl {
+        color: white;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .small_lbl {
+        color: white;
+        font-size: 13px;
+      }
+
+    }
+
+    .span_lbl {
+      font-size: 15px;
+      margin-bottom: 20px;
+
+      span {
+        color: green;
+      }
+    }
+
+    .no_lbl {
+      margin-bottom: 20px;
+      margin-top: 20px;
+
+      span {
+        font-weight: bold;
+        font-size: 26px;
+        margin-right: 8px;
+      }
+
+      font-size: 14px;
+    }
+
+    .chart_flex {
+      display: flex;
+
+      .color_content {
+        .color_flex {
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    .line_div {
+      width: 100%;
+      height: 1px;
+      background: lightgray;
+    }
+  }
+}

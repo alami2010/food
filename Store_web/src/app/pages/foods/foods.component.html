@@ -1,0 +1,342 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+-->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="animated fadeIn">
+  <div class="row">
+
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('Foods')}}
+          <div class="card-header-actions">
+            <button type="submit" class="btn btn-sm btn-primary" style="float: right;margin: 0px 5px;"
+              (click)="addNew()">
+              {{util.translate('Add New')}}
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div class="error_div" *ngIf="list?.length <= 0 && dummy?.length <= 0">
+            <label>{{util.translate('No Data Found..')}}</label>
+          </div>
+
+          <table class="table table-responsive-sm table-hover mb-0">
+            <thead *ngIf="list?.length > 0">
+              <tr>
+                <th>{{util.translate('Cover')}}</th>
+                <th>{{util.translate('Name')}}</th>
+                <th>{{util.translate('Category')}}</th>
+                <th>{{util.translate('Price')}}</th>
+                <th>{{util.translate('Discount')}}</th>
+                <th>{{util.translate('Recommended')}}</th>
+                <th>{{util.translate('Out Of Stock')}}</th>
+                <th>{{util.translate('Action')}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of dummy">
+                <td *ngFor="let item of [1,2,3,4,5,6,7,8,9]">
+                  <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                </td>
+              </tr>
+              <tr
+                *ngFor="let item of list | paginate: {id:'pagin1', itemsPerPage: 10, currentPage: page };let i = index ">
+                <td>
+                  <img class="img-responsive" style="height: 40px;width: 40px; object-fit: cover;"
+                    [src]="api.imageUrl + item.cover" onError="this.src='assets/img/dummy.jpeg'">
+                </td>
+                <td>{{item.name}}</td>
+
+                <td>{{item.cate_name}}</td>
+                <td>
+                  <span *ngIf="util.cside =='left'">{{util.currecny}}
+                    {{item.price}} </span>
+                  <span *ngIf="util.cside =='right'">{{item.price}}
+                    {{util.currecny}}</span>
+                </td>
+                <td>
+                  <span *ngIf="util.cside =='left'">{{util.currecny}}
+                    {{item.discount}} </span>
+                  <span *ngIf="util.cside =='right'">{{item.discount}}
+                    {{util.currecny}}</span>
+                </td>
+                <td>
+                  <label class="switch switch-label switch-pill switch-outline-primary-alt">
+                    <input type="checkbox" class="switch-input" (change)="updateTag(item)"
+                      [checked]="item.recommended == 1? true:false">
+                    <span class="switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+                  </label>
+
+                </td>
+                <td>
+                  <label class="switch switch-label switch-pill switch-outline-primary-alt">
+                    <input type="checkbox" class="switch-input" (change)="updateStock(item)"
+                      [checked]="item.outofstock == 1? true:false">
+                    <span class="switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+                  </label>
+                </td>
+                <td>
+                  <c-badge [color]="item.status == 1 ? 'success':'dark'"
+                    [class]="item.status == 1 ? 'me-1 badge bg-success':'me-1 badge bg-dark'"
+                    (click)="updateStatus(item)">
+                    {{item.status == 1 ?util.translate('Active'):util.translate('Deactived')}}
+                  </c-badge>
+                  <c-badge color="info" class="me-1 badge bg-info" (click)="updateInfo(item.id)">
+                    {{ util.translate('Edit')}}
+                  </c-badge>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div *ngIf="list?.length > 0">
+            <pagination-controls id="pagin1" (pageChange)="page = $event"></pagination-controls>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #myModal2="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{util.translate('Add New Item')}} </h5>
+        <button type="button" class="close" (click)="myModal2.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body long_content">
+        <div class="logoContainer">
+          <img [src]="api.imageUrl+ cover" onError="this.src='assets/img/dummy.jpeg'">
+        </div>
+        <div class="fileContainer sprite">
+          <span> {{util.translate('Add Cover')}} </span>
+          <input (change)="preview_banner($event.target.files)" type="file" value="Choose File">
+        </div>
+        <p class="text-heler">{{util.translate('Files types accepted: .jpg, .jpeg, .png, .bmp recommended size (512
+          X512) pixels')}} </p>
+        <form>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="modal_lbl">{{util.translate('Item Name')}}</label>
+                <input class="form-control" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"
+                  [placeholder]="util.translate('Item Name')">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="modal_lbl">{{util.translate('Item Price')}}</label>
+                <input class="form-control" type="number" [(ngModel)]="price" [ngModelOptions]="{standalone: true}"
+                  [placeholder]="util.translate('Item Price')">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="modal_lbl">{{util.translate('Discount Price (optional)')}}</label>
+                <input class="form-control" type="number" [(ngModel)]="discount" [ngModelOptions]="{standalone: true}"
+                  [placeholder]="util.translate('Discount Price (optional)')">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="modal_lbl">{{util.translate('Short Description')}}</label>
+                <textarea class="form-control" [placeholder]="util.translate('Short Description')" [(ngModel)]="details"
+                  [ngModelOptions]="{standalone: true}" rows="3"></textarea>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="modal_lbl">{{util.translate('Select Category')}}</label>
+                <select id="select2" name="select2" class="form-control" [(ngModel)]="cate_id" (change)="cateChange()">
+                  <option [value]="item.id" *ngFor="let item of categories"> {{item.name}} </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="modal_lbl">{{util.translate('Veg / Non Veg')}}</label>
+                <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="veg">
+                  <option [value]="1">{{util.translate('Veg')}}</option>
+                  <option [value]="2">{{util.translate('Non Veg')}}</option>
+                  <option [value]="0">{{util.translate('None')}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="flex_row_align">
+                <label class="modal_lbl">{{util.translate('Is Recomended ?')}}</label>
+                <label class="switch switch-label switch-pill switch-outline-primary-alt">
+                  <input type="checkbox" class="switch-input" [(ngModel)]="recommended"
+                    [ngModelOptions]="{standalone: true}">
+                  <span class="switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+                </label>
+              </div>
+
+            </div>
+
+            <div class="col-lg-6">
+              <div class="flex_row_align">
+                <label class="modal_lbl">{{util.translate('Have add-on?')}}</label>
+                <label class="switch switch-label switch-pill switch-outline-primary-alt">
+                  <input type="checkbox" class="switch-input" (ngModelChange)="changeIt()"
+                    [ngModelOptions]="{standalone: true}" [(ngModel)]="haveVariations">
+                  <span class="switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+                </label>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="flex_row_align">
+                <label class="modal_lbl">{{util.translate('Size? Regular,Medium,Large')}}</label>
+                <label class="switch switch-label switch-pill switch-outline-primary-alt">
+                  <input type="checkbox" class="switch-input" [(ngModel)]="size" [ngModelOptions]="{standalone: true}"
+                    (ngModelChange)="changeSize($event)">
+                  <span class="switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+                </label>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div *ngIf="haveVariations" class="addon_div">
+                <div style="display: flex;justify-content: flex-end;">
+                  <div class="add_btn" style="width: fit-content;margin-bottom: 10px;" (click)="openVarations()">
+                    <label>{{util.translate('Add New Variations')}}</label>
+                  </div>
+                </div>
+                <div *ngIf="variations?.length" class="shadow_card">
+                  <div *ngFor="let item of variations;let i = index;" style="margin: 10px 0px;">
+                    <div lines="none" class="main_header">
+                      <label style="font-weight: bold;">{{item.title}}
+                        <span *ngIf="item.type =='radio'" style="font-size: 8px;">
+                          {{util.translate('User can select only one')}} </span>
+                        <span *ngIf="item.type =='check'" style="font-size: 8px;">
+                          {{util.translate('User can select multiple')}} </span>
+                      </label>
+                      <div>
+                        <c-badge color="primary" class="me-1 badge bg-primary" (click)="editTitle(i)">
+                          {{ util.translate('Edit')}}
+                        </c-badge>
+                        <c-badge color="success" class="me-1 badge bg-success" (click)="addItem(i)">
+                          {{ util.translate('Add')}}
+                        </c-badge>
+                        <c-badge color="danger" class="me-1 badge bg-danger" (click)="deleteItem(item)">
+                          {{ util.translate('Delete')}}
+                        </c-badge>
+
+                      </div>
+                    </div>
+                    <div *ngFor="let sub of item.items;let j = index" class="sub" lines="none">
+                      <label>{{sub.title}}
+                        <label>
+                          <span *ngIf="util.cside =='left'">{{util.currecny}}
+                            {{sub.price}} </span>
+                          <span *ngIf="util.cside =='right'">{{sub.price}}
+                            {{util.currecny}}</span>
+
+                        </label>
+                      </label>
+                      <c-badge color="primary" class="me-1 badge bg-primary" (click)="editSub(i,sub,j)">
+                        {{ util.translate('Edit')}}
+                      </c-badge>
+                      <c-badge color="danger" class="me-1 badge bg-danger" (click)="deleteSub(i,sub)">
+                        {{ util.translate('Delete')}}
+                      </c-badge>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+        <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="myModal2.hide()">{{util.translate('Close')}}</button>
+
+        <button type="button" class="btn btn-primary" *ngIf="this.action == 'create'" (click)="saveProduct()">
+          {{util.translate('Save')}}</button>
+
+        <button type="button" class="btn btn-primary" *ngIf="this.action == 'update'" (click)="updateProduct()">
+          {{util.translate('Update')}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-danger modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{util.translate('Variations')}} </h5>
+        <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body long_content">
+        <div class="shadow_card languagesInput" *ngIf="what =='main'">
+          <input [placeholder]="util.translate('Variations Name')" class="form-control" [(ngModel)]="variation_title"
+            [ngModelOptions]="{standalone: true}" />
+        </div>
+
+        <div class="shadow_card languagesInput" *ngIf="what =='sub'">
+          <input [placeholder]="util.translate('Add-ons Name')" class="form-control" [(ngModel)]="variation_title"
+            [ngModelOptions]="{standalone: true}" />
+        </div>
+
+        <div class="shadow_card languagesInput" *ngIf="what =='sub'">
+          <input [placeholder]="util.translate('Add-ons price')" class="form-control" [(ngModel)]="variations_price"
+            type="number" [ngModelOptions]="{standalone: true}" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="myModal.hide()">{{util.translate('Close')}}</button>
+
+        <button type="button" class="btn btn-danger" (click)="onVariationsSave()">
+          {{util.translate('Save Changes')}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div bsModal #myModal3="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-warning modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{util.translate('Variations Type')}} </h5>
+        <button type="button" class="close" (click)="myModal3.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body long_content">
+        <select [(ngModel)]="variation_type" [ngModelOptions]="{standalone: true}" class="form-control">
+          <option value="radio">Only One</option>
+          <option value="check">Multiple</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="myModal3.hide()">{{util.translate('Close')}}</button>
+
+        <button type="button" class="btn btn-warning" (click)="saveType()">
+          {{util.translate('Save Changes')}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

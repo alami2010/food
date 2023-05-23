@@ -1,0 +1,101 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+-->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('All Bookings')}}
+        </div>
+        <div class="card-body">
+
+          <div *ngIf="!list?.length && dummy.length == 0" style="text-align: center;">
+            <p>{{util.translate('No Data Found..')}}</p>
+          </div>
+
+          <table class="table table-striped">
+            <thead *ngIf="list?.length">
+              <tr>
+                <th>{{util.translate('Id')}}</th>
+                <th>{{util.translate('Cover')}}</th>
+                <th>{{util.translate('Username')}}</th>
+                <th>{{util.translate('Total Guest')}}</th>
+                <th>{{util.translate('Date')}}</th>
+                <th>{{util.translate('Notes')}}</th>
+                <th>{{util.translate('Status')}}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let item of dummy">
+                <td *ngFor="let item of [1,2,3,4,5]">
+                  <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                </td>
+              </tr>
+              <tr *ngFor="let item of list | paginate: {id:'pagin1', itemsPerPage: 20, currentPage: page }">
+                <td> {{item.id}} </td>
+                <td class="text-center">
+                  <img class="img-responsive" style="height: 50px;width: 50px;border-radius: 50%; object-fit: cover;"
+                    [src]="api.imageUrl + item.userInfo.cover" onError="this.src='assets/img/dummy.jpeg'">
+
+                </td>
+                <td>
+                  <div> {{item.guest_name}} </div>
+                  <div class="small text-medium-emphasis"><span> {{item.userInfo.mobile}} </span> |
+                    {{item.userInfo.email}}
+                  </div>
+                </td>
+                <td>
+                  {{item.total_guest}}
+                </td>
+                <td>{{getDate(item.saved_date)}}</td>
+                <td>
+                  {{item.notes}}
+                </td>
+                <td>
+                  <div *ngIf="item.status == 0 || item.status == 1">
+                    <c-badge color="info" class="me-1 badge bg-info" *ngIf="item.status == 0"
+                      (click)="statusUpdate(1,item.id)">
+                      {{ util.translate('Accept')}}
+                    </c-badge>
+
+                    <c-badge color="danger" class="me-1 badge bg-danger" *ngIf="item.status == 0"
+                      (click)="statusUpdate(3,item.id)">
+                      {{ util.translate('Reject')}}
+                    </c-badge>
+
+                    <c-badge color="dark" class="me-1 badge bg-dark" *ngIf="item.status == 1"
+                      (click)="statusUpdate(2,item.id)">
+                      {{ util.translate('Accepted')}}
+                    </c-badge>
+
+                  </div>
+                  <div *ngIf="item.status == 2 || item.status == 3">
+                    <c-badge color="info" class="me-1 badge bg-info">
+                      {{ item.status == 3 ? util.translate('Rejected'):
+                      util.translate('Completed')}}
+                    </c-badge>
+
+                  </div>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+
+          <div *ngIf="list?.length > 0">
+            <pagination-controls id="pagin1" (pageChange)="page = $event"></pagination-controls>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,364 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+ -->
+<div class="container">
+  <div [ngStyle]="{'background-image':'url('+api.mediaURL+cover+'),url(assets/placeholder.jpg)'}" class="back_img">
+    <div class="overlay"></div>
+    <div class="abs_div">
+      <label class="pro_name"> {{name}} </label>
+      <label class="pro_detail" style="font-size: 12px;"> <span *ngFor="let item of cusine;let i = index"> {{item}} •
+        </span></label>
+    </div>
+  </div>
+  <div class="flex_menu">
+    <label [ngClass]="tab == 1 ? 'activeTab' : 'deactiveTab'" (click)="tab = 1">{{util.translate('Order')}}</label>
+    <label [ngClass]="tab == 2 ? 'activeTab' : 'deactiveTab'" (click)="tab = 2">{{util.translate('Reviews')}}</label>
+    <label [ngClass]="tab == 3 ? 'activeTab' : 'deactiveTab'" (click)="tab = 3">{{util.translate('Photos')}}</label>
+    <label [ngClass]="tab == 4 ? 'activeTab' : 'deactiveTab'" (click)="tab = 4">{{util.translate('Overview')}}</label>
+  </div>
+</div>
+
+<div class="container rest_container" *ngIf="tab ==1">
+
+  <div class="row">
+    <div [ngClass]="util.deviceType =='mobile' ? 'col-12' :'col-3'">
+      <div class="cart_div" *ngIf="util.deviceType !=='mobile'">
+        <label *ngFor="let item of dumyCates">
+          <ngx-skeleton-loader appearance="line" [theme]="{  height: '20px',width:'70px'}"> </ngx-skeleton-loader>
+        </label>
+        <label *ngFor="let item of categories" [ngClass]="caetId == item.cate_id ? 'activeTab' : 'deactiveTab'"
+          (click)="caetId = item.cate_id;"> {{item.name}} </label>
+      </div>
+      <div class="" *ngIf="util.deviceType =='mobile'">
+        <div class="scrollbale">
+          <label *ngFor="let item of dumyCates">
+            <ngx-skeleton-loader appearance="line" [theme]="{  height: '20px',width:'70px'}"> </ngx-skeleton-loader>
+          </label>
+          <label *ngFor="let item of categories" [ngClass]="caetId == item.cate_id ? 'activeTab' : 'deactiveTab'"
+            (click)="caetId = item.cate_id;"> {{item.name}} </label>
+        </div>
+      </div>
+    </div>
+    <div [ngClass]="util.deviceType =='mobile' ? 'col-12' :'col-6'">
+      <div class="row">
+
+        <div class="col-lg-12">
+          <div class="row product_div">
+            <div class="pro_col col-lg-12 col-sm-12 col-md-12 col-xs-12" *ngFor="let item of dummy;let i = index">
+              <div class="pro_div">
+                <div class="rest_img bg_image">
+                  <ngx-skeleton-loader appearance="line" [theme]="{  height: '120px',width:'120px'}">
+                  </ngx-skeleton-loader>
+                </div>
+                <div class="content_div">
+                  <label class="pro_name">
+                    <ngx-skeleton-loader appearance="line" [theme]="{  height: '20px',width:'220px'}">
+                    </ngx-skeleton-loader>
+                  </label>
+                  <label class="pro_name">
+                    <ngx-skeleton-loader appearance="line" [theme]="{  height: '20px',width:'220px'}">
+                    </ngx-skeleton-loader>
+                  </label>
+                  <label class="detail_lbl">
+                    <ngx-skeleton-loader appearance="line" [theme]="{  height: '20px',width:'170px'}">
+                    </ngx-skeleton-loader>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div *ngFor="let item of categories;let i =index">
+              <div *ngIf="item.cate_id ==  caetId">
+                <div class="pro_col col-lg-12 col-sm-12 col-md-12 col-xs-12"
+                  *ngFor="let sub of item.products;let j =index">
+                  <div class="pro_div">
+                    <div class="rest_img bg_image"
+                      [ngStyle]="{'background-image':'url('+api.mediaURL+sub.cover+'),url(assets/placeholder.jpg)'}">
+                    </div>
+                    <div class="content_div">
+                      <label class="pro_name">{{ (sub.name.length>60)? (sub.name | slice:0:60)+'..':(sub.name) }}
+                      </label>
+                      <label class="detail_lbl">
+                        {{ (sub.details.length>60)? (sub.details | slice:0:60)+'..':(sub.details) }}
+                      </label>
+                      <div class="rate_div">
+                        <mdb-icon fas icon="star" [style.color]="sub.rating >=1? 'orange':'gray'"></mdb-icon>
+                        <mdb-icon fas icon="star" [style.color]="sub.rating >=2? 'orange':'gray'"></mdb-icon>
+                        <mdb-icon fas icon="star" [style.color]="sub.rating >=3? 'orange':'gray'"></mdb-icon>
+                        <mdb-icon fas icon="star" [style.color]="sub.rating >=4? 'orange':'gray'"></mdb-icon>
+                        <mdb-icon fas icon="star" [style.color]="sub.rating >=5? 'orange':'gray'"></mdb-icon>
+                      </div>
+
+                      <div class="flex_div">
+                        <label class="price" *ngIf="util.cside =='left' && sub.discount == 0 ">{{util.currecny}}
+                          {{sub.price}}</label>
+                        <label class="price" *ngIf="util.cside =='right'  && sub.discount == 0"> {{sub.price}}
+                          {{util.currecny}}</label>
+
+                        <label class="price" *ngIf="util.cside =='left' && sub.discount > 0 ">{{util.currecny}}
+                          {{sub.discount}}</label>
+                        <label class="price" *ngIf="util.cside =='right'  && sub.discount > 0"> {{sub.discount}}
+                          {{util.currecny}}</label>
+                        <div style="text-align: right;" *ngIf="!cart.itemId.includes(sub.id)">
+                          <button mdbBtn class="place_btn" mdbWavesEffect
+                            (click)="addToCart(i,j)">{{util.translate('Add')}}</button>
+                          <label *ngIf="sub && sub.variations && sub.variations?.length"
+                            style="font-size: 10px; text-align: center; margin-top: 5px;">{{util.translate('customizable')}}</label>
+                        </div>
+                        <div class="cart_btn" *ngIf="cart.itemId.includes(sub.id)">
+                          <label class="btns" mdbWavesEffect (click)="updateQuantity(i,j,'remove')">-</label>
+                          <label class="totls">{{getQuantity(i,j)}} </label>
+                          <label class="btns" mdbWavesEffect (click)="updateQuantity(i,j,'add')">+</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="no_data" *ngIf="haveData == false">
+        <div class="empty" [ngStyle]="{'background-image':'url(assets/nodata.jpg)'}"></div>
+        <p>{{util.translate('Opps.. no food found')}} </p>
+      </div>
+    </div>
+    <div [ngClass]="util.deviceType =='mobile' ? 'col-12' :'col-3'">
+      <div class="cart_box">
+        <label class="title">{{util.translate('Cart')}} </label>
+        <div class="noData" *ngIf="!cart.cart?.length">
+          <img src="assets/food-cart.png" alt="" class="noDataImg">
+          <label>{{util.translate('Your Cart is Empty')}}</label>
+          <label>{{util.translate('Please add your favourite food')}} </label>
+        </div>
+        <div class="cart_items" *ngIf="cart.cart?.length">
+          <div *ngFor="let item of cart.cart;let i = index">
+            <div class="row">
+              <div class="col-2 cover_img"
+                [ngStyle]="{'background-image':'url('+api.mediaURL+item.cover+'),url(assets/placeholder.jpg)'}"></div>
+              <div class="col-6">
+                <label class="heading_lbl">
+                  {{ (item.name.length>20)? (item.name | slice:0:20)+'..':(item.name) }}
+                </label>
+                <div *ngIf="item.size == 1 && item.savedVariationsList.length > 0">
+                  <div *ngFor="let variations of item.savedVariationsList">
+                    <label class="heading_lbl_variant text-uppercase"> {{variations.title}} -
+                      <span class="heading_lbl_variant" *ngIf="util.currencySide == 'left'">{{util.currencySymbol}}
+                        {{variations.price}}</span>
+                      <span class="heading_lbl_variant" *ngIf="util.currencySide == 'right'">
+                        {{variations.price}}
+                        {{util.currencySymbol}}</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="Rating">
+                  ({{item.rating}} {{util.translate('Ratings')}})
+                </div>
+
+                <label class="heading_lbl" *ngIf="util.cside =='left' && item.discount == 0">
+                  {{util.currecny}} {{item.price}}</label>
+                <label class="heading_lbl" *ngIf="util.cside =='right' && item.discount == 0"> {{item.price}}
+                  {{util.currecny}} </label>
+
+                <label class="heading_lbl" *ngIf="util.cside =='left' && item.discount > 0">
+                  {{util.currecny}} {{item.discount}}</label>
+                <label class="heading_lbl" *ngIf="util.cside =='right' && item.discount > 0"> {{item.discount}}
+                  {{util.currecny}} </label>
+              </div>
+              <div class="col-4 ">
+                <div class="cart_btn">
+                  <label class="btns" mdbWavesEffect (click)="removeVariations(i)">-</label>
+                  <label class="totls"
+                    *ngIf="item.size == 1 && item.savedVariationsList.length > 0">{{item.savedVariationsList[0].quantity}}
+                  </label>
+                  <label class="totls" *ngIf="item.size == 0 && item.savedVariationsList.length == 0">{{item.quantity}}
+                  </label>
+                  <label class="btns" mdbWavesEffect (click)="addVariations(i)">+</label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div *ngIf="cart.cart?.length">
+          <div class="cart_checkout">
+            <label class="subTotal" *ngIf="util.cside =='left'">{{util.translate('Subtotal')}}: {{util.currecny}}
+              {{cart.total}}</label>
+            <label class="subTotal" *ngIf="util.cside =='right'">{{util.translate('Subtotal')}}:
+              {{cart.total}} {{util.currecny}}</label>
+            <button mdbBtn class="place_btn" (click)="openCart()">{{util.translate('Checkout')}}</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<div *ngIf="tab ==2" class="container">
+  <h2 class="decorated"><span>{{util.translate('Reviews')}}</span></h2>
+  <div class="reviews">
+    <div class="row" style="margin: 10px 0px;">
+      <div class="col-6" *ngFor="let item of reviews">
+        <div class="row" style="padding: 10px;box-shadow: 0px 0px 4px 0px #dee2e6;">
+          <div class="col-2">
+            <img [src]="api.mediaURL+item.cover" class="avtar" />
+          </div>
+          <div class="col-10">
+            <span>
+              <p class="from">{{util.translate('Received From')}} {{item.from ==1 ? 'Order':'Manually'}} </p>
+              <h3 class="usrname"> {{item.first_name}} {{item.last_name}} </h3>
+              <p class="from"> {{item.msg}} </p>
+              <p class="from"> {{getDate(item.created_at)}} </p>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="no_data" *ngIf="haveReview == false">
+    <div class="empty" [ngStyle]="{'background-image':'url(assets/nodata.jpg)'}"></div>
+    <p>{{util.translate('Opps.. no reviews found')}} </p>
+  </div>
+</div>
+
+<div *ngIf="tab ==3" class="container">
+  <h2 class="decorated"><span>{{util.translate('Photos')}}</span></h2>
+  <div class="photos">
+    <div class="row">
+      <div class="col-4" *ngFor="let item of images">
+        <div class="slide_image" [ngStyle]="{'background-image':'url('+api.mediaURL+item+')'}">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="no_data" *ngIf="havePhotos == false">
+    <div class="empty" [ngStyle]="{'background-image':'url(assets/nodata.jpg)'}"></div>
+    <p>{{util.translate('Opps.. no photos found')}} </p>
+  </div>
+</div>
+
+<div *ngIf="tab ==4" class="container">
+  <h2 class="decorated"><span>{{util.translate('Overview')}}</span></h2>
+  <div class="content_div">
+    <label class="addr_lbl">
+      <mdb-icon fas icon="location-arrow"></mdb-icon>
+      {{address}}
+    </label>
+    <label class="addr_lbl">
+      <mdb-icon fas icon="info"></mdb-icon>
+      {{descritions}}
+    </label>
+    <label class="addr_lbl">
+      <mdb-icon fas icon="phone-alt"></mdb-icon>
+      {{contactNo}}
+    </label>
+  </div>
+</div>
+
+<div class="fixed_cart" *ngIf="cart.cart?.length">
+  <div class="container">
+    <div class="flex_cart">
+      <label class="subTotal">{{util.translate('Your Order')}} ({{cart.totalItemsInCart}}) </label>
+      <div class="flxer">
+        <label class="subTotal" *ngIf="util.cside =='left'">{{util.translate('Subtotal')}}: {{util.currecny}}
+          {{cart.total}}</label>
+        <label class="subTotal" *ngIf="util.cside =='right'">{{util.translate('Subtotal')}}:
+          {{cart.total}}{{util.currecny}} </label>
+        <button mdbBtn class="place_btn" (click)="openCart()">{{util.translate('Checkout')}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #variantModal="mdbModal" class="modal fade bottom" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 99999;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">{{util.translate('Variations')}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="variantModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body location_body" *ngIf="isNewVariantions == true">
+        <div *ngFor="let value of variations;let i = index;">
+          <p class="var-title text-uppercase">{{value.title}}</p>
+          <div class="var-type">
+            <div *ngIf="value.type == 'radio'">
+              <div class="var-radio" *ngFor="let sub of value.items;let j = index;">
+                <div class=" custom-control custom-radio">
+                  <input [checked]="sub.isChecked" (input)="radioGroupChange(i,j)" type="radio"
+                    class="custom-control-input" [id]="sub.title" [name]="sub.title" [value]="sub.title" mdbInput>
+                  <label class="custom-control-label text-uppercase" [for]="sub.title">{{sub.title}}</label>
+                </div>
+                <div class="var-price" *ngIf="util.cside =='left'">{{util.currecny}} {{sub.price}}</div>
+                <div class="var-price" *ngIf="util.cside =='right'">{{sub.price}} {{util.currecny}}</div>
+              </div>
+            </div>
+
+            <div *ngIf="value.type == 'check'">
+              <div class="var-radio" *ngFor="let sub of value.items;let j = index;">
+                <mdb-checkbox [default]="true" (input)="checkedEvent($event,i,j)" [value]="sub.title"
+                  class="text-uppercase">
+                  {{sub.title}}</mdb-checkbox>
+                <div class="var-price" *ngIf="util.cside =='left'">{{util.currecny}} {{sub.price}}</div>
+                <div class="var-price" *ngIf="util.cside =='right'">{{sub.price}} {{util.currecny}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body location_body_older" *ngIf="isNewVariantions == false">
+        <div *ngFor="let item of olderVariations;let i = index" class="first_flex">
+          <div class="flex_second mb-3"
+            *ngIf=" item && item.savedVariationsList && item.savedVariationsList.length > 0 && item.savedVariationsList[0].quantity > 0">
+            <div *ngFor="let sub of item.savedVariationsList">
+              <p class="text-uppercase add-item">{{sub.title}}</p>
+            </div>
+          </div>
+          <div class="qty-flex" *ngIf="item.savedVariationsList[0].quantity > 0">
+            <div class="round_button" (click)="updateVariationsItem(i,'remove',item.savedVariationsList[0].quantity)">
+              <mdb-icon fas icon="minus"></mdb-icon>
+            </div>
+            <h6 class="text-uppercase"> {{item.savedVariationsList[0].quantity}} </h6>
+            <div class="round_button" (click)="updateVariationsItem(i,'add',item.savedVariationsList[0].quantity)">
+              <mdb-icon fas icon="plus"></mdb-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button mdbBtn style="width: 100%;" *ngIf="isNewVariantions == true" (click)="saveVariations()" color="success"
+          class="waves-light" mdbWavesEffect>{{util.translate('Save Changes')}}
+        </button>
+        <div class="row" *ngIf="isNewVariantions == false" style="width: 100%;margin: 0px;">
+          <div class="col-6">
+            <button mdbBtn style="width: 100%;" (click)="addNewVariatons()" color="danger" class="waves-light"
+              mdbWavesEffect>{{util.translate('Add')}}
+            </button>
+          </div>
+          <div class="col-6">
+            <button mdbBtn style="width: 100%;" *ngIf="isNewVariantions == false" (click)="updateVariations()"
+              color="danger" class="waves-light" mdbWavesEffect>{{util.translate('Update')}}
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

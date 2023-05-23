@@ -1,0 +1,181 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+ -->
+<div class="row_div">
+  <div class="row">
+    <div class="col-lg-12 col-sm-4 back_image bg_image" [style.backgroundImage]="'url(assets/imgs/back1.jpg)'">
+      <div class="overlay">
+        <div class="container">
+          <div class="row  justify-content-md-center">
+            <div class="col-xl-7 col-lg-8">
+              <h1 class="bold_lbl">
+                {{util.translate('Find Your Favourite')}} <br> {{util.translate('Restaurants')}}
+              </h1>
+              <div class="row full_div container">
+                <div class="col-9">
+                  <div class="input_div">
+                    <img src="assets/imgs/placeholder.png" style="width: 25px;height: 22px;">
+                    <input type="text" style="font-size: 12px;" class="form-control" [(ngModel)]="autocomplete1.query"
+                      [placeholder]="util.translate('Choose your Location')" (ngModelChange)="onSearchChange($event)">
+                  </div>
+                </div>
+                <div class="col-3" *ngIf="util.deviceType =='desktop'">
+                  <div class="btns">
+                    <div class="locate_btn waves-effect" mdbWavesEffect (click)="locate()">
+                      <mdb-icon fas icon="location-arrow"></mdb-icon>
+                      {{util.translate('Locate Me')}}
+                    </div>
+                    <div class="arrow_btn" (click)="goToRest()">
+                      <mdb-icon fas icon="search"></mdb-icon>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="util.deviceType !=='desktop'">
+                <div class="col-12">
+                  <div class="locate_btn_lng waves-effect" mdbWavesEffect (click)="locate()">
+                    <mdb-icon fas icon="location-arrow"></mdb-icon>
+                    {{util.translate('Locate Me')}}
+                  </div>
+                </div>
+              </div>
+              <div class="row address_list">
+                <div class="col-12 address_name" *ngFor="let item of autocompleteItems1"
+                  (click)="selectSearchResult1(item)">
+                  <mdb-icon fas icon="map-marker-alt" style="color: gray; margin-right: 10px;"></mdb-icon>
+                  {{ item.description }}
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="container service_div">
+  <div class="row">
+    <div class="col-lg-2 col-sm-4 col-md-4 service_box">
+      <img src="assets/homeicons/breakfast.png" style="width: 110px;" alt="">
+      <label class="small_lbl">{{util.translate('Breakfast')}}</label>
+    </div>
+    <div class="col-lg-2 col-sm-4 col-md-4 service_box">
+      <img src="assets/homeicons/omelette.png" style="width: 110px;" alt="">
+      <label class="small_lbl">{{util.translate('Dinner')}}</label>
+    </div>
+    <div class="col-lg-2 col-sm-4 col-md-4 service_box">
+      <img src="assets/homeicons/lunch-box.png" style="width: 110px;" alt="">
+      <label class="small_lbl">{{util.translate('Lunch')}}</label>
+    </div>
+    <div class="col-lg-2 col-sm-4 col-md-4 service_box">
+      <img src="assets/homeicons/delivery.png" style="width: 110px;" alt="">
+      <label class="small_lbl">{{util.translate('Delivery')}}</label>
+    </div>
+    <div class="col-lg-2 col-sm-4 col-md-4 service_box">
+      <img src="assets/homeicons/nightlife.png" style="width: 110px;" alt="">
+      <label class="small_lbl">{{util.translate('Nightlife')}}</label>
+    </div>
+    <div class="col-lg-2 col-sm-4 col-md-4 service_box">
+      <img src="assets/homeicons/take-away.png" style="width: 110px;" alt="">
+      <label class="small_lbl">{{util.translate('Take away')}}</label>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row getapp_div">
+    <div class="col-lg-6 getapp_content">
+      <label class="head_lbl">{{util.translate('Every Flavore Welcome')}}</label>
+      <label class="small_lbl">
+        {{util.translate('From your neighbourhood sushi spot to the burger and fries you crave, choose from ever 2000
+        local and national favourites aross the U.S. and Canada.')}}
+      </label>
+      <button mdbBtn class="round_btn" (click)="goToRest()">{{util.translate('Find Restaurants')}}</button>
+    </div>
+    <div class="col-lg-6">
+      <img src="assets/imgs/back3.jpg" style="width: 100%;">
+    </div>
+  </div>
+</div>
+
+<div style="background: #f5f5f5;padding-top: 60px;padding-bottom: 60px;margin-top: 60px;">
+  <div class="container">
+    <div class="row getapp_div">
+      <div class="col-lg-6">
+        <img src="assets/imgs/back3.jpg" style="width: 100%;">
+      </div>
+      <div class="col-lg-6 getapp_content">
+        <label class="head_lbl">{{util.translate('You have got stuff to do. We have got options.')}}</label>
+        <label class="small_lbl">
+          {{util.translate("Git it delivered right to your door. Or, try Pickup on your way home. It's Mealtime on your
+          time")}}
+        </label>
+        <button mdbBtn class="round_btn" (click)="goToRest()">{{util.translate('Order Now')}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container blog_container" *ngIf="blogs?.length">
+
+  <label class="blog_header">{{util.translate('Our Blogs')}}</label>
+
+  <div class="row product_div">
+    <div class="pro_col col-lg-4 col-sm-12 col-md-6 col-xs-12" *ngFor="let item of blogs" (click)="goToBlogs(item)">
+      <div class="pro_div hoverable">
+        <div class="rest_img bg_image" [style.backgroundImage]="'url('+api.mediaURL+ item.cover +')'">
+          <div class="overlay">
+            <label class="date">{{getDate(item.updated_at)}} </label>
+            <label class="month">{{getMonth(item.updated_at)}} </label>
+          </div>
+        </div>
+        <div class="content_div">
+          <label class="pro_name">{{ (item.title.length>20)? (item.title | slice:0:20)+'..':(item.title) }} </label>
+          <label class="addr" [innerHTML]="getContent(item)">
+          </label>
+          <div class="service_flex">
+            <label>{{util.translate('Read More')}}</label>
+            <mdb-icon fas icon="arrow-right"></mdb-icon>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <mdb-icon fas icon="long-arrow-alt-right" class="all_blog"></mdb-icon>
+  </div>
+</div>
+
+
+<div style="background: #f5f5f5;padding-top: 60px;padding-bottom: 60px;">
+  <div class="container">
+    <div class="row getapp_div">
+      <div class="col-lg-6" style="position: relative;">
+        <img src="assets/imgs/screen.jpg" style="width: 60%;height: 95%;">
+      </div>
+      <div class="col-lg-6 getapp_content">
+        <label class="head_lbl">{{util.translate('Try App')}}</label>
+        <label class="small_lbl">
+          {{util.translate('Get the best Foodies experience with live order tracking.')}}
+        </label>
+
+        <a [href]="util.google_playstore" target="_blank" rel="noopener noreferrer">
+          <img src="assets/imgs/android.png" class="app_img hoverable">
+        </a>
+        <a [href]="util.apple_appstore" target="_blank" rel="noopener noreferrer">
+          <img src="assets/imgs/ios.png" class="app_img hoverable">
+        </a>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,388 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+-->
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+
+        <div class="card-body">
+          <div class="card-header" *ngIf="edit ==false"
+            style="margin: 10px 0px; border: none;text-transform: uppercase; font-weight: bold;">
+            {{util.translate('Restaurant Owner Personal Details')}} :
+          </div>
+
+          <div class="row" *ngIf="edit ==false">
+            <div class="col-12">
+              <p class="help">{{util.translate('This information will be used as login credentials on store apps.
+                a confirmation mail will be sent to this register email address.')}}</p>
+            </div>
+          </div>
+          <div class="row" *ngIf="edit ==false">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Email')}} : <span style="color: red;">*</span> </label>
+                <input type="email" class="form-control" [class]="submited && email =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="email" [placeholder]="util.translate('Email')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Password')}} : <span style="color: red;">*</span> </label>
+                <input type="text" class="form-control" [class]="submited && password =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="password"
+                  [placeholder]="util.translate('Password')">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('First Name')}} : <span style="color: red;">*</span> </label>
+                <input type="text" class="form-control" [class]="submited && first_name =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="first_name"
+                  [placeholder]="util.translate('First Name')">
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>{{util.translate('Last Name')}} : <span style="color: red;">*</span> </label>
+                <input type="text" class="form-control" [class]="submited && last_name =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="last_name"
+                  [placeholder]="util.translate('Last Name')">
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="row">
+                <div class="col-4" (click)="openCountryModel()">
+                  <div class="form-group">
+                    <label>{{util.translate('Country code')}} : <span style="color: red;">*</span>
+                    </label>
+                    <input type="text" disabled class="form-control" [class]="submited && country_code =='' ? 'req':''"
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="displayed"
+                      [placeholder]="util.translate('Country code')">
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="form-group">
+                    <label>{{util.translate('Phone')}} : <span style="color: red;">*</span>
+                    </label>
+                    <input type="number" class="form-control" [class]="submited && mobile =='' ? 'req':''"
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="mobile"
+                      [placeholder]="util.translate('Phone')">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="card-header" style="margin: 10px 0px; border: none;text-transform: uppercase; font-weight: bold;">
+            {{util.translate('Restaurant Informations')}} :
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Restaurant Name')}} : <span style="color: red;">*</span>
+                </label>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="name"
+                  [class]="submited && name =='' ? 'req':''" [placeholder]="util.translate('Restaurant Name')">
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Select Operating Cities')}} : <span style="color: red;">*</span>
+                </label>
+                <select id="select2" [(ngModel)]="city_id" name="select2" [class]="submited && city_id =='' ? 'req':''"
+                  class="form-control form-control">
+                  <option [value]="item.id" *ngFor="let item of cities"> {{item.name}} </option>
+                </select>
+              </div>
+            </div>
+
+
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Select Categories')}} : <span style="color: red;">*</span>
+                </label>
+                <ng-multiselect-dropdown [placeholder]="'Select Categories'"
+                  [class]="submited && master_categories.length ==0 ? 'req':''" [settings]="dropdownCategorySettings"
+                  [data]="categories" [(ngModel)]="master_categories">
+                </ng-multiselect-dropdown>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Restaurant type')}} : <span style="color: red;">*</span>
+                </label>
+                <select id="select2" [(ngModel)]="delivery_type" [class]="submited && delivery_type =='' ? 'req':''"
+                  name="select2" class="form-control form-control">
+                  <option [value]="1"> Delivery </option>
+                  <option [value]="2"> Self Pickup</option>
+                  <option [value]="3"> Both Delivery & Self Pickup </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-group">
+                <label>{{util.translate('Short Descriptions')}} : <span style="color: red;">*</span>
+                </label>
+                <textarea type="text" class="form-control" [class]="submited && short_descriptions =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" rows="5" [(ngModel)]="short_descriptions"
+                  [placeholder]="util.translate('Short Descriptions')"></textarea>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Pure Veg?')}} :
+                </label>
+                <select id="select1" [(ngModel)]="pure_veg" [class]="submited && pure_veg =='' ? 'req':''"
+                  name="select1" class="form-control form-control">
+                  <option [value]="1"> Yes </option>
+                  <option [value]="0"> No</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Have Dining Booking?')}} :
+                </label>
+                <select id="select2" [(ngModel)]="have_dining" [class]="submited && have_dining =='' ? 'req':''"
+                  name="select2" class="form-control form-control">
+                  <option [value]="1"> Yes </option>
+                  <option [value]="0"> No</option>
+                </select>
+              </div>
+            </div>
+
+
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Min Order Amount')}} : <span style="color: red;">*</span>
+                </label>
+                <input type="number" class="form-control" [class]="submited && min_order_price =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="min_order_price"
+                  [placeholder]="util.translate('Min Order Amount')">
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Packing/Extra Charge:')}} : <span style="color: red;">*</span>
+                </label>
+                <input type="number" class="form-control" [class]="submited && extra_charges =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="extra_charges"
+                  [placeholder]="util.translate('Min Order Amount')">
+              </div>
+            </div>
+
+
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Opening Hours')}} : <span style="color: red;">*</span>
+                </label>
+                <input type="time" class="form-control" [class]="submited && open_time =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="open_time"
+                  [placeholder]="util.translate('Opening Hours')">
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Closing Hours')}} : <span style="color: red;">*</span>
+                </label>
+                <input type="time" class="form-control" [class]="submited && close_time =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="close_time"
+                  [placeholder]="util.translate('Closing Hours')">
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Commission Rate %')}} : <span style="color: red;">*</span>
+                </label>
+                <input type="text" class="form-control" [class]="submited && commisstionRate =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="commisstionRate"
+                  [placeholder]="util.translate('Commission Rate %')">
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Certificate/License Code')}} :
+                </label>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="certificate"
+                  [placeholder]="util.translate('Certificate/License Code')">
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Select Cuisines')}} : <span style="color: red;">*</span>
+                </label>
+                <ng-multiselect-dropdown [placeholder]="'Select Cuisines'" [settings]="dropdownSettings"
+                  [class]="submited && cuisines =='' ? 'req':''" [data]="util.cuisine" [(ngModel)]="cuisines">
+                </ng-multiselect-dropdown>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Approx Delivery Time')}} : <span style="color: red;">*</span>
+                </label>
+                <input type="number" class="form-control" [class]="submited && delivery_time =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="delivery_time"
+                  [placeholder]="util.translate('Approx Delivery Time')">
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Approx Price for Two')}} : <span style="color: red;">*</span>
+                </label>
+                <input type="number" class="form-control" [class]="submited && cost_for_two =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="cost_for_two"
+                  [placeholder]="util.translate('Approx Price for Two')">
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Full Address')}} : <span style="color: red;">*</span>
+                </label>
+                <input type="text" class="form-control" [class]="submited && address =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="address"
+                  [placeholder]="util.translate('Full Address')">
+              </div>
+            </div>
+
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Full Landmark')}} : <span style="color: red;">*</span>
+                </label>
+                <input type="text" class="form-control" [class]="submited && landmark =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="landmark"
+                  [placeholder]="util.translate('Landmark')">
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label>{{util.translate('Pincode')}} : <span style="color: red;">*</span>
+                </label>
+                <input type="text" class="form-control" [class]="submited && pincode =='' ? 'req':''"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="pincode" [placeholder]="util.translate('Pincode')">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p class="text-heler">Select Latitude & Longitude From here: <a href="https://www.mapcoordinates.net/en"
+                  target="_blank" rel="noopener noreferrer"
+                  style="color: blue !important;">https://www.mapcoordinates.net/en</a>
+              </p>
+              <p class="text-heler">Please enter valid Latitude & Longitude otherwise app may not work
+                properly.</p>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-6">
+              <div class="form-group">
+                <label class="modal_lbl">{{util.translate('Latitude')}} : <span style="color: red;">*</span></label>
+                <input type="text" [(ngModel)]="lat" class="form-control" [class]="submited && landmark =='' ? 'req':''"
+                  [placeholder]="util.translate('Latitude')" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label class="modal_lbl">{{util.translate('Longitude')}} : <span style="color: red;">*</span> </label>
+                <input type="text" [(ngModel)]="lng" class="form-control" [class]="submited && landmark =='' ? 'req':''"
+                  [placeholder]="util.translate('Longitude')" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label">{{util.translate('Image Upload')}} : </label>
+            <div class="col-lg-4">
+              <input (change)="preview_banner($event.target.files)" type="file" class="form-control file_ip"
+                accept="image/*">
+              <p class="text-heler">Files types accepted: .jpg, .jpeg, .png, .bmp recommended size (640 X
+                423)
+                pixels </p>
+            </div>
+            <div class="col-lg-4">
+              <img [src]="api.imageUrl + cover" alt=""
+                style="height: 100px;width: 100px;float: right;object-fit: contain;"
+                onError="this.src='assets/img/dummy.jpeg'">
+
+            </div>
+          </div>
+
+
+          <button type="button" class="btn btn-success" *ngIf="!edit" (click)="create()">
+            {{util.translate('Add Restaurant')}}
+          </button>
+          <button type="button" class="btn btn btn-primary" *ngIf="edit" (click)="update()">
+            {{util.translate('Update Restaurant')}}
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #largeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{util.translate('Select Countries')}} </h4>
+        <button type="button" class="close" (click)="largeModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="overflow: scroll;height: 300px;">
+        <div *ngFor="let item of dummyLoad">
+          <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+        </div>
+        <input type="text" class="form-control form-control-lg" id="name"
+          [placeholder]="util.translate('Search Country')" autocomplete="off"
+          (input)="onSearchChange($event.target.value)">
+        <div style="display: flex; flex-direction: column; justify-content: flex-start;">
+          <div class="form-check" *ngFor="let item of countries"
+            style="display: flex; justify-content: flex-start; align-items: center;margin:5px 0px;">
+            <input class="form-check-input" style="margin-top: 0px;" [(ngModel)]="country_code" type="radio"
+              [id]="item.dialling_code" [value]="item.dialling_code">
+            <label class="form-check-label" [for]="item.dialling_code">
+              +{{item.dialling_code}} {{item.country_name}}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="largeModal.hide()">{{util.translate('Close')}}
+        </button>
+        <button type="button" class="btn btn-primary" (click)="useCode()">
+          {{util.translate('Save Changes')}} </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

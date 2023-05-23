@@ -1,0 +1,140 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+-->
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <div class="card">
+        <div class="card-header">
+          {{util.translate('Stores')}}
+          <div class="card-header-actions">
+            <button type="submit" class="btn btn-sm btn-primary" style="float: right;margin: 0px 5px;"
+              (click)="addNew()">
+              {{util.translate('Add New Store')}}
+            </button> &nbsp;
+
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div class="row flex_row">
+            <div class="col-lg-8">
+              <input type="text" class="form-control form-control" id="name"
+                [placeholder]="util.translate('Search Stores')" (input)="search($event.target.value)">
+            </div>
+
+
+            <div class="col-lg-3">
+              <select id="select2" name="select2" class="form-control form-control" [(ngModel)]="selectedCities"
+                (change)="filter()">
+                <option [value]="item.id" *ngFor="let item of cities"> {{item.name}} </option>
+              </select>
+            </div>
+
+            <div class="col-lg-1">
+              <button type="submit" class="btn btn-primary" style="float: right;" (click)="clearFilter()">
+                {{util.translate('Clear')}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th> {{util.translate('Cover')}}</th>
+                <th> {{util.translate('Name')}}</th>
+                <th> {{util.translate('City')}} </th>
+                <th> {{util.translate('Owner')}} </th>
+                <th> {{util.translate('Delivery Type')}} </th>
+                <th> {{util.translate('Pure Veg')}} </th>
+                <th> {{util.translate('Have Dining')}} </th>
+                <th> {{util.translate('Time')}} </th>
+                <th> {{util.translate('Ratings')}} </th>
+                <th> {{util.translate('Actions')}} </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of dummy">
+                <td *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
+                  <ngx-skeleton-loader animation="progress"></ngx-skeleton-loader>
+                </td>
+              </tr>
+              <tr *ngFor="let item of list | paginate: {id:'pagin1', itemsPerPage: 5, currentPage: page }">
+                <td>
+                  <img class="img-responsive" style="height: 40px;width: 40px; object-fit: cover;"
+                    [src]="api.imageUrl + item.cover" onError="this.src='assets/img/dummy.jpeg'">
+                </td>
+                <td>
+                  <label> <span style="font-size: 14px;"> {{item.name}}</span> <br>
+                    <span style="font-size:10px;">
+                      <span *ngFor="let cates of item.master_categories_name;let c = index">
+                        {{cates.name}}<span *ngIf="c != (item.master_categories_name.length - 1)">,</span>
+                      </span>
+                    </span>
+                  </label>
+                </td>
+                <td>
+                  <label>
+                    {{item.city_name}}
+                  </label>
+                </td>
+                <td>
+                  <label>
+                    {{item.fname +' '+ item.lname}}
+                  </label>
+                </td>
+                <td>
+                  <label>
+                    {{deliveryType[item.delivery_type]}}
+                  </label>
+                </td>
+                <td>
+                  <label>
+                    {{item.pure_veg == 1? 'Yes' :'No'}}
+                  </label>
+                </td>
+                <td>
+                  <label>
+                    {{item.have_dining == 1? 'Yes':'No'}}
+                  </label>
+                </td>
+                <td>
+                  <label>
+                    {{getTime(item.open_time)}} - {{getTime(item.close_time)}}
+                  </label>
+                </td>
+                <td>
+                  <label>
+                    {{item.ratings}} / ({{item.total_ratings}})
+                  </label>
+                </td>
+                <td>
+                  <c-badge [color]="item.status == 1?'success':'dark'"
+                    [class]="item.status == 1 ? 'me-1 badge bg-success':'me-1 badge bg-dark'"
+                    (click)="changeStatus(item)">
+                    {{item.status == 1 ?util.translate('Active'):util.translate('Deactived')}}
+                  </c-badge>
+
+                  <c-badge color="info" class="me-1 badge bg-info" (click)="openStore(item)">
+                    {{ util.translate('View')}}
+                  </c-badge>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="list?.length > 0">
+            <pagination-controls id="pagin1" (pageChange)="page = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

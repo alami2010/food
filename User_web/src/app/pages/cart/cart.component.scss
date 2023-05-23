@@ -1,0 +1,613 @@
+/*
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : Foodies Full App Flutter
+  This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2022-present initappz.
+*/
+$midnight: #ffffff;
+$clouds: #ecf0f1;
+$theme-color: #ff384c;
+// General
+
+.back_image {
+  width: 100%;
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#map {
+  width: 100%;
+  height: 450px;
+}
+
+.headers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .text {
+    margin: 0px;
+    font-size: 28px;
+  }
+
+  mdb-icon {
+    color: #ff384c;
+    cursor: pointer;
+  }
+}
+
+.coupons {
+  border-bottom: 1px solid lightgray;
+
+  .info {
+    border-bottom: 1px solid lightgray;
+    padding: 10px 0px;
+    cursor: pointer;
+
+    &:hover {
+      background: darken($midnight, 5%);
+    }
+
+    .title {
+      margin: 0px;
+      font-weight: bold;
+
+      .code {
+        font-weight: normal;
+        color: var(--ion-color-primary);
+      }
+
+      .expire {
+        font-size: 0.8rem;
+        color: gray;
+      }
+
+      .desc {
+        font-size: 0.8rem;
+        color: gray;
+      }
+    }
+  }
+
+  .btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.addressList {
+  background: white;
+
+  .select_addr {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    border-bottom: 1px dashed lightgray;
+    align-items: center;
+    padding: 5px;
+    z-index: 9999;
+    overflow: visible;
+    cursor: pointer;
+
+    &:hover {
+      background: darken($midnight, 5%);
+    }
+  }
+}
+
+.borders {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  align-items: center;
+  padding: 5px;
+  justify-content: space-between;
+
+  .address {
+    font-size: 15px;
+    margin: 0px;
+  }
+
+  .changeBtn {
+    color: #ff384c;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0px;
+  }
+}
+
+.container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+label {
+  display: block;
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+  line-height: 2;
+  text-align: center;
+}
+
+h2 {
+  margin: 0 0 0.5em;
+  font-weight: normal;
+}
+
+.wallet_box {
+  border-radius: 5px;
+  background: white;
+  margin: 20px 0px;
+  cursor: pointer;
+
+  .head_lbl {
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'bold';
+
+    .btns {
+      color: $theme-color;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+
+  .checkmark {
+    padding: 0px;
+  }
+}
+
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.cards_list {
+  input[type="radio"] {
+    position: relative !important;
+    opacity: 1 !important;
+    z-index: 1 !important;
+  }
+}
+
+
+.home-image {
+  height: 70px;
+  width: 70px;
+}
+
+.confirm-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+// Layout
+.row {
+  display: flex;
+
+  .col {
+    flex: 1;
+
+    &:last-child {
+      margin-left: 1em;
+    }
+  }
+}
+
+/* Accordion styles */
+.tabs {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
+}
+
+.deliveryAddress {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 15px;
+
+  .name {
+    font-size: 14px;
+    color: gray;
+
+    .bolder {
+      font-size: 16px;
+      font-weight: bold;
+      color: black;
+    }
+  }
+
+  .changeBtn {
+    color: #ff384c;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.tab {
+  width: 100%;
+  color: black;
+  overflow: hidden;
+
+  &-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    background: $midnight;
+    font-weight: 500;
+    cursor: pointer;
+    /* Icon */
+    color: gray;
+
+    &:hover {
+      background: darken($midnight, 5%);
+    }
+
+    &::after {
+      content: "\276F";
+      width: 1em;
+      height: 1em;
+      text-align: center;
+      transition: all 0.35s;
+    }
+  }
+
+  &-content {
+    max-height: 0;
+    padding: 0 1em;
+    color: black;
+    background: white;
+    transition: all 0.35s;
+  }
+
+  &-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    font-size: 0.75em;
+    background: $midnight;
+    cursor: pointer;
+
+    &:hover {
+      background: darken($midnight, 10%);
+    }
+  }
+
+  .addrList {
+    margin: 10px 0px;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+    position: relative;
+
+    .checkBtns {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+
+      .imgs {
+        height: 20px;
+        width: 20px;
+      }
+    }
+
+    .title {
+      margin: 0px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .fullAdr {
+      margin: 0px;
+      font-size: 15px;
+    }
+
+    .btns {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+
+      .select {
+        background: #ff384c;
+        padding: 10px;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+      }
+
+      .edit {
+        border: 1px solid #ff384c;
+        border-radius: 5px;
+        color: #ff384c;
+        padding: 10px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .bigBtn {
+    color: #ff384c;
+    padding: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background: darken($midnight, 5%);
+    }
+  }
+
+  .paymentsTabs {
+    margin-bottom: 20px;
+
+    .header {
+      font-size: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .payPalBtn {
+      width: 150px !important;
+
+      .coverImg {
+        width: 25px;
+        height: 25px;
+      }
+    }
+
+    .radioBtns {
+      .flexer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        justify-content: space-between;
+        margin: 10px 0px;
+        padding: 5px;
+        border-radius: 10px;
+
+        &:hover {
+          background: darken($midnight, 5%);
+        }
+
+        .checkMark {
+          height: 20px;
+          width: 20px;
+          margin-left: 10px;
+        }
+
+        .payName {
+          font-size: 16px;
+          margin: 0px;
+          margin-left: 10px;
+        }
+
+        .imgs {
+          height: 25px;
+          width: 25px;
+        }
+      }
+    }
+  }
+}
+
+// :checked
+input:checked {
+  +.tab-label {
+    background: darken($midnight, 10%);
+
+    &::after {
+      transform: rotate(90deg);
+    }
+  }
+
+  ~.tab-content {
+    max-height: 100vh;
+    padding: 1em;
+  }
+}
+
+.answer_lbl {
+  font-weight: 400;
+  color: black;
+  line-height: 26px;
+  font-size: 15px;
+}
+
+.code_div {
+  background: #f3f3f3;
+  border-top: 1px solid #6ab963;
+  color: #999999;
+  padding: 12px 0 12px;
+  margin-bottom: 70px;
+  text-align: center;
+  font-size: 16px;
+
+  mdb-icon {
+    color: #45c261;
+    margin-right: 10px;
+  }
+
+  span {
+    border-bottom: 1px solid #999999;
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+}
+
+.applied {
+  background: #f3f3f3;
+  border-top: 1px solid #6ab963;
+  color: #999999;
+  padding: 12px 0 12px;
+  margin-bottom: 70px;
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  mdb-icon {
+    color: #45c261;
+    margin-right: 10px;
+  }
+
+  span {
+    border-bottom: 1px solid #999999;
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+}
+
+.cart_box {
+  .title {
+    font-size: 18px;
+    font-weight: bolder;
+    text-align: left;
+  }
+
+  .noData {
+    text-align: center;
+    margin-top: 30px;
+
+    .noDataImg {
+      height: 80px;
+      width: 80px;
+    }
+
+    label {
+      font-size: 14px;
+      color: gray;
+      margin-top: 5px;
+    }
+  }
+
+  .cart_items {
+    .row {
+      margin: 0px !important;
+      padding: 0px !important;
+    }
+
+    .cover_img {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 40px;
+      height: 40px;
+    }
+
+    .cart_btn {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 5px;
+      line-height: 25px;
+      background: white;
+      width: 80px;
+      border: 1px solid lightgray;
+
+      .btns {
+        padding: 0px 5px;
+        cursor: pointer;
+      }
+
+      .totls {
+        font-size: 12px;
+        background: lightgray;
+        padding: 0px 10px;
+      }
+    }
+
+    .heading_lbl {
+      font-size: 12px;
+      display: flex;
+      text-align: left;
+    }
+
+    .heading_lbl_variant {
+      font-size: 8px;
+      display: flex;
+      text-align: left;
+    }
+
+    .Rating {
+      font-size: 8px;
+    }
+
+    .small_lbl {
+      font-size: 8px;
+      color: lightgray;
+      display: block;
+      text-align: left;
+    }
+  }
+
+  .cart_checkout {
+    display: flex;
+    flex-direction: column;
+
+    .prices {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-bottom: 5px;
+      border-bottom: 1px dashed lightgray;
+
+      .subTotal {
+        font-size: 15px;
+      }
+
+      .grand {
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      .cost {
+        font-size: 15px;
+        font-weight: bold;
+      }
+    }
+
+    textarea {
+      resize: none;
+      padding: 5px;
+      margin: 10px 0px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px !important;
+      border: 1px solid lightgray;
+      font-size: 12px;
+    }
+
+    .place_btn {
+      background: #ff384c;
+      color: white;
+      font-size: 12px;
+      border-radius: 5px !important;
+      width: 100%;
+      margin-top: 10px;
+      margin: 0px;
+    }
+  }
+}
