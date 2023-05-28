@@ -330,7 +330,7 @@ export class AppComponent {
       } else {
         this.util.direction = 'ltr';
         this.util.cside = 'right';
-        this.util.currecny = '$';
+        this.util.currecny = '€';
         document.documentElement.dir = this.util.direction;
       }
     }, error => {
@@ -338,14 +338,14 @@ export class AppComponent {
       this.util.appClosed = false;
       this.util.direction = 'ltr';
       this.util.cside = 'right';
-      this.util.currecny = '$';
+      this.util.currecny = '€';
       document.documentElement.dir = this.util.direction;
     }).catch((error: any) => {
       console.log('default settings by id', error);
       this.util.appClosed = false;
       this.util.direction = 'ltr';
       this.util.cside = 'right';
-      this.util.currecny = '$';
+      this.util.currecny = '€';
       document.documentElement.dir = this.util.direction;
     });
 

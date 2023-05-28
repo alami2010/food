@@ -80,25 +80,26 @@ export class UtilService {
   public savedLanguages: any = '';
   public allLanguages: any[] = [
     {
-      name: 'English',
-      code: 'en',
+      name: 'Français',
+      code: 'fr',
       direction: 'ltr'
     },
     {
-      name: 'Español',
-      code: 'es',
+      name: 'Anglais',
+      code: 'en',
       direction: 'ltr'
-    },
+     },
     {
       name: 'عربي',
       code: 'ar',
       direction: 'rtl'
-    },
-    {
-      name: 'हिन्दी',
-      code: 'hi',
-      direction: 'ltr'
     }
+    // ,
+    // {
+    //   name: 'Español',
+    //   code: 'es',
+    //   direction: 'ltr'
+    //  }
   ];
   constructor(
     public router: Router,

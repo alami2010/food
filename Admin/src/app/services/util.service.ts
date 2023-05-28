@@ -37,7 +37,12 @@ export class UtilService {
 
   public allLanguages: any[] = [
     {
-      name: 'English',
+      name: 'Français',
+      code: 'fr',
+      direction: 'ltr'
+    },
+    {
+      name: 'Anglais',
       code: 'en',
       direction: 'ltr'
     },

@@ -22,7 +22,7 @@ export class HeadersComponent implements OnInit {
   headerMode: boolean;
   activeFilter: any;
   totalRest: any;
-  selectedLanguage: any = 'English';
+  selectedLanguage: any = 'Français';
   constructor(
     private router: Router,
     public api: ApiService,
@@ -30,7 +30,7 @@ export class HeadersComponent implements OnInit {
     private chmod: ChangeDetectorRef,
     private cart: CartService) {
     this.headerMode = false;
-    this.selectedLanguage = 'English';
+    this.selectedLanguage = 'Français';
     if (localStorage.getItem('selectedLanguage') && localStorage.getItem('selectedLanguage') != null && localStorage.getItem('selectedLanguage') != '') {
       var items = this.util.allLanguages.filter(x => x.code == localStorage.getItem('selectedLanguage'));
       console.log(items);

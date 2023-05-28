@@ -20,7 +20,7 @@ export class LoginComponent {
   email: any = '';
   password: any = '';
   submited: any = false;
-  langId: any = 'en';
+  langId: any = 'fr';
   constructor(
     public api: ApiService,
     public util: UtilService,

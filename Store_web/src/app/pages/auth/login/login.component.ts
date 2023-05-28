@@ -20,7 +20,7 @@ export class LoginComponent {
   email: any = 'craveeatables@initappz.com';
   password: any = 'admin@123';
   submited: any = false;
-  langId: any = 'en';
+  langId: any = 'fr';
   constructor(
     public api: ApiService,
     public util: UtilService,

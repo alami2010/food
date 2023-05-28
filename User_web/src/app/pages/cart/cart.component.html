@@ -358,31 +358,27 @@
 
         <div class="tab">
           <input type="radio" id="rd0" name="rd" value="rd0" [(ngModel)]="toggle" disabled="true">
-          <label class="tab-label" for="rd0">{{util.translate('Order To')}}</label>
+          <label class="tab-label" for="rd0">{{util.translate('Livraison et paiement')}}</label>
           <div class="tab-content">
-
             <div class="paymentsTabs">
-
               <div class="radioBtns">
                 <div class="flexer" (click)="changeOrderTo(0)"
                   [ngStyle]="{'background-color': cart.orderTo == 0 ?'#f3f3f3':'white' }">
-                  <p class="payName">Deliver at home </p>
+                  <p class="payName">Livraison à domicile </p>
                   <img src="assets/home.png" alt="" class="imgs" onError="this.src='assets/icon.png'">
                 </div>
-
                 <div class="flexer" (click)="changeOrderTo(1)"
                   [ngStyle]="{'background-color': cart.orderTo == 1 ?'#f3f3f3':'white' }">
-                  <p class="payName">Self Pickup </p>
+                  <p class="payName">Retrait en magasin </p>
                   <img src="assets/store.png" alt="" class="imgs" onError="this.src='assets/icon.png'">
                 </div>
               </div>
-
             </div>
           </div>
         </div>
         <div class="deliveryAddress" *ngIf="toggle !='rd0'">
-          <p class="name"><span class="bolder"> <span *ngIf="cart.orderTo == 0"> Deliver to Home </span> <span
-                *ngIf="cart.orderTo == 1"> Self Pickup </span> </span>
+          <p class="name"><span class="bolder"> <span *ngIf="cart.orderTo == 0"> Livraison à domicile </span> <span
+                *ngIf="cart.orderTo == 1"> Retrait en magasin </span> </span>
           </p>
           <p class="changeBtn" mdbWavesEffect (click)="toggle='rd0';">
             {{util.translate('Change')}}</p>
@@ -550,14 +546,14 @@
               </span>
             </div>
             <div class="prices">
-              <span class="subTotal">
-                {{util.translate('Taxes & charges')}} ({{cart.orderTax}} %) :</span>
-              <span class="cost" *ngIf="util.cside =='left'">
+              <!-- <span class="subTotal">
+                {{util.translate('Taxes & charges')}} ({{cart.orderTax}} %) :</span> -->
+              <!-- <span class="cost" *ngIf="util.cside =='left'">
                 {{util.currecny}} {{cart.orderTax}}
-              </span>
-              <span class="cost" *ngIf="util.cside =='right'">
+              </span> -->
+              <!-- <span class="cost" *ngIf="util.cside =='right'">
                 {{cart.orderTax}} {{util.currecny}}
-              </span>
+              </span> -->
             </div>
             <div class="prices">
               <span class="subTotal">
