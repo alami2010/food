@@ -437,7 +437,7 @@ export class FoodsComponent implements OnInit {
     }
 
     if (this.what == 'sub' && this.subNewItem == false) {
-      if (this.variation_title == '' || this.variations_price == '') {
+      if (this.variation_title == '' ||isNaN(this.variations_price)) {
         this.util.error('All fields are required');
         return false;
       }
