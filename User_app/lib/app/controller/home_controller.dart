@@ -8,18 +8,18 @@
 */
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/baner_models.dart';
-import 'package:upgrade/app/backend/models/category_models.dart';
-import 'package:upgrade/app/backend/models/restaurant_models.dart';
-import 'package:upgrade/app/backend/parse/home_parse.dart';
-import 'package:upgrade/app/controller/cuisines_controller.dart';
-import 'package:upgrade/app/controller/getby_categories_controller.dart';
-import 'package:upgrade/app/controller/offers_restaurants_controller.dart';
-import 'package:upgrade/app/controller/restaurant_detail_controller.dart';
-import 'package:upgrade/app/helper/router.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/baner_models.dart';
+import 'package:foodies_user/app/backend/models/category_models.dart';
+import 'package:foodies_user/app/backend/models/restaurant_models.dart';
+import 'package:foodies_user/app/backend/parse/home_parse.dart';
+import 'package:foodies_user/app/controller/cuisines_controller.dart';
+import 'package:foodies_user/app/controller/getby_categories_controller.dart';
+import 'package:foodies_user/app/controller/offers_restaurants_controller.dart';
+import 'package:foodies_user/app/controller/restaurant_detail_controller.dart';
+import 'package:foodies_user/app/helper/router.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/util/constant.dart';
+import 'package:foodies_user/app/util/constant.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeController extends GetxController implements GetxService {

@@ -8,12 +8,13 @@
 */
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/general_model.dart';
-import 'package:upgrade/app/backend/models/language_model.dart';
-import 'package:upgrade/app/backend/models/settings_models.dart';
-import 'package:upgrade/app/backend/models/support_model.dart';
-import 'package:upgrade/app/backend/parse/splash_screen_parse.dart';
+import 'package:foodies_user/app/util/toast.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/general_model.dart';
+import 'package:foodies_user/app/backend/models/language_model.dart';
+import 'package:foodies_user/app/backend/models/settings_models.dart';
+import 'package:foodies_user/app/backend/models/support_model.dart';
+import 'package:foodies_user/app/backend/parse/splash_screen_parse.dart';
 import 'package:get/get.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -34,6 +35,13 @@ class SplashScreenController extends GetxController implements GetxService {
     FirebaseMessaging.instance.getToken().then((value) {
       debugPrint(value.toString());
       parser.saveDeviceToken(value.toString());
+    });
+    FirebaseMessaging.onMessage.handleError((error) {
+      showToast("Erorrrrrr : ${error.toString()}");
+    }).listen((event) {
+      notificationDialog(event.notification!.title.toString(),
+              event.notification!.body.toString())
+          .then((value) => debugPrint(value.toString()));
     });
   }
 

@@ -7,12 +7,12 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/my_cart_controller.dart';
-import 'package:upgrade/app/controller/restaurant_detail_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/helper/curve_image.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/view/customiz.dart';
+import 'package:foodies_user/app/controller/my_cart_controller.dart';
+import 'package:foodies_user/app/controller/restaurant_detail_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/helper/curve_image.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/view/customiz.dart';
 import 'package:get/get.dart';
 
 class RestaurantDetail extends StatefulWidget {
@@ -192,10 +192,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                                                           .toString()
                                                           .length >
                                                       30
-                                                  ? value.storeData.address
-                                                          .toString()
-                                                          .substring(0, 30) +
-                                                      '...'
+                                                  ? '${value.storeData.address.toString().substring(0, 30)}...'
                                                   : value.storeData.address
                                                       .toString(),
                                               textAlign: TextAlign.center,
@@ -278,17 +275,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                                             child: Column(
                                               children: [
                                                 Text(
-                                                  value
-                                                          .getMinDeliveryTime(
-                                                              value.storeData
-                                                                  .deliveryTime
-                                                                  .toString())
-                                                          .toString() +
-                                                      ' - ' +
-                                                      value.storeData
-                                                          .deliveryTime
-                                                          .toString() +
-                                                      'min',
+                                                  '${value.getMinDeliveryTime(value.storeData.deliveryTime.toString())} - ${value.storeData.deliveryTime}min',
                                                   style: const TextStyle(
                                                       fontFamily: 'bold',
                                                       fontSize: 18),
@@ -1093,11 +1080,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                         Row(
                           children: [
                             Text(
-                                Get.find<MyCartController>()
-                                        .totalItemsInCart
-                                        .toString() +
-                                    ' ' +
-                                    'Items '.tr,
+                                '${Get.find<MyCartController>().totalItemsInCart} ${'Items '.tr}',
                                 style: const TextStyle(
                                     color: ThemeProvider.whiteColor,
                                     fontSize: 16)),

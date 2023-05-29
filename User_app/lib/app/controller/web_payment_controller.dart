@@ -10,13 +10,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/parse/web_payment_parse.dart';
-import 'package:upgrade/app/controller/checkout_controller.dart';
-import 'package:upgrade/app/controller/my_cart_controller.dart';
-import 'package:upgrade/app/controller/tab_controller.dart';
-import 'package:upgrade/app/helper/router.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/parse/web_payment_parse.dart';
+import 'package:foodies_user/app/controller/checkout_controller.dart';
+import 'package:foodies_user/app/controller/my_cart_controller.dart';
+import 'package:foodies_user/app/controller/tab_controller.dart';
+import 'package:foodies_user/app/helper/router.dart';
+import 'package:foodies_user/app/util/theme.dart';
 
 class WebPaymentController extends GetxController implements GetxService {
   final WebPaymentParse parser;
@@ -104,6 +104,12 @@ class WebPaymentController extends GetxController implements GetxService {
     Get.back();
     debugPrint(response.bodyString);
     if (response.statusCode == 200) {
+      var notificationParam = {
+        "title": "New Order",
+        "message": "New Order is created",
+        "id": Get.find<CheckoutController>().storeInfo.uid
+      };
+      await parser.sendNotification(notificationParam);
       Get.defaultDialog(
         title: '',
         contentPadding: const EdgeInsets.all(20),
@@ -156,8 +162,8 @@ class WebPaymentController extends GetxController implements GetxService {
                   backOrders();
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: ThemeProvider.appColor,
-                  onPrimary: ThemeProvider.whiteColor,
+                  foregroundColor: ThemeProvider.whiteColor,
+                  backgroundColor: ThemeProvider.appColor,
                   minimumSize: const Size.fromHeight(45),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),

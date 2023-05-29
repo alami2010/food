@@ -8,9 +8,9 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/order_details_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/env.dart';
+import 'package:foodies_user/app/controller/order_details_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/env.dart';
 
 class OrderDetails extends StatefulWidget {
   const OrderDetails({Key? key}) : super(key: key);
@@ -213,15 +213,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                                               .toString()
                                                               .length >
                                                           30
-                                                      ? value
-                                                              .orderInfo
-                                                              .items![
-                                                                  productIndex]
-                                                              .name
-                                                              .toString()
-                                                              .substring(
-                                                                  0, 30) +
-                                                          '...'
+                                                      ? '${value.orderInfo.items![productIndex].name.toString().substring(0, 30)}...'
                                                       : value
                                                           .orderInfo
                                                           .items![productIndex]
@@ -706,9 +698,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                             ? InkWell(
                                 onTap: () {
                                   value.openActionModal(
-                                      value.driverInfo.firstName.toString() +
-                                          ' ' +
-                                          value.driverInfo.lastName.toString(),
+                                      '${value.driverInfo.firstName} ${value.driverInfo.lastName}',
                                       value.driverInfo.mobile.toString(),
                                       value.driverInfo.id.toString(),
                                       'driver',

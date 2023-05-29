@@ -7,7 +7,7 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/give_reviews_controller.dart';
+import 'package:foodies_user/app/controller/give_reviews_controller.dart';
 
 class GiveReviewsBinding extends Bindings {
   @override

@@ -7,10 +7,10 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/checkout_controller.dart';
-import 'package:upgrade/app/controller/my_cart_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/checkout_controller.dart';
+import 'package:foodies_user/app/controller/my_cart_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class CheckoutScreen extends StatefulWidget {
@@ -158,17 +158,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                           SizedBox(
                                             width: 250,
                                             child: Text(
-                                              value.addressInfo.address
-                                                      .toString() +
-                                                  ' ' +
-                                                  value.addressInfo.house
-                                                      .toString() +
-                                                  ' ' +
-                                                  value.addressInfo.landmark
-                                                      .toString() +
-                                                  ' ' +
-                                                  value.addressInfo.pincode
-                                                      .toString(),
+                                              '${value.addressInfo.address} ${value.addressInfo.house} ${value.addressInfo.landmark} ${value.addressInfo.pincode}',
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 2,
                                               style:
@@ -570,8 +560,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     value.onPayment();
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: ThemeProvider.appColor,
-                    onPrimary: ThemeProvider.whiteColor,
+                    foregroundColor: ThemeProvider.whiteColor,
+                    backgroundColor: ThemeProvider.appColor,
                     minimumSize: const Size.fromHeight(45),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),

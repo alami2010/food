@@ -7,12 +7,12 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/cuisines_models.dart';
-import 'package:upgrade/app/backend/parse/cuisines_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/cuisines_models.dart';
+import 'package:foodies_user/app/backend/parse/cuisines_parse.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/getby_categories_controller.dart';
-import 'package:upgrade/app/helper/router.dart';
+import 'package:foodies_user/app/controller/getby_categories_controller.dart';
+import 'package:foodies_user/app/helper/router.dart';
 
 class CuisinesController extends GetxController implements GetxService {
   final CuisinesParse parser;

@@ -9,17 +9,17 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/product_models.dart';
-import 'package:upgrade/app/backend/models/variations_model.dart';
-import 'package:upgrade/app/backend/parse/customiz_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/product_models.dart';
+import 'package:foodies_user/app/backend/models/variations_model.dart';
+import 'package:foodies_user/app/backend/parse/customiz_parse.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/my_cart_controller.dart';
-import 'package:upgrade/app/controller/restaurant_detail_controller.dart';
-import 'package:upgrade/app/controller/tab_controller.dart';
-import 'package:upgrade/app/helper/uid_generate.dart';
-import 'package:upgrade/app/util/constant.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/controller/my_cart_controller.dart';
+import 'package:foodies_user/app/controller/restaurant_detail_controller.dart';
+import 'package:foodies_user/app/controller/tab_controller.dart';
+import 'package:foodies_user/app/helper/uid_generate.dart';
+import 'package:foodies_user/app/util/constant.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class CustomizController extends GetxController implements GetxService {
   final CustomizeParse parser;

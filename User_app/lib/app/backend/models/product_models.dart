@@ -7,8 +7,8 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'dart:convert';
-import 'package:upgrade/app/backend/models/product_variations_model.dart';
-import 'package:upgrade/app/backend/models/variations_model.dart';
+import 'package:foodies_user/app/backend/models/product_variations_model.dart';
+import 'package:foodies_user/app/backend/models/variations_model.dart';
 
 class ProductModal {
   String? id;
@@ -97,17 +97,17 @@ class Products {
       this.savedVariationsList = const []});
 
   Products.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    storeId = json['store_id'];
-    fromCate = json['from_cate'];
-    cateId = json['cate_id'];
+    id = int.parse(json['id'].toString());
+    storeId = int.parse(json['store_id'].toString());
+    fromCate = int.parse(json['from_cate'].toString());
+    cateId = int.parse(json['cate_id'].toString());
     cover = json['cover'];
     name = json['name'];
     details = json['details'];
-    price = json['price'].toDouble();
-    discount = json['discount'].toDouble();
-    rating = json['rating'].toDouble();
-    veg = json['veg'];
+    price = double.parse(json['price'].toString());
+    discount = double.parse(json['discount'].toString());
+    rating = double.parse(json['rating'].toString());
+    veg = int.parse(json['veg'].toString());
     if (json['variations'] != null &&
         json['variations'] != '' &&
         json['variations'] != 'NA' &&
@@ -146,15 +146,15 @@ class Products {
     } else {
       variations = null;
     }
-    size = json['size'];
-    recommended = json['recommended'];
-    outofstock = json['outofstock'];
-    status = json['status'];
+    size = int.parse(json['size'].toString());
+    recommended = int.parse(json['recommended'].toString());
+    outofstock = int.parse(json['outofstock'].toString());
+    status = int.parse(json['status'].toString());
     extraField = json['extra_field'];
     if (json['quantity'] != null &&
         json['quantity'] != 0 &&
         json['quantity'] != '') {
-      quantity = json['quantity'];
+      quantity = int.parse(json['quantity'].toString());
     } else {
       quantity = 0;
     }

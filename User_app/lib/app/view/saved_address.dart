@@ -8,8 +8,8 @@
 */
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:upgrade/app/controller/saved_address_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/saved_address_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class SavedAddress extends StatefulWidget {
@@ -160,12 +160,12 @@ class _SavedAddressState extends State<SavedAddress> {
                                                               style:
                                                                   ElevatedButton
                                                                       .styleFrom(
-                                                                primary:
-                                                                    ThemeProvider
-                                                                        .greyColor,
-                                                                onPrimary:
+                                                                foregroundColor:
                                                                     ThemeProvider
                                                                         .whiteColor,
+                                                                backgroundColor:
+                                                                    ThemeProvider
+                                                                        .greyColor,
                                                                 minimumSize:
                                                                     const Size
                                                                         .fromHeight(35),
@@ -206,12 +206,12 @@ class _SavedAddressState extends State<SavedAddress> {
                                                               style:
                                                                   ElevatedButton
                                                                       .styleFrom(
-                                                                primary:
-                                                                    ThemeProvider
-                                                                        .appColor,
-                                                                onPrimary:
+                                                                foregroundColor:
                                                                     ThemeProvider
                                                                         .whiteColor,
+                                                                backgroundColor:
+                                                                    ThemeProvider
+                                                                        .appColor,
                                                                 minimumSize:
                                                                     const Size
                                                                         .fromHeight(35),
@@ -259,13 +259,8 @@ class _SavedAddressState extends State<SavedAddress> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 40),
-                              child: Text(item.address.toString() +
-                                  ' ' +
-                                  item.house.toString() +
-                                  ' ' +
-                                  item.landmark.toString() +
-                                  ' ' +
-                                  item.optionalPhone.toString()),
+                              child: Text(
+                                  '${item.address} ${item.house} ${item.landmark} ${item.optionalPhone}'),
                             ),
                           ],
                         ),

@@ -9,8 +9,9 @@
 class Environments {
   static const String appName = 'Demo App';
   static const String companyName = 'Initappz Technology';
-  static const String apiBaseURL = 'https://your-api.com/public/';
-  static const String websiteURL = 'https://foodies.bunchdevelopers.com/';
+  static const String apiBaseURL =
+      'https://api.enovy.site/';
+  static const String websiteURL = 'https://enovy.site/';
 
-  static const String googleMapsKey = 'YOUR-GOOGLE-MAPS-KEYS';
+  static const String googleMapsKey = 'AIzaSyDOfixt1bV1SzdEbl-mx2cHGqQvjq2t4Cg';
 }

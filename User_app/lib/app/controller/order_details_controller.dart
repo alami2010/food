@@ -8,23 +8,23 @@
 */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/orders_model.dart';
-import 'package:upgrade/app/backend/models/store_models.dart';
-import 'package:upgrade/app/backend/models/user_model.dart';
-import 'package:upgrade/app/backend/parse/order_details_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/orders_model.dart';
+import 'package:foodies_user/app/backend/models/store_models.dart';
+import 'package:foodies_user/app/backend/models/user_model.dart';
+import 'package:foodies_user/app/backend/parse/order_details_parse.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/await_payments_controller.dart';
-import 'package:upgrade/app/controller/complaints_controller.dart';
-import 'package:upgrade/app/controller/give_reviews_controller.dart';
-import 'package:upgrade/app/controller/history_controller.dart';
-import 'package:upgrade/app/controller/message_controll.dart';
-import 'package:upgrade/app/controller/track_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/helper/router.dart';
-import 'package:upgrade/app/util/constant.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/controller/await_payments_controller.dart';
+import 'package:foodies_user/app/controller/complaints_controller.dart';
+import 'package:foodies_user/app/controller/give_reviews_controller.dart';
+import 'package:foodies_user/app/controller/history_controller.dart';
+import 'package:foodies_user/app/controller/message_controll.dart';
+import 'package:foodies_user/app/controller/track_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/helper/router.dart';
+import 'package:foodies_user/app/util/constant.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/util/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class OrderDetailsController extends GetxController implements GetxService {
@@ -114,7 +114,7 @@ class OrderDetailsController extends GetxController implements GetxService {
       } else if (orderInfo.status == 8) {
         orderActionName = 'Payment Pending';
       }
-      debugPrint('isDelivered' + isDelivered.toString());
+      debugPrint('isDelivered$isDelivered');
       StoreModal storeData = StoreModal.fromJson(storeIfo);
       _storeInfo = storeData;
 
@@ -168,8 +168,8 @@ class OrderDetailsController extends GetxController implements GetxService {
                       Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: ThemeProvider.greyColor,
-                      onPrimary: ThemeProvider.whiteColor,
+                      foregroundColor: ThemeProvider.whiteColor,
+                      backgroundColor: ThemeProvider.greyColor,
                       minimumSize: const Size.fromHeight(35),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -195,8 +195,8 @@ class OrderDetailsController extends GetxController implements GetxService {
                       cancelMyOrder();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: ThemeProvider.appColor,
-                      onPrimary: ThemeProvider.whiteColor,
+                      foregroundColor: ThemeProvider.whiteColor,
+                      backgroundColor: ThemeProvider.appColor,
                       minimumSize: const Size.fromHeight(35),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -271,11 +271,9 @@ class OrderDetailsController extends GetxController implements GetxService {
       payWithInstaMojo();
     } else {
       debugPrint('paytm');
-      var paymentURL = 'api/v1/payNowWeb?amount=' +
-          orderInfo.grandTotal.toString() +
-          '&standby_id=' +
-          orderId.toString();
-      debugPrint('fullurl' + paymentURL);
+      var paymentURL =
+          'api/v1/payNowWeb?amount=${orderInfo.grandTotal}&standby_id=$orderId';
+      debugPrint('fullurl$paymentURL');
       Get.delete<AwaitPaymentsController>(force: true);
       Get.toNamed(AppRouter.getAwaitPaymentsRoutes(),
           arguments: ['paytm', paymentURL]);
@@ -312,9 +310,8 @@ class OrderDetailsController extends GetxController implements GetxService {
       'amount': orderInfo.grandTotal,
       'buyer_name': parser.getName(),
       'purpose': 'Orders',
-      'redirect_url': parser.apiService.appBaseUrl +
-          'api/v1/instaMOJOWebSuccess?id=' +
-          orderId.toString(),
+      'redirect_url':
+          '${parser.apiService.appBaseUrl}api/v1/instaMOJOWebSuccess?id=$orderId',
       'phone': parser.getPhone() != '' ? parser.getPhone() : '8888888888888888',
       'send_email': 'True',
       'webhook': parser.apiService.appBaseUrl,

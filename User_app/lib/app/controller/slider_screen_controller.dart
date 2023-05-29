@@ -7,8 +7,8 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/parse/slider_screen_parse.dart';
-import 'package:upgrade/app/helper/router.dart';
+import 'package:foodies_user/app/backend/parse/slider_screen_parse.dart';
+import 'package:foodies_user/app/helper/router.dart';
 import 'package:get/get.dart';
 
 import '../helper/slider_screen_data.dart';

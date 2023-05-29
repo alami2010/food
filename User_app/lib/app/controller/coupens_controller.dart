@@ -8,11 +8,11 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/offers_model.dart';
-import 'package:upgrade/app/backend/parse/coupens_parse.dart';
-import 'package:upgrade/app/controller/checkout_controller.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/offers_model.dart';
+import 'package:foodies_user/app/backend/parse/coupens_parse.dart';
+import 'package:foodies_user/app/controller/checkout_controller.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class CoupensController extends GetxController implements GetxService {
   final CoupensParse parser;

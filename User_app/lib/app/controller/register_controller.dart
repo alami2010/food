@@ -8,14 +8,14 @@
 */
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/parse/register_parse.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/helper/router.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/parse/register_parse.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/helper/router.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/util/constant.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/util/constant.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class RegisterController extends GetxController implements GetxService {
   final RegisterParse parser;
@@ -53,7 +53,7 @@ class RegisterController extends GetxController implements GetxService {
   }
 
   void saveCountryCode(String code) {
-    countryCode = '+' + code;
+    countryCode = '+$code';
     update();
   }
 
@@ -352,8 +352,8 @@ class RegisterController extends GetxController implements GetxService {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: ThemeProvider.appColor,
-                        onPrimary: ThemeProvider.whiteColor,
+                        foregroundColor: ThemeProvider.whiteColor,
+                        backgroundColor: ThemeProvider.appColor,
                         elevation: 0,
                       ),
                       child: Text(
@@ -527,27 +527,18 @@ class RegisterController extends GetxController implements GetxService {
       if (myMap['data'] != null &&
           myMap['data']['who_received'] != null &&
           myMap['data']['who_received'] == 1) {
-        modalText = 'Congratulations your friend have received the'.tr +
-            currencySide +
-            myMap['data']['amount'].toString() +
-            ' ' +
-            'on wallet';
+        modalText =
+            '${'Congratulations your friend have received the'.tr}$currencySide${myMap['data']['amount']} on wallet';
       } else if (myMap['data'] != null &&
           myMap['data']['who_received'] != null &&
           myMap['data']['who_received'] == 2) {
-        modalText = 'Congratulations you have received the '.tr +
-            currencySide +
-            myMap['data']['amount'].toString() +
-            ' ' +
-            'on wallet';
+        modalText =
+            '${'Congratulations you have received the '.tr}$currencySide${myMap['data']['amount']} on wallet';
       } else if (myMap['data'] != null &&
           myMap['data']['who_received'] != null &&
           myMap['data']['who_received'] == 3) {
-        modalText = 'Congratulations you & your friend have received the '.tr +
-            currencySide +
-            myMap['data']['amount'].toString() +
-            ' ' +
-            'on wallet';
+        modalText =
+            '${'Congratulations you & your friend have received the '.tr}$currencySide${myMap['data']['amount']} on wallet';
         showRedeemModal(modalText);
       } else {
         Get.offNamed(AppRouter.getTab());
@@ -605,8 +596,8 @@ class RegisterController extends GetxController implements GetxService {
                           Get.offNamed(AppRouter.getTab());
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: ThemeProvider.greyColor,
-                          onPrimary: ThemeProvider.whiteColor,
+                          foregroundColor: ThemeProvider.whiteColor,
+                          backgroundColor: ThemeProvider.greyColor,
                           minimumSize: const Size.fromHeight(35),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
@@ -631,8 +622,8 @@ class RegisterController extends GetxController implements GetxService {
                           Get.offNamed(AppRouter.getTab());
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: ThemeProvider.appColor,
-                          onPrimary: ThemeProvider.whiteColor,
+                          foregroundColor: ThemeProvider.whiteColor,
+                          backgroundColor: ThemeProvider.appColor,
                           minimumSize: const Size.fromHeight(35),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),

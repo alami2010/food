@@ -9,8 +9,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/backend/parse/firebase_register_parse.dart';
-import 'package:upgrade/app/controller/register_controller.dart';
+import 'package:foodies_user/app/backend/parse/firebase_register_parse.dart';
+import 'package:foodies_user/app/controller/register_controller.dart';
 
 class FirebaseRegisterController extends GetxController implements GetxService {
   final FirebaseRegisterParser parser;

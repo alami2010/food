@@ -7,8 +7,8 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/find_location_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/find_location_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -103,8 +103,7 @@ class _FindLocationScreenState extends State<FindLocationScreen> {
                                     ),
                                     Text(
                                       item.description!.length > 25
-                                          ? item.description!.substring(0, 25) +
-                                              '...'
+                                          ? '${item.description!.substring(0, 25)}...'
                                           : item.description!,
                                     )
                                   ],
@@ -151,8 +150,8 @@ class _FindLocationScreenState extends State<FindLocationScreen> {
                         value.onConfirmLocation();
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: ThemeProvider.appColor,
-                        onPrimary: ThemeProvider.whiteColor,
+                        backgroundColor: ThemeProvider.appColor,
+                        foregroundColor: ThemeProvider.whiteColor,
                         minimumSize: const Size.fromHeight(45),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),

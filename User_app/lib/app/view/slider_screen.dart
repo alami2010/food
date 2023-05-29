@@ -7,9 +7,9 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/slider_screen_controller.dart';
-import 'package:upgrade/app/util/constant.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/slider_screen_controller.dart';
+import 'package:foodies_user/app/util/constant.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class SliderScreen extends StatefulWidget {
@@ -123,9 +123,9 @@ class _SliderScreenState extends State<SliderScreen> {
                         value.onChooseLocation();
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: ThemeProvider.appColor,
+                        foregroundColor: ThemeProvider.whiteColor,
+                        backgroundColor: ThemeProvider.appColor,
                         elevation: 0,
-                        onPrimary: Colors.white,
                         minimumSize: const Size.fromHeight(50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -134,7 +134,7 @@ class _SliderScreenState extends State<SliderScreen> {
                       child: Text(
                         'Skip'.tr,
                         style: const TextStyle(
-                            color: Colors.white,
+                            color: ThemeProvider.whiteColor,
                             fontFamily: 'medium',
                             fontSize: 16),
                       ),
@@ -155,9 +155,9 @@ class _SliderScreenState extends State<SliderScreen> {
                             curve: Curves.bounceIn);
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: ThemeProvider.appColor,
+                        foregroundColor: ThemeProvider.whiteColor,
+                        backgroundColor: ThemeProvider.appColor,
                         elevation: 0,
-                        onPrimary: Colors.white,
                         minimumSize: const Size.fromHeight(50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -168,7 +168,7 @@ class _SliderScreenState extends State<SliderScreen> {
                             ? "Continue".tr
                             : "Next".tr,
                         style: const TextStyle(
-                            color: Colors.white,
+                            color: ThemeProvider.whiteColor,
                             fontFamily: 'medium',
                             fontSize: 16),
                       ),

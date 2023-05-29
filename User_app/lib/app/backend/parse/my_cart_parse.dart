@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 /*
   Authors : initappz (Rahul Jograna)
   Website : https://initappz.com/
@@ -8,10 +6,11 @@ import 'dart:convert';
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
-import 'package:upgrade/app/backend/api/api.dart';
-import 'package:upgrade/app/backend/models/product_models.dart';
-import 'package:upgrade/app/helper/shared_pref.dart';
-import 'package:upgrade/app/util/constant.dart';
+import 'dart:convert';
+import 'package:foodies_user/app/backend/api/api.dart';
+import 'package:foodies_user/app/backend/models/product_models.dart';
+import 'package:foodies_user/app/helper/shared_pref.dart';
+import 'package:foodies_user/app/util/constant.dart';
 
 class MyCartParse {
   final SharedPreferencesManager sharedPreferencesManager;

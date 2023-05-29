@@ -6,7 +6,7 @@
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
-import 'package:upgrade/app/controller/saved_address_controller.dart';
+import 'package:foodies_user/app/controller/saved_address_controller.dart';
 import 'package:get/get.dart';
 
 class SavedAddressBinding extends Bindings {

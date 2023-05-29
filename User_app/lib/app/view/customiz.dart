@@ -7,8 +7,8 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/customiz_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/customiz_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class CustomizScreen extends StatefulWidget {
@@ -87,21 +87,7 @@ class _CustomizScreenState extends State<CustomizScreen> {
                                           value.sameCart[index]
                                               .savedVariationsList.length,
                                           (subIndex) => Text(
-                                                value
-                                                        .sameCart[index]
-                                                        .savedVariationsList[
-                                                            subIndex]
-                                                        .title
-                                                        .toString()
-                                                        .toUpperCase() +
-                                                    ' - ' +
-                                                    value
-                                                        .sameCart[index]
-                                                        .savedVariationsList[
-                                                            subIndex]
-                                                        .price
-                                                        .toString()
-                                                        .toUpperCase(),
+                                                '${value.sameCart[index].savedVariationsList[subIndex].title.toString().toUpperCase()} - ${value.sameCart[index].savedVariationsList[subIndex].price.toString().toUpperCase()}',
                                                 style: const TextStyle(
                                                     fontSize: 14),
                                               )),
@@ -371,8 +357,8 @@ class _CustomizScreenState extends State<CustomizScreen> {
                                 value.updateSameProduct();
                               },
                               style: ElevatedButton.styleFrom(
-                                primary: ThemeProvider.appColor,
-                                onPrimary: ThemeProvider.whiteColor,
+                                backgroundColor: ThemeProvider.appColor,
+                                foregroundColor: ThemeProvider.whiteColor,
                                 minimumSize: const Size.fromHeight(45),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30),
@@ -396,8 +382,8 @@ class _CustomizScreenState extends State<CustomizScreen> {
                                 value.onAddingNew();
                               },
                               style: ElevatedButton.styleFrom(
-                                primary: ThemeProvider.appColor,
-                                onPrimary: ThemeProvider.whiteColor,
+                                backgroundColor: ThemeProvider.appColor,
+                                foregroundColor: ThemeProvider.whiteColor,
                                 minimumSize: const Size.fromHeight(45),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30),
@@ -419,8 +405,8 @@ class _CustomizScreenState extends State<CustomizScreen> {
                           value.onSaveItem();
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: ThemeProvider.appColor,
-                          onPrimary: ThemeProvider.whiteColor,
+                          backgroundColor: ThemeProvider.appColor,
+                          foregroundColor: ThemeProvider.whiteColor,
                           minimumSize: const Size.fromHeight(45),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),

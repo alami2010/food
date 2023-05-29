@@ -7,17 +7,17 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/address_model.dart';
-import 'package:upgrade/app/backend/models/google_address_model.dart';
-import 'package:upgrade/app/backend/parse/add_new_address_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/address_model.dart';
+import 'package:foodies_user/app/backend/models/google_address_model.dart';
+import 'package:foodies_user/app/backend/parse/add_new_address_parse.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/checkout_controller.dart';
-import 'package:upgrade/app/controller/delivery_address_controller.dart';
-import 'package:upgrade/app/controller/saved_address_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/controller/checkout_controller.dart';
+import 'package:foodies_user/app/controller/delivery_address_controller.dart';
+import 'package:foodies_user/app/controller/saved_address_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class AddNewAddressController extends GetxController implements GetxService {
   final AddNewAddressParse parser;

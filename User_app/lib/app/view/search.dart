@@ -7,11 +7,11 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/restaurant_detail_controller.dart';
-import 'package:upgrade/app/controller/search_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/helper/router.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/restaurant_detail_controller.dart';
+import 'package:foodies_user/app/controller/search_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/helper/router.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SearchController>(
+    return GetBuilder<SearchxController>(
       builder: (value) {
         return Scaffold(
           appBar: AppBar(

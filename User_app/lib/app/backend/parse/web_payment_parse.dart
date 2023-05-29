@@ -6,10 +6,10 @@
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
-import 'package:upgrade/app/backend/api/api.dart';
-import 'package:upgrade/app/helper/shared_pref.dart';
+import 'package:foodies_user/app/backend/api/api.dart';
+import 'package:foodies_user/app/helper/shared_pref.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/util/constant.dart';
+import 'package:foodies_user/app/util/constant.dart';
 
 class WebPaymentParse {
   final SharedPreferencesManager sharedPreferencesManager;
@@ -49,5 +49,11 @@ class WebPaymentParse {
 
   String getSupportPhone() {
     return sharedPreferencesManager.getString('supportPhone') ?? '';
+  }
+
+  Future<Response> sendNotification(var body) async {
+    var response = await apiService.postPrivate(AppConstants.sendNotification,
+        body, sharedPreferencesManager.getString('token') ?? '');
+    return response;
   }
 }

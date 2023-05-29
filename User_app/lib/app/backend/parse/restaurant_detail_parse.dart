@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
-import 'package:get/get_connect.dart';
 /*
   Authors : initappz (Rahul Jograna)
   Website : https://initappz.com/
@@ -10,10 +6,13 @@ import 'package:get/get_connect.dart';
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
-import 'package:upgrade/app/backend/api/api.dart';
-import 'package:upgrade/app/backend/models/product_models.dart';
-import 'package:upgrade/app/helper/shared_pref.dart';
-import 'package:upgrade/app/util/constant.dart';
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:foodies_user/app/backend/api/api.dart';
+import 'package:foodies_user/app/backend/models/product_models.dart';
+import 'package:foodies_user/app/helper/shared_pref.dart';
+import 'package:foodies_user/app/util/constant.dart';
 
 class RestaurantDetailParse {
   final SharedPreferencesManager sharedPreferencesManager;

@@ -8,11 +8,11 @@
 */
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/wallet_model.dart';
-import 'package:upgrade/app/backend/parse/wallet_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/wallet_model.dart';
+import 'package:foodies_user/app/backend/parse/wallet_parse.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/util/constant.dart';
+import 'package:foodies_user/app/util/constant.dart';
 
 class WalletController extends GetxController implements GetxService {
   final WalletParse parser;

@@ -9,8 +9,8 @@
 import 'dart:convert';
 
 import 'package:jiffy/jiffy.dart';
-import 'package:upgrade/app/backend/models/address_model.dart';
-import 'package:upgrade/app/backend/models/product_models.dart';
+import 'package:foodies_user/app/backend/models/address_model.dart';
+import 'package:foodies_user/app/backend/models/product_models.dart';
 
 class OrdersModel {
   int? id;

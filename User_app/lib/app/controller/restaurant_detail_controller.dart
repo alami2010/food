@@ -7,18 +7,18 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/product_models.dart';
-import 'package:upgrade/app/backend/models/store_models.dart';
-import 'package:upgrade/app/backend/parse/restaurant_detail_parse.dart';
-import 'package:upgrade/app/controller/my_cart_controller.dart';
-import 'package:upgrade/app/controller/tab_controller.dart';
-import 'package:upgrade/app/controller/table_booking_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/helper/router.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/product_models.dart';
+import 'package:foodies_user/app/backend/models/store_models.dart';
+import 'package:foodies_user/app/backend/parse/restaurant_detail_parse.dart';
+import 'package:foodies_user/app/controller/my_cart_controller.dart';
+import 'package:foodies_user/app/controller/tab_controller.dart';
+import 'package:foodies_user/app/controller/table_booking_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/helper/router.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/util/constant.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/util/constant.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:flutter_share/flutter_share.dart';
 
 class RestaurantDetailController extends GetxController
@@ -151,7 +151,7 @@ class RestaurantDetailController extends GetxController
     update();
     var index =
         productList.indexWhere((element) => element.cateId.toString() == cat);
-    debugPrint('index=>>>>' + index.toString());
+    debugPrint('index=>>>>$index');
     if (index >= 0) {
       Scrollable.ensureVisible(cateListKey[index].currentContext!);
     }

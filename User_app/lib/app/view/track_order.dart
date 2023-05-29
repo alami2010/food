@@ -7,9 +7,9 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/track_order_controller.dart';
+import 'package:foodies_user/app/controller/track_order_controller.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/util/theme.dart';
 
 class TrackOrder extends StatefulWidget {
   const TrackOrder({Key? key}) : super(key: key);

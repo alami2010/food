@@ -6,8 +6,8 @@
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
-import 'package:upgrade/app/backend/models/language_model.dart';
-import 'package:upgrade/app/env.dart';
+import 'package:foodies_user/app/backend/models/language_model.dart';
+import 'package:foodies_user/app/env.dart';
 
 class AppConstants {
   static const String appName = Environments.appName;
@@ -107,6 +107,7 @@ class AppConstants {
       'api/v1/auth/verifyPhoneForFirebaseRegistrations';
   static const String saveaContacts = 'api/v1/contacts/create';
   static const String sendMailToAdmin = 'api/v1/sendMailToAdmin';
+  static const String sendNotification = 'api/v1/notification/sendNotification';
   // API Routes
 
   static List<LanguageModel> languages = [

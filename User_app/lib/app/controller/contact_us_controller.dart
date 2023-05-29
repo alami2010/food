@@ -8,12 +8,12 @@
 */
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/parse/contact_us_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/parse/contact_us_parse.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class ContactUsController extends GetxController implements GetxService {
   final ContactUsParse parser;

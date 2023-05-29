@@ -7,8 +7,8 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/refer_earn_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/refer_earn_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class ReferAndEarn extends StatefulWidget {
@@ -97,8 +97,8 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
               value.share();
             },
             style: ElevatedButton.styleFrom(
-              primary: ThemeProvider.appColor,
-              onPrimary: ThemeProvider.whiteColor,
+              backgroundColor: ThemeProvider.appColor,
+              foregroundColor: ThemeProvider.whiteColor,
               minimumSize: const Size.fromHeight(45),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),

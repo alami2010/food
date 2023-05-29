@@ -6,14 +6,14 @@
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
-import 'package:upgrade/app/controller/search_controller.dart';
+import 'package:foodies_user/app/controller/search_controller.dart';
 import 'package:get/get.dart';
 
 class SearchBinding extends Bindings {
   @override
   void dependencies() async {
     Get.lazyPut(
-      () => SearchController(parser: Get.find()),
+      () => SearchxController(parser: Get.find()),
     );
   }
 }

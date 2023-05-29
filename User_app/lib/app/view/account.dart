@@ -7,9 +7,9 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/account_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/account_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class AccountScreen extends StatefulWidget {

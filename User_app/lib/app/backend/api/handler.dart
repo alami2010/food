@@ -6,10 +6,10 @@
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
-import 'package:upgrade/app/controller/account_controller.dart';
-import 'package:upgrade/app/controller/tab_controller.dart';
-import 'package:upgrade/app/helper/router.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/controller/account_controller.dart';
+import 'package:foodies_user/app/controller/tab_controller.dart';
+import 'package:foodies_user/app/helper/router.dart';
+import 'package:foodies_user/app/util/toast.dart';
 import 'package:get/get.dart';
 
 class ApiChecker {

@@ -11,24 +11,24 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/address_model.dart';
-import 'package:upgrade/app/backend/models/offers_model.dart';
-import 'package:upgrade/app/backend/models/payment_models.dart';
-import 'package:upgrade/app/backend/models/store_models.dart';
-import 'package:upgrade/app/backend/parse/checkout_parse.dart';
-import 'package:upgrade/app/controller/coupens_controller.dart';
-import 'package:upgrade/app/controller/delivery_address_controller.dart';
-import 'package:upgrade/app/controller/my_cart_controller.dart';
-import 'package:upgrade/app/controller/stripe_pay_controller.dart';
-import 'package:upgrade/app/controller/tab_controller.dart';
-import 'package:upgrade/app/controller/web_payment_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/helper/router.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/address_model.dart';
+import 'package:foodies_user/app/backend/models/offers_model.dart';
+import 'package:foodies_user/app/backend/models/payment_models.dart';
+import 'package:foodies_user/app/backend/models/store_models.dart';
+import 'package:foodies_user/app/backend/parse/checkout_parse.dart';
+import 'package:foodies_user/app/controller/coupens_controller.dart';
+import 'package:foodies_user/app/controller/delivery_address_controller.dart';
+import 'package:foodies_user/app/controller/my_cart_controller.dart';
+import 'package:foodies_user/app/controller/stripe_pay_controller.dart';
+import 'package:foodies_user/app/controller/tab_controller.dart';
+import 'package:foodies_user/app/controller/web_payment_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/helper/router.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/util/constant.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/util/constant.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class CheckoutController extends GetxController implements GetxService {
   final CheckoutParse parser;
@@ -156,9 +156,8 @@ class CheckoutController extends GetxController implements GetxService {
       debugPrint(distance.toString());
       if (distance > parser.getAllowedDeliveryRadius()) {
         haveFairDeliveryRadius = false;
-        showToast('Sorry we deliver the order near to' ' ' +
-            parser.getAllowedDeliveryRadius().toString() +
-            'KM');
+        showToast(
+            'Sorry we deliver the order near to ${parser.getAllowedDeliveryRadius()}KM');
       } else {
         if (shippingMethod == 0) {
           double distancePricer = distance * shippingPrice;
@@ -183,7 +182,6 @@ class CheckoutController extends GetxController implements GetxService {
 
       _discount = percentage(Get.find<MyCartController>().totalPrice,
           _selectedCoupon.discount); // null
-
     }
     walletDiscount = balance;
     if (isWalletChecked == true) {
@@ -201,7 +199,7 @@ class CheckoutController extends GetxController implements GetxService {
         totalPrice = totalPrice - discount;
       }
     }
-    debugPrint('grand total ' + totalPrice.toString());
+    debugPrint('grand total $totalPrice');
     _grandTotal = double.parse((totalPrice).toStringAsFixed(2));
     update();
   }
@@ -274,7 +272,7 @@ class CheckoutController extends GetxController implements GetxService {
   }
 
   void saveDeliveryAddressId(int id) {
-    debugPrint('got id from delivery address' + id.toString());
+    debugPrint('got id from delivery address$id');
     _addressInfo = _addressList.firstWhere((element) => element.id == id);
     calculateDistance();
     update();
@@ -343,8 +341,8 @@ class CheckoutController extends GetxController implements GetxService {
                       Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: ThemeProvider.greyColor,
-                      onPrimary: ThemeProvider.whiteColor,
+                      foregroundColor: ThemeProvider.whiteColor,
+                      backgroundColor: ThemeProvider.greyColor,
                       minimumSize: const Size.fromHeight(35),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -370,8 +368,8 @@ class CheckoutController extends GetxController implements GetxService {
                       onCheckout();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: ThemeProvider.appColor,
-                      onPrimary: ThemeProvider.whiteColor,
+                      foregroundColor: ThemeProvider.whiteColor,
+                      backgroundColor: ThemeProvider.appColor,
                       minimumSize: const Size.fromHeight(35),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -590,23 +588,18 @@ class CheckoutController extends GetxController implements GetxService {
     Get.back();
     debugPrint(response.bodyString);
     if (response.statusCode == 200) {
+      var notificationParam = {
+        "title": "New Order",
+        "message": "New Order is created",
+        "id": storeInfo.uid
+      };
+      await parser.sendNotification(notificationParam);
       Get.defaultDialog(
         title: '',
         contentPadding: const EdgeInsets.all(20),
         content: SingleChildScrollView(
           child: Column(
             children: [
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.end,
-              //   children: [
-              //     IconButton(
-              //       onPressed: () {
-              //         Get.back();
-              //       },
-              //       icon: const Icon(Icons.close),
-              //     ),
-              //   ],
-              // ),
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
@@ -653,8 +646,8 @@ class CheckoutController extends GetxController implements GetxService {
                   backOrders();
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: ThemeProvider.appColor,
-                  onPrimary: ThemeProvider.whiteColor,
+                  foregroundColor: ThemeProvider.whiteColor,
+                  backgroundColor: ThemeProvider.appColor,
                   minimumSize: const Size.fromHeight(45),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),

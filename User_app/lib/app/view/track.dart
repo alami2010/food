@@ -11,10 +11,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:upgrade/app/controller/track_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/map_style.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/track_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/map_style.dart';
+import 'package:foodies_user/app/util/theme.dart';
 
 class TrackingScreen extends StatefulWidget {
   const TrackingScreen({Key? key}) : super(key: key);

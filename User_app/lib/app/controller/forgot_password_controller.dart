@@ -8,11 +8,11 @@
 */
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/parse/forgot_password_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/parse/forgot_password_parse.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class ForgotPasswordController extends GetxController implements GetxService {
   final ForgotPasswordParse parser;
@@ -164,8 +164,8 @@ class ForgotPasswordController extends GetxController implements GetxService {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: ThemeProvider.appColor,
-                          onPrimary: ThemeProvider.whiteColor,
+                          foregroundColor: ThemeProvider.whiteColor,
+                          backgroundColor: ThemeProvider.appColor,
                           elevation: 0,
                         ),
                         child: isLogin.value == true

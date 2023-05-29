@@ -8,13 +8,13 @@
 */
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/restaurant_models.dart';
-import 'package:upgrade/app/backend/parse/my_favorites_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/restaurant_models.dart';
+import 'package:foodies_user/app/backend/parse/my_favorites_parse.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/restaurant_detail_controller.dart';
-import 'package:upgrade/app/helper/router.dart';
-import 'package:upgrade/app/util/constant.dart';
+import 'package:foodies_user/app/controller/restaurant_detail_controller.dart';
+import 'package:foodies_user/app/helper/router.dart';
+import 'package:foodies_user/app/util/constant.dart';
 
 class MyFavoritesController extends GetxController implements GetxService {
   final MyFavoritesParse parser;

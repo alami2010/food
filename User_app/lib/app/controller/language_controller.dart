@@ -7,7 +7,7 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/parse/language_parse.dart';
+import 'package:foodies_user/app/backend/parse/language_parse.dart';
 import 'package:get/get.dart';
 
 class LanguageController extends GetxController implements GetxService {

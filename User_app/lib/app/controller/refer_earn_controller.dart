@@ -8,12 +8,12 @@
 */
 import 'package:flutter/services.dart';
 import 'package:flutter_share/flutter_share.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/redeem_model.dart';
-import 'package:upgrade/app/backend/parse/refer_earn_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/redeem_model.dart';
+import 'package:foodies_user/app/backend/parse/refer_earn_parse.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class ReferEarnController extends GetxController implements GetxService {
   final ReferEarnParse parser;

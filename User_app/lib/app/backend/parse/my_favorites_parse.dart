@@ -6,10 +6,10 @@
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
-import 'package:upgrade/app/backend/api/api.dart';
-import 'package:upgrade/app/helper/shared_pref.dart';
+import 'package:foodies_user/app/backend/api/api.dart';
+import 'package:foodies_user/app/helper/shared_pref.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/util/constant.dart';
+import 'package:foodies_user/app/util/constant.dart';
 
 class MyFavoritesParse {
   final SharedPreferencesManager sharedPreferencesManager;

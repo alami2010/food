@@ -8,9 +8,9 @@
 */
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:upgrade/app/controller/cuisines_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/cuisines_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class CusinesScreen extends StatefulWidget {

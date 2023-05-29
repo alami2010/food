@@ -7,12 +7,12 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/parse/add_card_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/parse/add_card_parse.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/stripe_pay_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/controller/stripe_pay_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class AddCardController extends GetxController implements GetxService {
   final AddCardParse parser;

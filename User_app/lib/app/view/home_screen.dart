@@ -8,9 +8,9 @@
 */
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/home_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/home_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -64,8 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Text(
                                       // value.titleName,
                                       value.titleName.length > 30
-                                          ? value.titleName.substring(0, 30) +
-                                              '...'
+                                          ? '${value.titleName.substring(0, 30)}...'
                                           : value.titleName,
                                       style: const TextStyle(
                                           color: ThemeProvider.blackColor,
@@ -352,10 +351,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            value.restaurantList.length
-                                                    .toString() +
-                                                ' ' +
-                                                'Restaurant near you'.tr,
+                                            '${value.restaurantList.length} ${'Restaurant near you'.tr}',
                                             style: const TextStyle(
                                                 fontFamily: 'bold',
                                                 fontSize: 18),
@@ -459,25 +455,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               Get.find<HomeController>()
                                                                           .currencySide ==
                                                                       'left'
-                                                                  ? Get.find<HomeController>()
-                                                                          .currencySymbol +
-                                                                      value
-                                                                          .restaurantList[
-                                                                              restIndex]
-                                                                          .costForTwo
-                                                                          .toString() +
-                                                                      ' ' +
-                                                                      'for 2'.tr
-                                                                  : value
-                                                                          .restaurantList[
-                                                                              restIndex]
-                                                                          .costForTwo
-                                                                          .toString() +
-                                                                      Get.find<
-                                                                              HomeController>()
-                                                                          .currencySymbol +
-                                                                      ' ' +
-                                                                      'for 2',
+                                                                  ? '${Get.find<HomeController>().currencySymbol}${value.restaurantList[restIndex].costForTwo} ${'for 2'.tr}'
+                                                                  : '${value.restaurantList[restIndex].costForTwo}${Get.find<HomeController>().currencySymbol} for 2',
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
@@ -545,20 +524,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                           BorderRadius.circular(
                                                                               30)),
                                                               child: Text(
-                                                                value
-                                                                        .getMinDeliveryTime(value
-                                                                            .restaurantList[
-                                                                                restIndex]
-                                                                            .deliveryTime
-                                                                            .toString())
-                                                                        .toString() +
-                                                                    ' - ' +
-                                                                    value
-                                                                        .restaurantList[
-                                                                            restIndex]
-                                                                        .deliveryTime
-                                                                        .toString() +
-                                                                    'min'.tr,
+                                                                '${value.getMinDeliveryTime(value.restaurantList[restIndex].deliveryTime.toString())} - ${value.restaurantList[restIndex].deliveryTime}${'min'.tr}',
                                                                 style: const TextStyle(
                                                                     color: ThemeProvider
                                                                         .appColor,
@@ -655,14 +621,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               width: 5,
                                                             ),
                                                             Text(
-                                                              value
-                                                                      .restaurantList[
-                                                                          restIndex]
-                                                                      .distance
-                                                                      .toString() +
-                                                                  ' ' +
-                                                                  value
-                                                                      .distanceType,
+                                                              '${value.restaurantList[restIndex].distance} ${value.distanceType}',
                                                               style:
                                                                   const TextStyle(
                                                                 color: ThemeProvider
@@ -697,9 +656,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(10),
       image: DecorationImage(
-          image: NetworkImage(Environments.apiBaseURL +
-              'storage/images/' +
-              val.cover.toString()),
+          image: NetworkImage(
+              '${Environments.apiBaseURL}storage/images/${val.cover}'),
           fit: BoxFit.cover,
           alignment: Alignment.center),
     );

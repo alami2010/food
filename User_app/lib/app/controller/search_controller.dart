@@ -1,22 +1,15 @@
-/*
-  Authors : initappz (Rahul Jograna)
-  Website : https://initappz.com/
-  App Name : Foodies Full App Flutter
-  This App Template Source code is licensed as per the
-  terms found in the Website https://initappz.com/license
-  Copyright and Good Faith Purchasers © 2022-present initappz.
-*/
+
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/restaurant_models.dart';
-import 'package:upgrade/app/backend/parse/search_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/restaurant_models.dart';
+import 'package:foodies_user/app/backend/parse/search_parse.dart';
 import 'package:get/get.dart';
 
-class SearchController extends GetxController implements GetxService {
+class SearchxController extends GetxController implements GetxService {
   final SearchParse parser;
   TextEditingController searchController = TextEditingController();
   RxBool isEmpty = true.obs;
-  SearchController({required this.parser});
+  SearchxController({required this.parser});
   List<RestaurantModal> _result = <RestaurantModal>[];
   List<RestaurantModal> get result => _result;
 

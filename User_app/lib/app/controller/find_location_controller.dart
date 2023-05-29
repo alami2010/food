@@ -7,14 +7,14 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/goolge_places_model.dart';
-import 'package:upgrade/app/backend/parse/find_location_parse.dart';
-import 'package:upgrade/app/controller/home_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/helper/router.dart';
-import 'package:upgrade/app/helper/uid_generate.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/goolge_places_model.dart';
+import 'package:foodies_user/app/backend/parse/find_location_parse.dart';
+import 'package:foodies_user/app/controller/home_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/helper/router.dart';
+import 'package:foodies_user/app/helper/uid_generate.dart';
+import 'package:foodies_user/app/util/toast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -110,20 +110,20 @@ class FindLocationController extends GetxController implements GetxService {
   Future<void> getPlacesList(String value) async {
     String googleURL =
         'https://maps.googleapis.com/maps/api/place/autocomplete/json';
-    var _sessionToken = Uuid().generateV4();
+    var sessionToken = Uuid().generateV4();
     var googleKey = Environments.googleMapsKey;
     String request =
-        '$googleURL?input=$value&key=$googleKey&sessiontoken=$_sessionToken&types=locality';
+        '$googleURL?input=$value&key=$googleKey&sessiontoken=$sessionToken&types=locality';
 
-    '$googleURL?input=$value&key=$Environments.googleMapsKey&sessiontoken=$_sessionToken';
+    '$googleURL?input=$value&key=$Environments.googleMapsKey&sessiontoken=$sessionToken';
     Response response = await parser.getPlacesList(request);
     if (response.statusCode == 200) {
       Map<String, dynamic> myMap = Map<String, dynamic>.from(response.body);
       var body = myMap['predictions'];
       _getList = [];
       body.forEach((data) {
-        GooglePlacesModel _datas = GooglePlacesModel.fromJson(data);
-        _getList.add(_datas);
+        GooglePlacesModel datas = GooglePlacesModel.fromJson(data);
+        _getList.add(datas);
       });
       isConfirmed = false;
       update();

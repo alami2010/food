@@ -8,8 +8,8 @@
 */
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
-import 'package:upgrade/app/controller/add_card_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/add_card_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class AddCardScreen extends StatefulWidget {
@@ -132,8 +132,8 @@ class _AddCardScreenState extends State<AddCardScreen> {
               value.submitData();
             },
             style: ElevatedButton.styleFrom(
-              primary: ThemeProvider.appColor,
-              onPrimary: ThemeProvider.whiteColor,
+              foregroundColor: ThemeProvider.whiteColor,
+              backgroundColor: ThemeProvider.appColor,
               minimumSize: const Size.fromHeight(45),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),

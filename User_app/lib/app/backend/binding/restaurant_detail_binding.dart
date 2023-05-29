@@ -6,8 +6,8 @@
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
-import 'package:upgrade/app/controller/customiz_controller.dart';
-import 'package:upgrade/app/controller/restaurant_detail_controller.dart';
+import 'package:foodies_user/app/controller/customiz_controller.dart';
+import 'package:foodies_user/app/controller/restaurant_detail_controller.dart';
 import 'package:get/get.dart';
 
 class RestaurantDetailBinding extends Bindings {

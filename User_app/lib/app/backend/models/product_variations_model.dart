@@ -51,8 +51,9 @@ class Items {
   Items({this.title, this.price, this.isChecked});
 
   Items.fromJson(Map<String, dynamic> json) {
+    print(json);
     title = json['title'];
-    price = json['price'].toDouble();
+    price = double.parse(json['price'].toString());
     isChecked = false;
   }
 

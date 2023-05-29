@@ -7,7 +7,7 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/offers_restaurants_controller.dart';
+import 'package:foodies_user/app/controller/offers_restaurants_controller.dart';
 
 class OffersRestaurantsBinding extends Bindings {
   @override

@@ -8,10 +8,10 @@
 */
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:upgrade/app/controller/history_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/constant.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/history_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/constant.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -404,7 +404,7 @@ class _HistoryScreenState extends State<HistoryScreen>
                                                                       Row(
                                                                         children: [
                                                                           Text(
-                                                                              item.items![productIndex].name.toString().length > 30 ? item.items![productIndex].name.toString().substring(0, 30) + '...' : item.items![productIndex].name.toString(),
+                                                                              item.items![productIndex].name.toString().length > 30 ? '${item.items![productIndex].name.toString().substring(0, 30)}...' : item.items![productIndex].name.toString(),
                                                                               style: const TextStyle(fontFamily: 'bold', fontSize: 12)),
                                                                           item.items![productIndex].savedVariationsList.isEmpty
                                                                               ? const SizedBox(
@@ -788,7 +788,7 @@ class _HistoryScreenState extends State<HistoryScreen>
                                                                         children: [
                                                                           Text(
                                                                             item.items![productIndex].name.toString().length > 30
-                                                                                ? item.items![productIndex].name.toString().substring(0, 30) + '...'
+                                                                                ? '${item.items![productIndex].name.toString().substring(0, 30)}...'
                                                                                 : item.items![productIndex].name.toString(),
                                                                             style:
                                                                                 const TextStyle(fontFamily: 'bold', fontSize: 12),

@@ -8,11 +8,11 @@
 */
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:upgrade/app/backend/parse/choose_location_parse.dart';
-import 'package:upgrade/app/controller/home_controller.dart';
-import 'package:upgrade/app/helper/router.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/backend/parse/choose_location_parse.dart';
+import 'package:foodies_user/app/controller/home_controller.dart';
+import 'package:foodies_user/app/helper/router.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/util/toast.dart';
 import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 

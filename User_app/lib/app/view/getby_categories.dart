@@ -10,9 +10,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:upgrade/app/controller/getby_categories_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/getby_categories_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/theme.dart';
 
 class GetBycategories extends StatefulWidget {
   const GetBycategories({Key? key}) : super(key: key);
@@ -286,25 +286,8 @@ class _GetBycategoriesState extends State<GetBycategories> {
                                                     Get.find<GetByCategoriesController>()
                                                                 .currencySide ==
                                                             'left'
-                                                        ? Get.find<GetByCategoriesController>()
-                                                                .currencySymbol +
-                                                            value
-                                                                .restaurantList[
-                                                                    index]
-                                                                .costForTwo
-                                                                .toString() +
-                                                            ' ' +
-                                                            'for 2'.tr
-                                                        : value
-                                                                .restaurantList[
-                                                                    index]
-                                                                .costForTwo
-                                                                .toString() +
-                                                            Get.find<
-                                                                    GetByCategoriesController>()
-                                                                .currencySymbol +
-                                                            ' ' +
-                                                            'for 2'.tr,
+                                                        ? '${Get.find<GetByCategoriesController>().currencySymbol}${value.restaurantList[index].costForTwo} ${'for 2'.tr}'
+                                                        : '${value.restaurantList[index].costForTwo}${Get.find<GetByCategoriesController>().currencySymbol} ${'for 2'.tr}',
                                                     textAlign: TextAlign.center,
                                                     style: const TextStyle(
                                                         color: ThemeProvider
@@ -363,20 +346,7 @@ class _GetBycategoriesState extends State<GetBycategories> {
                                                             BorderRadius
                                                                 .circular(30)),
                                                     child: Text(
-                                                      value
-                                                              .getMinDeliveryTime(value
-                                                                  .restaurantList[
-                                                                      index]
-                                                                  .deliveryTime
-                                                                  .toString())
-                                                              .toString() +
-                                                          ' - ' +
-                                                          value
-                                                              .restaurantList[
-                                                                  index]
-                                                              .deliveryTime
-                                                              .toString() +
-                                                          'min'.tr,
+                                                      '${value.getMinDeliveryTime(value.restaurantList[index].deliveryTime.toString())} - ${value.restaurantList[index].deliveryTime}${'min'.tr}',
                                                       style: const TextStyle(
                                                           color: ThemeProvider
                                                               .appColor,
@@ -455,11 +425,7 @@ class _GetBycategoriesState extends State<GetBycategories> {
                                                     width: 5,
                                                   ),
                                                   Text(
-                                                    value.restaurantList[index]
-                                                            .distance
-                                                            .toString() +
-                                                        ' ' +
-                                                        value.distanceType,
+                                                    '${value.restaurantList[index].distance} ${value.distanceType}',
                                                     style: const TextStyle(
                                                       color: ThemeProvider
                                                           .greyColor,
@@ -488,9 +454,8 @@ class _GetBycategoriesState extends State<GetBycategories> {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(10),
       image: DecorationImage(
-          image: NetworkImage(Environments.apiBaseURL +
-              'storage/images/' +
-              val.cover.toString()),
+          image: NetworkImage(
+              '${Environments.apiBaseURL}storage/images/${val.cover}'),
           fit: BoxFit.cover,
           alignment: Alignment.center),
     );

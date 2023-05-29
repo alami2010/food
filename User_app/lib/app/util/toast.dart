@@ -8,7 +8,7 @@
 */
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 void showToast(String message, {bool isError = true}) {
@@ -66,6 +66,41 @@ Future<bool> clearCartAlert() async {
                 },
                 child: const Text(
                   'Clear Cart',
+                  style: TextStyle(
+                      color: ThemeProvider.appColor, fontFamily: 'bold'),
+                ),
+              )
+            ],
+          ));
+  return clean;
+}
+
+Future<bool> notificationDialog(String title, String message) async {
+  HapticFeedback.lightImpact();
+  bool clean = false;
+  await Get.generalDialog(
+      pageBuilder: (context, __, ___) => AlertDialog(
+            title: Text(title),
+            content: Text(message),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  clean = true;
+                },
+                child: const Text(
+                  'Cancel',
+                  style: TextStyle(
+                      color: ThemeProvider.blackColor, fontFamily: 'medium'),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  clean = true;
+                },
+                child: const Text(
+                  'OK',
                   style: TextStyle(
                       color: ThemeProvider.appColor, fontFamily: 'bold'),
                 ),

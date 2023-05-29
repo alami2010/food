@@ -9,8 +9,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:upgrade/app/controller/delivery_address_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/delivery_address_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
 
 class DeliveryAdrress extends StatefulWidget {
   const DeliveryAdrress({Key? key}) : super(key: key);
@@ -84,13 +84,8 @@ class _DeliveryAdrressState extends State<DeliveryAdrress> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(right: 40),
-                                child: Text(item.address.toString() +
-                                    ' ' +
-                                    item.house.toString() +
-                                    ' ' +
-                                    item.landmark.toString() +
-                                    ' ' +
-                                    item.optionalPhone.toString()),
+                                child: Text(
+                                    '${item.address} ${item.house} ${item.landmark} ${item.optionalPhone}'),
                               ),
                               const SizedBox(
                                 height: 10,

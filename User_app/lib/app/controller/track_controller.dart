@@ -14,11 +14,11 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/parse/track_parse.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/constant.dart';
-import 'package:upgrade/app/util/pin_info.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/parse/track_parse.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/constant.dart';
+import 'package:foodies_user/app/util/pin_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 const double cameraZoom = 16;

@@ -145,9 +145,9 @@ class StoreInfo {
       this.extraField});
 
   StoreInfo.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    uid = json['uid'];
-    cityId = json['city_id'];
+    id = int.parse(json['id'].toString());
+    uid = int.parse(json['uid'].toString());
+    cityId = int.parse(json['city_id'].toString());
     name = json['name'];
     cover = json['cover'];
     mobile = json['mobile'];
@@ -157,24 +157,24 @@ class StoreInfo {
     lat = json['lat'];
     lng = json['lng'];
     masterCategories = json['master_categories'];
-    deliveryType = json['delivery_type'];
-    pureVeg = json['pure_veg'];
-    haveDining = json['have_dining'];
-    minOrderPrice = json['min_order_price'];
-    extraCharges = json['extra_charges'];
+    deliveryType = int.parse(json['delivery_type'].toString());
+    pureVeg = int.parse(json['pure_veg'].toString());
+    haveDining = int.parse(json['have_dining'].toString());
+    minOrderPrice = int.parse(json['min_order_price'].toString());
+    extraCharges = int.parse(json['extra_charges'].toString());
     shortDescriptions = json['short_descriptions'];
     images = json['images'];
-    verified = json['verified'];
-    status = json['status'];
+    verified = int.parse(json['verified'].toString());
+    status = int.parse(json['status'].toString());
     openTime = json['open_time'];
     closeTime = json['close_time'];
-    isClosed = json['is_closed'];
+    isClosed = int.parse(json['is_closed'].toString());
     certificate = json['certificate'];
-    ratings = json['ratings'].toDouble();
-    totalRatings = json['total_ratings'];
+    ratings = double.parse(json['ratings'].toString());
+    totalRatings = int.parse(json['total_ratings'].toString());
     cuisines = json['cuisines'];
     deliveryTime = json['delivery_time'];
-    costForTwo = json['cost_for_two'];
+    costForTwo = int.parse(json['cost_for_two'].toString());
     extraField = json['extra_field'];
   }
 

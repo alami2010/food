@@ -7,9 +7,9 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/my_favorites_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/my_favorites_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class MyFavorites extends StatefulWidget {
@@ -128,25 +128,8 @@ class _MyFavoritesState extends State<MyFavorites> {
                                               Get.find<MyFavoritesController>()
                                                           .currencySide ==
                                                       'left'
-                                                  ? Get.find<MyFavoritesController>()
-                                                          .currencySymbol +
-                                                      value
-                                                          .restaurantList[
-                                                              restIndex]
-                                                          .costForTwo
-                                                          .toString() +
-                                                      ' ' +
-                                                      'for 2'.tr
-                                                  : value
-                                                          .restaurantList[
-                                                              restIndex]
-                                                          .costForTwo
-                                                          .toString() +
-                                                      Get.find<
-                                                              MyFavoritesController>()
-                                                          .currencySymbol +
-                                                      ' ' +
-                                                      'for 2',
+                                                  ? '${Get.find<MyFavoritesController>().currencySymbol}${value.restaurantList[restIndex].costForTwo} ${'for 2'.tr}'
+                                                  : '${value.restaurantList[restIndex].costForTwo}${Get.find<MyFavoritesController>().currencySymbol} for 2',
                                               textAlign: TextAlign.center,
                                               style: const TextStyle(
                                                   color:
@@ -200,21 +183,7 @@ class _MyFavoritesState extends State<MyFavorites> {
                                                       BorderRadius.circular(
                                                           30)),
                                               child: Text(
-                                                value
-                                                        .getMinDeliveryTime(
-                                                            value
-                                                                .restaurantList[
-                                                                    restIndex]
-                                                                .deliveryTime
-                                                                .toString())
-                                                        .toString() +
-                                                    ' - ' +
-                                                    value
-                                                        .restaurantList[
-                                                            restIndex]
-                                                        .deliveryTime
-                                                        .toString() +
-                                                    'min'.tr,
+                                                '${value.getMinDeliveryTime(value.restaurantList[restIndex].deliveryTime.toString())} - ${value.restaurantList[restIndex].deliveryTime}${'min'.tr}',
                                                 style: const TextStyle(
                                                     color:
                                                         ThemeProvider.appColor,
@@ -287,11 +256,7 @@ class _MyFavoritesState extends State<MyFavorites> {
                                               width: 5,
                                             ),
                                             Text(
-                                              value.restaurantList[restIndex]
-                                                      .distance
-                                                      .toString() +
-                                                  ' ' +
-                                                  value.distanceType,
+                                              '${value.restaurantList[restIndex].distance} ${value.distanceType}',
                                               style: const TextStyle(
                                                 color: ThemeProvider.greyColor,
                                               ),

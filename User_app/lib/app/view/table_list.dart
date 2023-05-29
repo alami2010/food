@@ -9,9 +9,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:upgrade/app/controller/table_list_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/table_list_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/theme.dart';
 
 class TableList extends StatefulWidget {
   const TableList({Key? key}) : super(key: key);
@@ -62,7 +62,7 @@ class _TableListState extends State<TableList> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Text(
-                                    '#' + item.id.toString(),
+                                    '#${item.id}',
                                     style: const TextStyle(
                                         color: ThemeProvider.greyColor),
                                   ),

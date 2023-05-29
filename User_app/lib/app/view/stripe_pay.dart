@@ -9,8 +9,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:upgrade/app/controller/stripe_pay_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/stripe_pay_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
 
 class StripePay extends StatefulWidget {
   const StripePay({Key? key}) : super(key: key);
@@ -112,8 +112,8 @@ class _StripePayState extends State<StripePay> {
               value.createPayment();
             },
             style: ElevatedButton.styleFrom(
-              primary: ThemeProvider.appColor,
-              onPrimary: ThemeProvider.whiteColor,
+              backgroundColor: ThemeProvider.appColor,
+              foregroundColor: ThemeProvider.whiteColor,
               minimumSize: const Size.fromHeight(45),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),

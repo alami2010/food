@@ -8,18 +8,18 @@
 */
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/parse/login_parse.dart';
-import 'package:upgrade/app/controller/account_controller.dart';
-import 'package:upgrade/app/controller/app_pages_controller.dart';
-import 'package:upgrade/app/controller/history_controller.dart';
-import 'package:upgrade/app/controller/home_controller.dart';
-import 'package:upgrade/app/controller/my_cart_controller.dart';
-import 'package:upgrade/app/helper/router.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/parse/login_parse.dart';
+import 'package:foodies_user/app/controller/account_controller.dart';
+import 'package:foodies_user/app/controller/app_pages_controller.dart';
+import 'package:foodies_user/app/controller/history_controller.dart';
+import 'package:foodies_user/app/controller/home_controller.dart';
+import 'package:foodies_user/app/controller/my_cart_controller.dart';
+import 'package:foodies_user/app/helper/router.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/util/constant.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/util/constant.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class LoginController extends GetxController implements GetxService {
   final LoginParse parser;
@@ -172,7 +172,7 @@ class LoginController extends GetxController implements GetxService {
   }
 
   void saveCountryCode(String code) {
-    countryCode = '+' + code;
+    countryCode = '+$code';
     update();
   }
 
@@ -378,6 +378,7 @@ class LoginController extends GetxController implements GetxService {
           smsId = myMap['otp_id'];
           FocusManager.instance.primaryFocus?.unfocus();
           var context = Get.context as BuildContext;
+          // ignore: use_build_context_synchronously
           openOTPModal(
               context, countryCode.toString() + mobileNo.text.toString());
         } else {
@@ -468,8 +469,8 @@ class LoginController extends GetxController implements GetxService {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: ThemeProvider.appColor,
-                        onPrimary: ThemeProvider.whiteColor,
+                        foregroundColor: ThemeProvider.whiteColor,
+                        backgroundColor: ThemeProvider.appColor,
                         elevation: 0,
                       ),
                       child: Text(

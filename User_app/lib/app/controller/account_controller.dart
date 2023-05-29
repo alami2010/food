@@ -7,19 +7,19 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/parse/account_parse.dart';
-import 'package:upgrade/app/controller/app_pages_controller.dart';
-import 'package:upgrade/app/controller/chat_screen_controller.dart';
-import 'package:upgrade/app/controller/my_favorites_controller.dart';
-import 'package:upgrade/app/controller/refer_earn_controller.dart';
-import 'package:upgrade/app/controller/saved_address_controller.dart';
-import 'package:upgrade/app/controller/tab_controller.dart';
-import 'package:upgrade/app/controller/table_list_controller.dart';
-import 'package:upgrade/app/controller/wallet_controller.dart';
-import 'package:upgrade/app/helper/router.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/parse/account_parse.dart';
+import 'package:foodies_user/app/controller/app_pages_controller.dart';
+import 'package:foodies_user/app/controller/chat_screen_controller.dart';
+import 'package:foodies_user/app/controller/my_favorites_controller.dart';
+import 'package:foodies_user/app/controller/refer_earn_controller.dart';
+import 'package:foodies_user/app/controller/saved_address_controller.dart';
+import 'package:foodies_user/app/controller/tab_controller.dart';
+import 'package:foodies_user/app/controller/table_list_controller.dart';
+import 'package:foodies_user/app/controller/wallet_controller.dart';
+import 'package:foodies_user/app/helper/router.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/util/theme.dart';
 
 class AccountController extends GetxController implements GetxService {
   final AccountParse parser;

@@ -8,9 +8,9 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/complaints_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/complaints_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/theme.dart';
 
 class ComplaintScreen extends StatefulWidget {
   const ComplaintScreen({Key? key}) : super(key: key);

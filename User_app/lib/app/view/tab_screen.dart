@@ -6,14 +6,14 @@
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/tab_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/view/account.dart';
-import 'package:upgrade/app/view/history.dart';
-import 'package:upgrade/app/view/home_screen.dart';
-import 'package:upgrade/app/view/my_cart.dart';
+import 'package:foodies_user/app/controller/tab_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/view/account.dart';
+import 'package:foodies_user/app/view/history.dart';
+import 'package:foodies_user/app/view/home_screen.dart';
+import 'package:foodies_user/app/view/my_cart.dart';
 import 'package:get/get.dart';
 
 class TabScreen extends StatefulWidget {
@@ -62,20 +62,21 @@ class _TabScreenState extends State<TabScreen> {
               ),
               Tab(
                 icon: value.cartTotal > 0
-                    ? Badge(
-                        badgeColor: ThemeProvider.appColor,
+                    ? badges.Badge(
                         badgeContent: Text(
                           value.cartTotal.toString(),
                           style:
                               const TextStyle(color: ThemeProvider.whiteColor),
+                        ),
+                        badgeStyle: const badges.BadgeStyle(
+                          badgeColor: ThemeProvider.appColor,
                         ),
                         child: Icon(
                           Icons.shopping_bag_outlined,
                           color: value.currentIndex == 2
                               ? ThemeProvider.appColor
                               : ThemeProvider.greyColor,
-                        ),
-                      )
+                        ))
                     : Icon(
                         Icons.shopping_bag_outlined,
                         color: value.currentIndex == 2

@@ -8,9 +8,9 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/offers_restaurants_controller.dart';
-import 'package:upgrade/app/env.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/offers_restaurants_controller.dart';
+import 'package:foodies_user/app/env.dart';
+import 'package:foodies_user/app/util/theme.dart';
 
 class OffersRestaurantScreen extends StatefulWidget {
   const OffersRestaurantScreen({Key? key}) : super(key: key);
@@ -129,25 +129,8 @@ class _OffersRestaurantScreenState extends State<OffersRestaurantScreen> {
                                                 Get.find<OffersRestaurantsController>()
                                                             .currencySide ==
                                                         'left'
-                                                    ? Get.find<OffersRestaurantsController>()
-                                                            .currencySymbol +
-                                                        value
-                                                            .restaurantList[
-                                                                restIndex]
-                                                            .costForTwo
-                                                            .toString() +
-                                                        ' ' +
-                                                        'for 2'.tr
-                                                    : value
-                                                            .restaurantList[
-                                                                restIndex]
-                                                            .costForTwo
-                                                            .toString() +
-                                                        Get.find<
-                                                                OffersRestaurantsController>()
-                                                            .currencySymbol +
-                                                        ' ' +
-                                                        'for 2',
+                                                    ? '${Get.find<OffersRestaurantsController>().currencySymbol}${value.restaurantList[restIndex].costForTwo} ${'for 2'.tr}'
+                                                    : '${value.restaurantList[restIndex].costForTwo}${Get.find<OffersRestaurantsController>().currencySymbol} for 2',
                                                 textAlign: TextAlign.center,
                                                 style: const TextStyle(
                                                     color: ThemeProvider
@@ -202,21 +185,7 @@ class _OffersRestaurantScreenState extends State<OffersRestaurantScreen> {
                                                         BorderRadius.circular(
                                                             30)),
                                                 child: Text(
-                                                  value
-                                                          .getMinDeliveryTime(
-                                                              value
-                                                                  .restaurantList[
-                                                                      restIndex]
-                                                                  .deliveryTime
-                                                                  .toString())
-                                                          .toString() +
-                                                      ' - ' +
-                                                      value
-                                                          .restaurantList[
-                                                              restIndex]
-                                                          .deliveryTime
-                                                          .toString() +
-                                                      'min'.tr,
+                                                  '${value.getMinDeliveryTime(value.restaurantList[restIndex].deliveryTime.toString())} - ${value.restaurantList[restIndex].deliveryTime}${'min'.tr}',
                                                   style: const TextStyle(
                                                       color: ThemeProvider
                                                           .appColor,
@@ -291,11 +260,7 @@ class _OffersRestaurantScreenState extends State<OffersRestaurantScreen> {
                                                 width: 5,
                                               ),
                                               Text(
-                                                value.restaurantList[restIndex]
-                                                        .distance
-                                                        .toString() +
-                                                    ' ' +
-                                                    value.distanceType,
+                                                '${value.restaurantList[restIndex].distance} ${value.distanceType}',
                                                 style: const TextStyle(
                                                   color:
                                                       ThemeProvider.greyColor,

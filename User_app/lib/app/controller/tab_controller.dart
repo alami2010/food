@@ -7,9 +7,9 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/parse/tab_parse.dart';
+import 'package:foodies_user/app/backend/parse/tab_parse.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/my_cart_controller.dart';
+import 'package:foodies_user/app/controller/my_cart_controller.dart';
 
 class TabsController extends GetxController
     with GetTickerProviderStateMixin

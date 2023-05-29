@@ -8,7 +8,7 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/helper/router.dart';
+import 'package:foodies_user/app/helper/router.dart';
 
 class ErrorScreen extends StatefulWidget {
   const ErrorScreen({Key? key}) : super(key: key);

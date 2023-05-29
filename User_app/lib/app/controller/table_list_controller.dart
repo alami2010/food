@@ -7,9 +7,9 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/table_list_model.dart';
-import 'package:upgrade/app/backend/parse/table_list_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/table_list_model.dart';
+import 'package:foodies_user/app/backend/parse/table_list_parse.dart';
 import 'package:get/get.dart';
 
 class TableListController extends GetxController implements GetxService {

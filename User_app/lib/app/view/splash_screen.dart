@@ -11,11 +11,11 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:upgrade/app/controller/splash_screen_controller.dart';
+import 'package:foodies_user/app/controller/splash_screen_controller.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/helper/router.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/helper/router.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -31,13 +31,17 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    print("hello world");
+
     initConnectivity();
 
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
-
+    print("hello _connectivitySubscription");
     Get.find<SplashScreenController>().initSharedData();
+    print("hello initSharedData");
     _routing();
+    print("hello _routing");
   }
 
   @override
@@ -48,6 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _routing() {
     Get.find<SplashScreenController>().getConfigData().then((isSuccess) {
+      print(isSuccess);
       if (isSuccess) {
         if (Get.find<SplashScreenController>().getLanguageCode() != '') {
           var locale = Get.find<SplashScreenController>().getLanguageCode();

@@ -6,7 +6,7 @@
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
-import 'package:upgrade/app/controller/message_controll.dart';
+import 'package:foodies_user/app/controller/message_controll.dart';
 import 'package:get/get.dart';
 
 class MessageBinding extends Bindings {

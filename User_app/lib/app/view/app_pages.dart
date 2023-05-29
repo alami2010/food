@@ -9,8 +9,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:upgrade/app/controller/app_pages_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/app_pages_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class AppPagesScreen extends StatefulWidget {

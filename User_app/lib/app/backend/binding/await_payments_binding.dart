@@ -7,7 +7,7 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/await_payments_controller.dart';
+import 'package:foodies_user/app/controller/await_payments_controller.dart';
 
 class AwaitPaymentsBinding extends Bindings {
   @override

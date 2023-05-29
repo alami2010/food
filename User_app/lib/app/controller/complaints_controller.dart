@@ -12,14 +12,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/issuewith_model.dart';
-import 'package:upgrade/app/backend/models/orders_model.dart';
-import 'package:upgrade/app/backend/models/store_models.dart';
-import 'package:upgrade/app/backend/models/user_model.dart';
-import 'package:upgrade/app/backend/parse/complaints_parse.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/issuewith_model.dart';
+import 'package:foodies_user/app/backend/models/orders_model.dart';
+import 'package:foodies_user/app/backend/models/store_models.dart';
+import 'package:foodies_user/app/backend/models/user_model.dart';
+import 'package:foodies_user/app/backend/parse/complaints_parse.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class ComplaintsController extends GetxController implements GetxService {
   final ComplaintsParser parser;
@@ -93,8 +93,8 @@ class ComplaintsController extends GetxController implements GetxService {
       dynamic storeInfo = myMap["storeInfo"];
       if (storeInfo != null) {
         _stores = [];
-        StoreModal _storeDatas = StoreModal.fromJson(storeInfo);
-        _stores.add(_storeDatas);
+        StoreModal storeDatas = StoreModal.fromJson(storeInfo);
+        _stores.add(storeDatas);
       }
       for (var item in details.items!) {
         var storeName =
@@ -117,8 +117,8 @@ class ComplaintsController extends GetxController implements GetxService {
         _issueWithList.add(IssueItemsModel.fromJson(productParam));
         _driversList = [];
         if (driverInfo.length > 0) {
-          UserModel _driverDatas = UserModel.fromJson(driverInfo);
-          _driversList.add(_driverDatas);
+          UserModel driverDatas = UserModel.fromJson(driverInfo);
+          _driversList.add(driverDatas);
           // driverInfo.forEach((element) {
           //   UsersModel driverData = UsersModel.fromJson(element);
           //   _driversList.add(driverData);

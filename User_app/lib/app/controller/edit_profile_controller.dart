@@ -8,12 +8,12 @@
 */
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/parse/edit_profile_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/parse/edit_profile_parse.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/account_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/controller/account_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class EditProfileController extends GetxController implements GetxService {
   final EditProfileParse parser;

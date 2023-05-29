@@ -7,13 +7,13 @@
   Copyright and Good Faith Purchasers © 2022-present initappz.
 */
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/models/orders_model.dart';
-import 'package:upgrade/app/backend/parse/history_parse.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/models/orders_model.dart';
+import 'package:foodies_user/app/backend/parse/history_parse.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/order_details_controller.dart';
-import 'package:upgrade/app/helper/router.dart';
-import 'package:upgrade/app/util/constant.dart';
+import 'package:foodies_user/app/controller/order_details_controller.dart';
+import 'package:foodies_user/app/helper/router.dart';
+import 'package:foodies_user/app/util/constant.dart';
 
 class HistoryController extends GetxController
     with GetTickerProviderStateMixin

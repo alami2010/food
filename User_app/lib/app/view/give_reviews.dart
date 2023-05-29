@@ -8,8 +8,8 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/give_reviews_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/give_reviews_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
 
 class GiveReviewScreen extends StatefulWidget {
   const GiveReviewScreen({Key? key}) : super(key: key);

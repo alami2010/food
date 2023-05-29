@@ -9,8 +9,8 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/login_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/login_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -94,8 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         value.onLogin();
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: ThemeProvider.appColor,
-                        onPrimary: ThemeProvider.whiteColor,
+                        backgroundColor: ThemeProvider.appColor,
+                        foregroundColor: ThemeProvider.whiteColor,
                         minimumSize: const Size.fromHeight(45),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -294,8 +294,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             value.loginWithPhonePassword();
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: ThemeProvider.appColor,
-                            onPrimary: ThemeProvider.whiteColor,
+                            backgroundColor: ThemeProvider.appColor,
+                            foregroundColor: ThemeProvider.whiteColor,
                             minimumSize: const Size.fromHeight(45),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
@@ -476,8 +476,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 value.loginWithPhoneOTP();
                               },
                               style: ElevatedButton.styleFrom(
-                                primary: ThemeProvider.appColor,
-                                onPrimary: ThemeProvider.whiteColor,
+                                backgroundColor: ThemeProvider.appColor,
+                                foregroundColor: ThemeProvider.whiteColor,
                                 minimumSize: const Size.fromHeight(45),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30),

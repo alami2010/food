@@ -9,9 +9,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:upgrade/app/backend/api/handler.dart';
-import 'package:upgrade/app/backend/parse/give_reviews_parse.dart';
-import 'package:upgrade/app/util/toast.dart';
+import 'package:foodies_user/app/backend/api/handler.dart';
+import 'package:foodies_user/app/backend/parse/give_reviews_parse.dart';
+import 'package:foodies_user/app/util/toast.dart';
 
 class GiveReviewsController extends GetxController implements GetxService {
   final GiveReviewsParser parser;

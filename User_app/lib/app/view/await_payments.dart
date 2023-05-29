@@ -9,8 +9,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/await_payments_controller.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/await_payments_controller.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class AwaitPaymentScreen extends StatefulWidget {
@@ -23,6 +23,49 @@ class AwaitPaymentScreen extends StatefulWidget {
 class _AwaitPaymentScreenState extends State<AwaitPaymentScreen> {
   bool isLoading = true;
   bool recallAPI = true;
+
+  late final WebViewController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final WebViewController controller = WebViewController();
+    controller
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0x00000000))
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {},
+          onPageStarted: (String url) {
+            checkCallback(url);
+          },
+          onPageFinished: (String url) {
+            setState(() {
+              isLoading = false;
+            });
+            checkCallback(url);
+          },
+          onWebResourceError: (WebResourceError error) {},
+          onNavigationRequest: (NavigationRequest request) {
+            checkCallback(request.url);
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..addJavaScriptChannel(
+        'Toaster',
+        onMessageReceived: (JavaScriptMessage message) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(message.message)),
+          );
+        },
+      )
+      ..loadRequest(Uri.parse(Get.find<AwaitPaymentsController>().paymentURL));
+
+    _controller = controller;
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AwaitPaymentsController>(builder: (value) {
@@ -30,27 +73,7 @@ class _AwaitPaymentScreenState extends State<AwaitPaymentScreen> {
         child: Scaffold(
           body: Stack(
             children: <Widget>[
-              WebView(
-                initialUrl: value.paymentURL,
-                javascriptMode: JavascriptMode.unrestricted,
-                onWebViewCreated: (WebViewController webViewController) {},
-                onProgress: (int progress) {},
-                navigationDelegate: (NavigationRequest request) {
-                  checkCallback(request.url);
-                  return NavigationDecision.navigate;
-                },
-                onPageStarted: (String url) {
-                  checkCallback(url);
-                },
-                onPageFinished: (String url) {
-                  setState(() {
-                    isLoading = false;
-                  });
-                  checkCallback(url);
-                },
-                gestureNavigationEnabled: true,
-                backgroundColor: ThemeProvider.whiteColor,
-              ),
+              WebViewWidget(controller: _controller),
               isLoading
                   ? const Center(
                       child: CircularProgressIndicator(

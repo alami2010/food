@@ -9,8 +9,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:upgrade/app/controller/message_controll.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/message_controll.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:get/get.dart';
 
 class MessageScreen extends StatefulWidget {

@@ -8,9 +8,9 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:upgrade/app/controller/firebase_controller.dart';
-import 'package:upgrade/app/util/constant.dart';
-import 'package:upgrade/app/util/theme.dart';
+import 'package:foodies_user/app/controller/firebase_controller.dart';
+import 'package:foodies_user/app/util/constant.dart';
+import 'package:foodies_user/app/util/theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class FirebaseVerificationScreen extends StatefulWidget {
@@ -24,6 +24,47 @@ class FirebaseVerificationScreen extends StatefulWidget {
 class _FirebaseVerificationScreenState
     extends State<FirebaseVerificationScreen> {
   bool isLoading = true;
+
+  late final WebViewController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    final WebViewController controller = WebViewController();
+    controller
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0x00000000))
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {},
+          onPageStarted: (String url) {},
+          onPageFinished: (String url) {
+            setState(() {
+              isLoading = false;
+            });
+          },
+          onWebResourceError: (WebResourceError error) {},
+          onNavigationRequest: (NavigationRequest request) {
+            if (request.url.contains('success_verified')) {
+              Get.find<FirebaseController>().onLogin(context);
+              return NavigationDecision.prevent;
+            }
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..addJavaScriptChannel(
+        'Toaster',
+        onMessageReceived: (JavaScriptMessage message) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(message.message)),
+          );
+        },
+      )
+      ..loadRequest(Uri.parse(
+          '${Get.find<FirebaseController>().apiURL}${AppConstants.openFirebaseVerification}mobile=${Get.find<FirebaseController>().countryCode}${Get.find<FirebaseController>().phoneNumber}'));
+    _controller = controller;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,28 +80,7 @@ class _FirebaseVerificationScreenState
         ),
         body: Stack(
           children: <Widget>[
-            WebView(
-              initialUrl:
-                  '${value.apiURL}${AppConstants.openFirebaseVerification}mobile=${value.countryCode}${value.phoneNumber}',
-              javascriptMode: JavascriptMode.unrestricted,
-              onWebViewCreated: (WebViewController webViewController) {},
-              onProgress: (int progress) {},
-              navigationDelegate: (NavigationRequest request) {
-                if (request.url.contains('success_verified')) {
-                  value.onLogin(context);
-                  return NavigationDecision.prevent;
-                }
-                return NavigationDecision.navigate;
-              },
-              onPageStarted: (String url) {},
-              onPageFinished: (String url) {
-                setState(() {
-                  isLoading = false;
-                });
-              },
-              gestureNavigationEnabled: true,
-              backgroundColor: ThemeProvider.appColor,
-            ),
+            WebViewWidget(controller: _controller),
             isLoading
                 ? const Center(
                     child: CircularProgressIndicator(
